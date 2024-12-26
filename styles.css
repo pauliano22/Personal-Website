@@ -149,7 +149,7 @@ footer {
 .dropdown {
     position: fixed;
     top: 5%;
-    right: 15%;
+    left: 80%;
     z-index: 10;
 }
 

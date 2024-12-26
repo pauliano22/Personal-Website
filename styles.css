@@ -1,0 +1,147 @@
+body {
+    background: linear-gradient(to bottom, #add8e6, #ffffff);
+    font-family: "Cormorant", serif;
+    font-size: 1.5rem;
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+    text-align: center;
+    padding: 20% 5%;
+    color: #333;
+}
+
+.hero-title {
+    font-size: 7rem;
+    margin-bottom: 10%;
+}
+
+
+/* Custom button style */
+.btn-custom {
+    background-color: transparent;
+    /* Transparent background */
+    color: black;
+    /* Text color */
+    border: 2px solid black;
+    /* Black border */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover and focus */
+}
+
+/* Focus state override */
+.btn-custom:focus {
+    background-color: transparent !important;
+    /* Transparent background */
+    color: black !important;
+    /* Black text */
+    border: 2px solid black !important;
+    /* Maintain black border */
+    box-shadow: none !important;
+    /* Remove Bootstrap's default focus outline (blue glow) */
+    outline: none !important;
+    /* Remove outline on focus */
+}
+
+/* Hover effect */
+.btn-custom:hover {
+    background-color: black;
+    /* Background turns black */
+    color: white;
+    /* Text color turns white */
+    border: 2px solid black;
+    /* Border turns white */
+}
+
+/* Active state */
+.btn-custom:active {
+    background-color: transparent;
+    /* Keep transparent background when active */
+    color: black;
+    /* Keep text black */
+    border: 2px solid black;
+    /* Keep black border */
+    box-shadow: none !important;
+    /* Remove any active state shadow */
+    outline: none !important;
+    /* Prevent blue outline when active */
+}
+
+/* Optional: Remove outline only for mouse interaction, retain for keyboard focus */
+.btn-custom:focus-visible {
+    outline: none !important;
+    /* Keep focus style for keyboard navigation if needed */
+}
+
+.dropdown-menu {
+    background-color: transparent;
+    /* Light gray background */
+    border: 1px solid black;
+    /* Border for the dropdown menu */
+}
+
+.section-title {
+    text-align: center;
+    padding-top: 10%;
+    color: #333;
+}
+
+.project-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    color: #777;
+    margin-top: 50px;
+}
+
+/* Profile picture styling */
+.profile-picture {
+    width: 50vw;
+    /* Make the image width 25% of the viewport width */
+    height: 50vw;
+    /* Make the height proportional to the width (square aspect) */
+    max-width: 300px;
+    /* Limit the maximum width on large screens */
+    max-height: 300px;
+    /* Limit the maximum height on large screens */
+    border-radius: 50%;
+    /* Make it circular */
+    object-fit: cover;
+    /* Ensure the image covers the area properly */
+    object-position: center;
+    /* Keep the image centered */
+    transition: transform 0.3s ease-in-out;
+    /* Optional: smooth transition when scaling */
+}
+
+/* Hover effect for zoom */
+.profile-picture:hover {
+    transform: scale(1.2);
+    /* Zoom in more on hover */
+}
+
+/* Profile text styling */
+.profile-text {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 5%;
+    /* Space between text and image */
+}
+
+@media (min-width: 768px) {
+
+    /* On larger screens, adjust the layout */
+    .profile-text {
+        text-align: left;
+    }
+}

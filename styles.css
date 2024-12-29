@@ -3,19 +3,13 @@ body {
     font-family: "Cormorant", serif;
     font-size: 1.5rem;
 
-
-    max-width: 100%;
-    width: 100%;
-    /* Ensures it doesn't exceed the viewport */
-    padding: 10px;
-    /* Space inside the container */
-    box-sizing: border-box;
-    /* Includes padding in the width calculation */
-    margin: 0 auto;
-    /* Center content */
-
-
+    margin: 0; /* Removes all default margins */
+    padding: 0; /* No extra space inside the body */
+    width: 100vw; /* Sets body width to viewport width */
+    box-sizing: border-box; /* Includes padding in width calculations */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
 }
+
 
 .navbar {
     background-color: #ffffff;

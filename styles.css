@@ -5,11 +5,10 @@ body {
 
     margin: 0; /* Removes all default margins */
     padding: 0; /* No extra space inside the body */
-    width: 100vw; /* Sets body width to viewport width */
+    width: 100%; /* Ensures it doesn't exceed the viewport */
     box-sizing: border-box; /* Includes padding in width calculations */
     overflow-x: hidden; /* Prevents horizontal scrolling */
 }
-
 
 .navbar {
     background-color: #ffffff;
@@ -27,68 +26,50 @@ body {
     margin-bottom: 10%;
 }
 
+/* Adjust hero-title for smaller screens */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+}
 
 /* Custom button style */
 .btn-custom {
     background-color: #add8e6;
-    /* Transparent background */
     color: black;
-    /* Text color */
     border: 2px solid black;
-    /* Black border */
     transition: all 0.3s ease;
-    /* Smooth transition for hover and focus */
 }
 
-/* Focus state override */
 .btn-custom:focus {
     background-color: black !important;
-    /* Transparent background */
     color: white !important;
-    /* Black text */
     border: 2px solid black !important;
-    /* Maintain black border */
     box-shadow: none !important;
-    /* Remove Bootstrap's default focus outline (blue glow) */
     outline: none !important;
-    /* Remove outline on focus */
 }
 
-/* Hover effect */
 .btn-custom:hover {
     background-color: black;
-    /* Background turns black */
     color: white;
-    /* Text color turns white */
     border: 2px solid black;
-    /* Border turns white */
 }
 
-/* Active state */
 .btn-custom:active {
     background-color: black;
-    /* Keep transparent background when active */
     color: white;
-    /* Keep text black */
     border: 2px solid black;
-    /* Keep black border */
     box-shadow: none !important;
-    /* Remove any active state shadow */
     outline: none !important;
-    /* Prevent blue outline when active */
 }
 
-/* Optional: Remove outline only for mouse interaction, retain for keyboard focus */
 .btn-custom:focus-visible {
     outline: none !important;
-    /* Keep focus style for keyboard navigation if needed */
 }
 
 .dropdown-menu {
     background-color: #add8e6;
-    /* Light gray background */
     border: 1px solid black;
-    /* Border for the dropdown menu */
 }
 
 .section-title {
@@ -115,27 +96,17 @@ footer {
 /* Profile picture styling */
 .profile-picture {
     width: 50vw;
-    /* Make the image width 25% of the viewport width */
     height: 50vw;
-    /* Make the height proportional to the width (square aspect) */
     max-width: 300px;
-    /* Limit the maximum width on large screens */
     max-height: 300px;
-    /* Limit the maximum height on large screens */
     border-radius: 50%;
-    /* Make it circular */
     object-fit: cover;
-    /* Ensure the image covers the area properly */
     object-position: center;
-    /* Keep the image centered */
     transition: transform 0.3s ease-in-out;
-    /* Optional: smooth transition when scaling */
 }
 
-/* Hover effect for zoom */
 .profile-picture:hover {
     transform: scale(1.2);
-    /* Zoom in more on hover */
 }
 
 /* Profile text styling */
@@ -144,27 +115,37 @@ footer {
     line-height: 1.5;
     text-align: center;
     margin-top: 5%;
-    /* Space between text and image */
 }
 
 @media (min-width: 768px) {
-
-    /* On larger screens, adjust the layout */
     .profile-text {
         text-align: left;
+    }
+}
+
+/* Adjust profile-picture for smaller screens */
+@media (max-width: 768px) {
+    .profile-picture {
+        width: 80vw;
+        height: 80vw;
     }
 }
 
 .dropdown {
     position: fixed;
     top: 5%;
-    right: 10%;
+    right: 5%; /* Reduced to ensure it stays within viewport */
     z-index: 2;
 }
 
 section {
     margin-left: auto;
     margin-right: auto;
-    max-width: 1200px;
-    /* You can set a maximum width */
+    max-width: 95%; /* Adjusts for smaller screens */
+}
+
+@media (min-width: 768px) {
+    section {
+        max-width: 1200px;
+    }
 }

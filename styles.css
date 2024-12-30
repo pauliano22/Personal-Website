@@ -8,7 +8,7 @@ html, body {
 body {
     background: linear-gradient(100deg, #6babd6, #61a7be, #5a98b7, #add8e6, #a0d7d8);
     background-size: 400% 100%;
-    animation: moveGradient 20s ease infinite;
+    animation: moveGradient 8s ease infinite;
     font-family: "Cormorant", serif;
     font-size: 1.5rem;
 
@@ -114,12 +114,24 @@ body {
     z-index: 1;
 }
 
+#about {
+    border: black 2px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 2;
+}
+
 footer {
     text-align: center;
     padding: 20px 0;
     background-color: #f8f9fa;
     color: #777;
     margin-top: 50px;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit; /* Matches the parent's color */
 }
 
 /* Profile picture styling */
@@ -180,3 +192,7 @@ section {
     }
 }
 
+.linkpic {
+    width: 30px;
+    height: 30px;
+}

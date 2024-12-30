@@ -1,5 +1,14 @@
+/* Ensure the body takes up the full viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
 body {
-    background: linear-gradient(to bottom, #add8e6, #ffffff);
+    background: linear-gradient(100deg, #6babd6, #61a7be, #5a98b7, #add8e6, #a0d7d8);
+    background-size: 400% 100%;
+    animation: moveGradient 20s ease infinite;
     font-family: "Cormorant", serif;
     font-size: 1.5rem;
 
@@ -8,6 +17,20 @@ body {
     width: 100%; /* Ensures it doesn't exceed the viewport */
     box-sizing: border-box; /* Includes padding in width calculations */
     overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+
+/* Define the animation for the gradient */
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .navbar {
@@ -24,6 +47,11 @@ body {
 .hero-title {
     font-size: 7rem;
     margin-bottom: 10%;
+}
+
+.p1 {
+    font-size: 1rem;
+    margin-bottom: 0;
 }
 
 /* Adjust hero-title for smaller screens */
@@ -73,6 +101,7 @@ body {
 }
 
 .section-title {
+    font-size: 3rem;
     text-align: center;
     padding-top: 10%;
     color: #333;
@@ -111,10 +140,11 @@ footer {
 
 /* Profile text styling */
 .profile-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 1.5;
     text-align: center;
     margin-top: 5%;
+    margin-right: 10%;
 }
 
 @media (min-width: 768px) {
@@ -149,3 +179,4 @@ section {
         max-width: 1200px;
     }
 }
+

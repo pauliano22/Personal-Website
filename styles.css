@@ -137,6 +137,18 @@ body {
     color: oldlace;
 }
 
+#projects {
+    width: 100%;
+    padding: 5%;
+    justify-content: center;
+}
+
+#projects .row{
+    display: flex;
+    flex-wrap: wrap; /* Ensures cards wrap to the next row if needed */
+    justify-content: space-evenly; /* Evenly spaces the cards with equal gaps */
+}
+
 .project-card {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: none;
@@ -145,6 +157,13 @@ body {
     margin-bottom: 50px;
     background-color: oldlace;
     color: #191a1b;
+    transition: transform 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+    min-width: 300px;
+}
+
+.project-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    border-color: rgba(25, 26, 27, 0.5);
 }
 
 .card-title {
@@ -156,8 +175,8 @@ body {
 }
 
 .about {
-    border-radius: 0%;
-    width: 100%;
+    border-radius: 0;
+    width: 100vw;
     background-color: #191a1b;
     z-index: 2;
     border: 2px black;
@@ -281,7 +300,11 @@ section {
     font-family: "EB Garamond", serif;
     background-color: #191a1b;
     color: oldlace;
-    width: 100vw;
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+    padding: 4rem 2rem 0rem 2rem;
+    padding-bottom: 5%;
 }
 
 #skills h2 {

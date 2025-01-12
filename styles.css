@@ -44,13 +44,22 @@ body {
     }
 }
 
-/* DOWN ARROW */
+.scroll-down {
+    display: flex;              /* Make the container a flexbox */
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically if needed */
+    position: relative;         /* Ensures the positioning works if needed */
+}
+
 .scroll-down img {
     width: 2.3rem;
     height: auto;
     animation: bounce 2s infinite;
-    bottom: 20px;
+    position: relative;   
+    bottom: -10vh;      /* Position image relative to .scroll-down */            /* Adjust if necessary */
 }
+
+
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
@@ -92,7 +101,7 @@ body {
 
 /* Custom button style */
 .btn-custom {
-    background-color: oldlace;
+    background-color: rgb(170, 205, 212);
     color: black;
     border: 2px solid black;
     transition: all 0.3s ease;
@@ -174,13 +183,22 @@ body {
     font-size: 1rem;
 }
 
+.card-img-top {
+
+}
+
+.card-body {
+  
+}
+
 .about {
     border-radius: 0;
-    width: 100vw;
+    min-height: 100vh;
     background-color: #191a1b;
     z-index: 2;
     border: 2px black;
     color: oldlace;
+    padding: 5%;
 }
 
 footer {

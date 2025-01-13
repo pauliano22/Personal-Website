@@ -5,7 +5,7 @@ body {
     margin: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    color: oldlace;
+    color: white;
     background-color: #191a1b;
 }
 
@@ -110,7 +110,7 @@ body {
 
 .btn-custom:focus {
     background-color: black !important;
-    color: oldlace !important;
+    color: white !important;
     border: 2px solid black !important;
     box-shadow: none !important;
     outline: none !important;
@@ -118,13 +118,13 @@ body {
 
 .btn-custom:hover {
     background-color: black;
-    color: oldlace;
+    color: white;
     border: 2px solid black;
 }
 
 .btn-custom:active {
     background-color: black;
-    color: oldlace;
+    color: white;
     border: 2px solid black;
     box-shadow: none !important;
     outline: none !important;
@@ -135,7 +135,7 @@ body {
 }
 
 .dropdown-menu {
-    background-color: oldlace;
+    background-color: white;
     border: 1px solid black;
 }
 
@@ -143,7 +143,7 @@ body {
     font-size: 3rem;
     text-align: center;
     padding-top: 10%;
-    color: oldlace;
+    color: white;
 }
 
 #projects {
@@ -164,10 +164,10 @@ body {
     position: relative;
     z-index: 1;
     margin-bottom: 50px;
-    background-color: oldlace;
+    background-color: white;
     color: #191a1b;
     transition: transform 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-    min-width: 300px;
+    height: 100%;
 }
 
 .project-card:hover {
@@ -191,13 +191,13 @@ body {
   
 }
 
-.about {
+#about {
     border-radius: 0;
     min-height: 100vh;
     background-color: #191a1b;
     z-index: 2;
     border: 2px black;
-    color: oldlace;
+    color: white;
     padding: 5%;
 }
 
@@ -206,7 +206,7 @@ footer {
     /* Centers all content within the footer */
     padding: 20px;
     /* Adds spacing inside the footer */
-    background-color: oldlace;
+    background-color: white;
     /* Optional: Adds a light background color */
     font-size: 1rem;
     color: #333;
@@ -317,7 +317,7 @@ section {
 #skills {
     font-family: "EB Garamond", serif;
     background-color: #191a1b;
-    color: oldlace;
+    color: white;
     width: 100%;
     padding: 0;
     justify-content: center;
@@ -349,7 +349,7 @@ section {
 
 .skill-item {
     font-family: "Afacad Flux", serif;
-    background-color: oldlace;
+    background-color: white;
     color: #191a1b;
     border-radius: 10px;
     padding: 10px;
@@ -366,4 +366,3 @@ section {
     margin: 0;
     font-size: 1rem;
 }
-

@@ -19,244 +19,254 @@
 
 </head>
 
-<!-- Dropdown Section (replacing navbar) -->
-<div class="container mt-4">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle btn-custom" type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Menu
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#about">About Me</a></li>
-            <li><a class="dropdown-item" href="#projects">Projects</a></li>
-            <li><a class="dropdown-item" href="#skills">Skills</a></li>
-        </ul>
+<body>
+    <!-- Dropdown Section (replacing navbar) -->
+    <div class="container mt-4">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle btn-custom" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#about">About Me</a></li>
+                <li><a class="dropdown-item" href="#projects">Projects</a></li>
+                <li><a class="dropdown-item" href="#skills">Skills</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
-<!-- Hero Section -->
-<header class="hero">
-    <h1 class="hero-title">
-        Paul Iacobucci
-    </h1>
-    <a href="https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing"
-        class="btn btn-custom btn-lg" style="position: relative; top: 10%;">Download My
-        Resume
-    </a>
-    <div class="scroll-down" style="bottom: 50px;">
-        <a href="#about">
-            <img src="images/chevron-down.png" alt="Scroll Down">
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1 class="hero-title">
+            Paul Iacobucci
+        </h1>
+        <a href="https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing"
+            class="btn btn-custom btn-lg" style="position: relative; top: 10%;">Download My
+            Resume
         </a>
-    </div>
-    
-</header>
+        <div class="scroll-down" style="bottom: 50px;">
+            <a href="#about">
+                <img src="images/chevron-down.png" alt="Scroll Down">
+            </a>
+        </div>
 
-<!-- About Me Section -->
-<div id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="d-flex flex-column-reverse flex-md-row align-items-center justify-content-around" style="padding: 5%; ">
-        <p class="profile-text ms-md-4">
-            I am actively pursuing a degree in Computer Science at Cornell University, with intended Minors
-            in Artificial Intelligence and Finance. I have many interests, including:
-            <br>
-            <p1 id="typewriter"></p1>
-        </p>
-        <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
-    </div>
-</div>
+    </header>
 
-<!-- Projects Section -->
-<div id="projects">
-    <h2 class="section-title" style="color: #191a1b">Projects</h2>
-    <div class="row gx-4 gy-4">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card project-card">
-                <img src="images/project4.jpg" class="card-img-top" alt="LockedIn - Networking App">
-                <div class="card-body">
-                    <h5 class="card-title">LockedIn: Professional Networking App</h5>
-                    <p class="card-text">Dubbed "The Tinder for LinkedIn," this app lets users swipe to network,
-                        making professional connections effortless. Built during Cornell AppDev's Hack Challenge.
-                    </p>
-                    <a href="https://github.com/akh1lk/LockedIn" class="btn btn-custom" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View Project</a>
-                </div>
-            </div>
+    <!-- About Me Section -->
+    <div id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="d-flex flex-column-reverse flex-md-row align-items-center justify-content-around"
+            style="padding: 5%; ">
+            <p class="profile-text ms-md-4">
+                I am actively pursuing a degree in Computer Science at Cornell University, with intended Minors
+                in Artificial Intelligence and Finance. I have many interests, including:
+                <br>
+                <p1 id="typewriter"></p1>
+            </p>
+            <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card project-card">
-                <img src="images/project5.jpg" class="card-img-top" alt="Java GUI with Intelligent Cropping">
-                <div class="card-body">
-                    <h5 class="card-title">Java GUI with Intelligent Image Cropping</h5>
-                    <p class="card-text">Designed an interactive GUI leveraging Dijkstra's Algorithm and Priority
-                        Queues to implement intelligent and precise image cropping functionality.</p>
-                    <a href="https://www.youtube.com/watch?v=fqq5berJyJs" class="btn btn-custom" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View Project</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card project-card">
-                <img src="images/project1.jpg" class="card-img-top" alt="Time Management App for Students">
-                <div class="card-body">
-                    <h5 class="card-title">College Life Planner: A Time Management App</h5>
-                    <p class="card-text">Currently developing a cross-platform app using React Native and Node.js to
-                        help college students effectively manage their schedules and stay on top of their tasks.</p>
-                    <a href="https://github.com/pauliano22/My-App" class="btn btn-custom" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View Project</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card project-card">
-                <img src="images/project6.jpg" class="card-img-top" alt="Stock Prediction Algorithm">
-                <div class="card-body">
-                    <h5 class="card-title">High-Frequency Stock Trading System</h5>
-                    <p class="card-text">
-                        This project combines machine learning with high-performance C++ components to
-                        create a predictive stock trading system capable of making fast, data-driven investment
-                        decisions
-                        and executing trades in real-time.
-                    </p>
-                    <a href="https://github.com/pauliano22/Stock-Algo" class="btn btn-custom" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View Project</a>
-                </div>
-            </div>
-        </div>
-        
     </div>
 
-</div>
-<!-- Tools Section -->
-<div id="skills">
-    <h2 class="text-center mb-5" style="color: var(--background-color);"><em>Technical Skills</em></h2>
-    <div class="row text-center g-4">
-        <div class="col-md-4">
-            <h5 class="mb-3">Languages</h5>
-            <div class="row">
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/cplusplus-icon.svg" alt="C++" class="img-fluid">
-                        <p>C++</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/java-icon.svg" alt="Java" class="img-fluid">
-                        <p>Java</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/javascript-icon.svg" alt="JavaScript" class="img-fluid">
-                        <p>JavaScript</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/python-icon.svg" alt="Python" class="img-fluid">
-                        <p>Python</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/html-icon.svg" alt="HTML" class="img-fluid">
-                        <p>HTML</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/css-icon.svg" alt="CSS" class="img-fluid">
-                        <p>CSS</p>
+    <!-- Projects Section -->
+    <div id="projects">
+        <h2 class="section-title" style="color: #012141">Projects</h2>
+        <div class="row gx-4 gy-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/project4.jpg" class="card-img-top" alt="LockedIn - Networking App">
+                    <div class="card-body">
+                        <h5 class="card-title">LockedIn: Professional Networking App</h5>
+                        <p class="card-text">Dubbed "The Tinder for LinkedIn," this app lets users swipe to network,
+                            making professional connections effortless. Built during Cornell AppDev's Hack Challenge.
+                        </p>
+                        <a href="https://github.com/akh1lk/LockedIn" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <h5 class="mb-3">Frameworks</h5>
-            <div class="row">
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/react-icon.svg" alt="React" class="img-fluid">
-                        <p>React</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/react-native-icon.svg" alt="React Native" class="img-fluid">
-                        <p>R Native</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/nodejs-icon.svg" alt="Node.js" class="img-fluid">
-                        <p>Node.js</p>
-                    </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/bootstrap-icon.svg" alt="Bootstrap" class="img-fluid">
-                        <p>Bootstrap</p>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/project5.jpg" class="card-img-top" alt="Java GUI with Intelligent Cropping">
+                    <div class="card-body">
+                        <h5 class="card-title">Java GUI with Intelligent Image Cropping</h5>
+                        <p class="card-text">Designed an interactive GUI leveraging Dijkstra's Algorithm and Priority
+                            Queues to implement intelligent and precise image cropping functionality.</p>
+                        <a href="https://www.youtube.com/watch?v=fqq5berJyJs" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/project1.jpg" class="card-img-top" alt="Time Management App for Students">
+                    <div class="card-body">
+                        <h5 class="card-title">College Life Planner: A Time Management App</h5>
+                        <p class="card-text">Currently developing a cross-platform app using React Native and Node.js to
+                            help college students effectively manage their schedules and stay on top of their tasks.</p>
+                        <a href="https://github.com/pauliano22/My-App" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/project6.jpg" class="card-img-top" alt="Stock Prediction Algorithm">
+                    <div class="card-body">
+                        <h5 class="card-title">High-Frequency Stock Trading System</h5>
+                        <p class="card-text">
+                            This project combines machine learning with high-performance C++ components to
+                            create a predictive stock trading system capable of making fast, data-driven investment
+                            decisions
+                            and executing trades in real-time.
+                        </p>
+                        <a href="https://github.com/pauliano22/Stock-Algo" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-md-4">
-            <h5 class="mb-3">Tools</h5>
-            <div class="row">
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/git-icon.svg" alt="Git" class="img-fluid">
-                        <p>Git</p>
+
+    </div>
+    <!-- Tools Section -->
+    <div id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <h5 class="mb-3">Languages</h5>
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/cplusplus-icon.svg" alt="C++" class="img-fluid">
+                            <p>C++</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/java-icon.svg" alt="Java" class="img-fluid">
+                            <p>Java</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/javascript-icon.svg" alt="JavaScript" class="img-fluid">
+                            <p>JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/python-icon.svg" alt="Python" class="img-fluid">
+                            <p>Python</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/html-icon.svg" alt="HTML" class="img-fluid">
+                            <p>HTML</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/css-icon.svg" alt="CSS" class="img-fluid">
+                            <p>CSS</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/junit-icon.svg" alt="JUnit" class="img-fluid">
-                        <p>JUnit</p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="mb-3">Frameworks</h5>
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/react-icon.svg" alt="React" class="img-fluid">
+                            <p>React</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/react-native-icon.svg" alt="React Native" class="img-fluid">
+                            <p>React Native</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/nodejs-icon.svg" alt="Node.js" class="img-fluid">
+                            <p>Node.js</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/bootstrap-icon.svg" alt="Bootstrap" class="img-fluid">
+                            <p>Bootstrap</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/docker-icon.svg" alt="Docker" class="img-fluid">
-                        <p>Docker</p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="mb-3">Tools</h5>
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/git-icon.svg" alt="Git" class="img-fluid">
+                            <p>Git</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/postman-icon.svg" alt="Postman" class="img-fluid">
-                        <p>Postman</p>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/junit-icon.svg" alt="JUnit" class="img-fluid">
+                            <p>JUnit</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/mongodb-icon.svg" alt="MongoDB" class="img-fluid">
-                        <p>MongoDB</p>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/docker-icon.svg" alt="Docker" class="img-fluid">
+                            <p>Docker</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 mb-4">
-                    <div class="skill-item">
-                        <img src="icons/firebase-icon.svg" alt="Firebase" class="img-fluid">
-                        <p>Firebase</p>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/postman-icon.svg" alt="Postman" class="img-fluid">
+                            <p>Postman</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/mongodb-icon.svg" alt="MongoDB" class="img-fluid">
+                            <p>MongoDB</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="skill-item">
+                            <img src="icons/firebase-icon.svg" alt="Firebase" class="img-fluid">
+                            <p>Firebase</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Paul Iacobucci. All rights reserved.</p>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank" aria-label="LinkedIn">
-            <img src="icons/linkedin.png" alt="LinkedIn" class="linkpic" />
-        </a>
-        <a href="https://github.com/pauliano22" target="_blank" aria-label="GitHub">
-            <img src="icons/github.png" alt="GitHub" class="linkpic" />
-        </a>
-        <a href="mailto:pauliano2005@gmail.com" target="_blank" aria-label="Email">
-            <img src="icons/gmail.png" alt="Email" class="linkpic" />
-        </a>
-    </div>
-</footer>
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Paul Iacobucci. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank" aria-label="LinkedIn">
+                <img src="icons/linkedin.png" alt="LinkedIn" class="linkpic" />
+            </a>
+            <a href="https://github.com/pauliano22" target="_blank" aria-label="GitHub">
+                <img src="icons/github.png" alt="GitHub" class="linkpic" />
+            </a>
+            <a href="mailto:pauliano2005@gmail.com" target="_blank" aria-label="Email">
+                <img src="icons/gmail.png" alt="Email" class="linkpic" />
+            </a>
+        </div>
+    </footer>
+</body>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

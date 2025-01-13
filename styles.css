@@ -6,7 +6,7 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     color: white;
-    background-color: #191a1b;
+    background-color: #021a32;
 }
 
 body {
@@ -26,7 +26,13 @@ body {
     /* Includes padding in width calculations */
     overflow-x: hidden;
     /* Prevents horizontal scrolling */
+
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+    margin: 0; /* Remove default body margin */
 }
+
 
 
 /* Define the animation for the gradient */
@@ -142,7 +148,7 @@ body {
 .section-title {
     font-size: 3rem;
     text-align: center;
-    padding-top: 10%;
+    padding-top: 0%;
     color: white;
 }
 
@@ -165,7 +171,7 @@ body {
     z-index: 1;
     margin-bottom: 50px;
     background-color: white;
-    color: #191a1b;
+    color: #021a32;
     transition: transform 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
     height: 100%;
 }
@@ -184,13 +190,15 @@ body {
 }
 
 #about {
-    border-radius: 0;
+    border-radius: 15px;
     min-height: 100vh;
-    background-color: #191a1b;
+    background-color: #021a32;
     z-index: 2;
     border: 2px black;
     color: white;
     padding: 5%;
+    max-width: 95%;
+    margin-left: 2.5%;
 }
 
 footer {
@@ -307,14 +315,18 @@ section {
 
 /* Skills SECTION */
 #skills {
-    font-family: "EB Garamond", serif;
-    background-color: #191a1b;
+    background-color: #021a32;
     color: white;
     width: 100%;
     padding: 0;
     justify-content: center;
     padding: 4rem 2rem 0rem 2rem;
     padding-bottom: 5%;
+    border-radius: 15px;
+    max-width: 95%;
+    margin-bottom: 2.5%;
+    margin-left: 2.5%;
+    text-decoration: none;
 }
 
 #skills h2 {
@@ -340,9 +352,8 @@ section {
 }
 
 .skill-item {
-    font-family: "Afacad Flux", serif;
     background-color: white;
-    color: #191a1b;
+    color: #021a32;
     border-radius: 10px;
     padding: 10px;
     text-align: center;

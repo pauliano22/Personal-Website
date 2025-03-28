@@ -6,11 +6,20 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     color: white;
-    background-color: #021a32;
+    background-color: #000000;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background: linear-gradient(100deg, #6babd6, #61a7be, #5a98b7, #add8e6, #a0d7d8);
+    background: linear-gradient(100deg, 
+  #8c6146, #a2764f, #b48458, #c58f61, #d69a6b, #e1a775, 
+  #e5b87a, #f0c784, #f4d28f, #f0c784, #e5b87a, 
+  #e1a775, #d69a6b, #c58f61, #b48458, #a2764f, #8c6146);
+
+
     background-size: 400% 100%;
     animation: moveGradient 8s ease infinite;
     font-family: "Cormorant", serif;
@@ -104,11 +113,12 @@ body {
     .hero-title {
         font-size: 3rem;
     }
+
 }
 
 /* Custom button style */
 .btn-custom {
-    background-color: rgb(170, 205, 212);
+    background-color: whitesmoke;
     color: black;
     border: 2px solid black;
     transition: all 0.3s ease;
@@ -127,6 +137,18 @@ body {
     background-color: black;
     color: white;
     border: 2px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    /* Optional: Adds a shadow effect on hover */
+}
+
+.hero .btn-custom:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    /* Optional: Adds a shadow effect on hover */
+    background-color: black;
+}
+
+.hero .btn-custom{
+    background-color: transparent;
 }
 
 .btn-custom:active {
@@ -172,7 +194,7 @@ body {
     z-index: 1;
     margin-bottom: 50px;
     background-color: white;
-    color: #021a32;
+    color: #000000;
     transition: transform 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
     height: 100%;
 }
@@ -180,6 +202,8 @@ body {
 .project-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     border-color: rgba(25, 26, 27, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-title {
@@ -193,7 +217,7 @@ body {
 #about {
     border-radius: 15px;
     min-height: 100vh;
-    background-color: #021a32;
+    background-color: #000000;
     z-index: 2;
     border: 2px black;
     color: white;
@@ -221,7 +245,7 @@ footer p {
     /* Adds spacing below the text */
 }
 
-.social-links {
+social-links {
     display: flex;
     justify-content: space-evenly;
     /* Aligns icons horizontally at the center */
@@ -279,6 +303,12 @@ footer p {
     }
 }
 
+@media (max-width: 768px) {
+    #experiences .card {
+        margin: 0 16px; /* Adds left and right margin */
+    }
+}
+
 /* Adjust profile-picture for smaller screens */
 @media (max-width: 768px) {
     .profile-picture {
@@ -316,7 +346,7 @@ section {
 
 /* Skills SECTION */
 #skills {
-    background-color: #021a32;
+    background-color: #000000;
     color: white;
     width: 100%;
     padding: 0;
@@ -354,7 +384,7 @@ section {
 
 .skill-item {
     background-color: white;
-    color: #021a32;
+    color: #000000;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
@@ -369,4 +399,37 @@ section {
 .skill-item p {
     margin: 0;
     font-size: 1rem;
+}
+
+/* Progress bar container */
+.progress {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+/* Animate progress bars on load */
+.progress-bar {
+    width: 0;
+    animation: fillProgress 2s forwards;
+}
+
+@keyframes fillProgress {
+    to {
+        width: var(--progress-width);
+    }
+}
+
+/* Progress bar fill */
+.progress-bar {
+    background-color: #4caf50; /* Green color */
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
+    line-height: 20px; /* Align text vertically */
+    transition: width 0.5s ease-in-out;
 }

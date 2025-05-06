@@ -245,11 +245,13 @@ footer p {
     /* Adds spacing below the text */
 }
 
-social-links {
+.social-links {
     display: flex;
-    justify-content: space-evenly;
-    /* Aligns icons horizontally at the center */
-}
+    gap: 50px;           /* adds 50px space between each icon */
+    justify-content: center;  /* centers the group */
+    align-items: center;
+    margin-top: 1rem;
+  }
 
 .social-links a {
     display: inline-block;

@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -67,73 +68,101 @@
         </div>
     </div>
 
-        <!-- Add this below the Projects Section -->
-        <div id="experiences">
-            <h2 class="section-title" style="color: #000000">Experience</h2>
-            <div id="experiencesCarousel" class="carousel slide" data-bs-ride="false">
-                <div class="carousel-inner" style="padding-top: 10%;">
-                    <!-- L3Harris Experience -->
-                    <div class="carousel-item active">
-                        <div class="card project-card mx-auto" style="max-width: 600px;">
-                            <img src="images/L3.png" class="card-img-top" alt="L3Harris Technologies">
-                            <div class="card-body">
-                                <h5 class="card-title">Software Engineering Intern</h5>
-                                <p class="card-text">
-                                    Developed and debugged mission-critical embedded software for tactical radio systems.
-                                </p>
-                                <div class="skills-container">
-                                    <span class="skill-flag">C++</span>
-                                    <span class="skill-flag">Embedded Systems</span>
-                                    <span class="skill-flag">DevOps</span>
-                                    <span class="skill-flag">Linux</span>
-                                    <span class="skill-flag">Low-Level Programming</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- rapStudy Experience -->
-                    <div class="carousel-item">
-                        <div class="card project-card mx-auto" style="max-width: 600px;">
-                            <img src="images/rapstudy.jpg" class="card-img-top" alt="rapStudy">
-                            <div class="card-body">
-                                <h5 class="card-title">Software Engineering Intern</h5>
-                                <p class="card-text">
-                                    Refactored a React codebase and shipped new features for an EdTech platform.
-                                </p>
-                                <div class="skills-container">
-                                    <span class="skill-flag">React</span>
-                                    <span class="skill-flag">Firebase</span>
-                                    <span class="skill-flag">JavaScript</span>
-                                    <span class="skill-flag">UI/UX</span>
-                                </div>
+    <!-- Experiences Section -->
+    <div id="experiences">
+        <h2 class="section-title" style="color: #00ff00; text-align: center; margin-bottom: 2rem;">Experience</h2>
+        <div id="experiencesCarousel" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner" style="padding-top: 10%;">
+                <!-- L3Harris Experience -->
+                <div class="carousel-item active">
+                    <div class="card project-card mx-auto" style="max-width: 600px;">
+                        <img src="images/L3.png" class="card-img-top" alt="L3Harris Technologies">
+                        <div class="card-body">
+                            <h5 class="card-title">Software Engineering Intern</h5>
+                            <p class="card-text">
+                                Developed and debugged mission-critical embedded software for tactical radio systems.
+                            </p>
+                            <div class="skills-container">
+                                <span class="skill-flag">C++</span>
+                                <span class="skill-flag">Embedded Systems</span>
+                                <span class="skill-flag">DevOps</span>
+                                <span class="skill-flag">Linux</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <!-- rapStudy Experience -->
+                <div class="carousel-item">
+                    <div class="card project-card mx-auto" style="max-width: 600px;">
+                        <img src="images/rapstudy.jpg" class="card-img-top" alt="rapStudy">
+                        <div class="card-body">
+                            <h5 class="card-title">Software Engineering Intern</h5>
+                            <p class="card-text">
+                                Refactored a React codebase and shipped new features for an EdTech platform.
+                            </p>
+                            <div class="skills-container">
+                                <span class="skill-flag">React</span>
+                                <span class="skill-flag">Firebase</span>
+                                <span class="skill-flag">JavaScript</span>
+                                <span class="skill-flag">UI/UX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    
+    </div>
+
     <!-- Projects Section -->
     <div id="projects">
-        <h2 class="section-title" style="color: #000000; padding-bottom: 10%;">Projects</h2>
+        <h2 class="section-title" style="color: #00ff00; text-align: center; margin-bottom: 2rem;">Projects</h2>
         <div class="row gx-4 gy-4">
+            <!-- OCaml Theorem Prover -->
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/ocaml.jpg" class="card-img-top" alt="OCaml Theorem Prover">
+                    <div class="card-body">
+                        <h5 class="card-title">OCaml Theorem Prover</h5>
+                        <div class="skills-container">
+                            <span class="skill-flag">OCaml</span>
+                            <span class="skill-flag">LaTeX</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=7xwDIO6k9Gc" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
+            <!-- High-Frequency Stock Trading System -->
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <img src="images/project6.jpg" class="card-img-top" alt="Stock Prediction Algorithm">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock Backtesting Engine/Performance Prediction</h5>
+                        <div class="skills-container">
+                            <span class="skill-flag">C++</span>
+                            <span class="skill-flag">PyTorch</span>
+                        </div>
+                        <a href="https://github.com/pauliano22/Stock-Algo" class="btn btn-custom"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
             <!-- LockedIn: Professional Networking App -->
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card project-card">
                     <img src="images/project4.jpg" class="card-img-top" alt="LockedIn - Networking App">
                     <div class="card-body">
                         <h5 class="card-title">LockedIn: Professional Networking App</h5>
-                        <p class="card-text">Dubbed "The Tinder for LinkedIn," this app lets users swipe to network,
-                            making professional connections effortless. Built during Cornell AppDev's Hack Challenge.
-                        </p>
                         <div class="skills-container">
                             <span class="skill-flag">Python</span>
                             <span class="skill-flag">Flask</span>
@@ -153,12 +182,9 @@
                     <img src="images/project5.jpg" class="card-img-top" alt="Java GUI with Intelligent Cropping">
                     <div class="card-body">
                         <h5 class="card-title">Java GUI with Intelligent Image Cropping</h5>
-                        <p class="card-text">Designed an interactive GUI leveraging Dijkstra's Algorithm and Priority
-                            Queues to implement intelligent and precise image cropping functionality.</p>
                         <div class="skills-container">
                             <span class="skill-flag">Java</span>
-                            <span class="skill-flag">Dijkstra's Algorithm</span>
-                            <span class="skill-flag">Priority Queues</span>
+                            <span class="skill-flag">Algorithms</span>
                             <span class="skill-flag">GUI Design</span>
                         </div>
                         <a href="https://www.youtube.com/watch?v=fqq5berJyJs" class="btn btn-custom"
@@ -173,8 +199,6 @@
                     <img src="images/shipwreck.png" class="card-img-top" alt="Harbor">
                     <div class="card-body">
                         <h5 class="card-title">Harbor: Develop Real Relationships</h5>
-                        <p class="card-text">Harbor is a Cornell-exclusive relationship app that fosters genuine connections. Used React Native for the front-end, 
-                            Node.js (Express.js) for the backend, all in TypeScript.</p>
                         <div class="skills-container">
                             <span class="skill-flag">React Native</span>
                             <span class="skill-flag">Node.js</span>
@@ -188,40 +212,12 @@
                     </div>
                 </div>
             </div>
-            <!-- High-Frequency Stock Trading System -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/project6.jpg" class="card-img-top" alt="Stock Prediction Algorithm">
-                    <div class="card-body">
-                        <h5 class="card-title">High-Frequency Stock Trading System</h5>
-                        <p class="card-text">
-                            This project combines machine learning with high-performance C++ components to
-                            create a predictive stock trading system capable of making fast, data-driven investment
-                            decisions and executing trades in real-time.
-                        </p>
-                        <div class="skills-container">
-                            <span class="skill-flag">C++</span>
-                            <span class="skill-flag">Machine Learning</span>
-                            <span class="skill-flag">High-Frequency Trading</span>
-                            <span class="skill-flag">Real-Time Systems</span>
-                        </div>
-                        <a href="https://github.com/pauliano22/Stock-Algo" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
             <!-- Cornell Portfolio Management Club Website -->
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card project-card">
                     <img src="images/logo-full.svg" class="card-img-top" style="padding: 10%; padding-top: 20%;" alt="CPMC Website">
                     <div class="card-body">
                         <h5 class="card-title">Cornell Portfolio Management Club Website</h5>
-                        <p class="card-text">
-                            We are looking to launch the Cornell Portfolio Management Club in Fall of 2025, and as the 
-                            Vice President of Technology I took the initiative
-                            of adding a quantitative finance sector to the club. I also created the website:
-                        </p>
                         <div class="skills-container">
                             <span class="skill-flag">HTML</span>
                             <span class="skill-flag">CSS</span>
@@ -236,7 +232,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Tools Section -->

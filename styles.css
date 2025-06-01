@@ -14,35 +14,45 @@ html {
 }
 
 body {
-    background: linear-gradient(100deg, 
-  #8c6146, #a2764f, #b48458, #c58f61, #d69a6b, #e1a775, 
-  #e5b87a, #f0c784, #f4d28f, #f0c784, #e5b87a, 
-  #e1a775, #d69a6b, #c58f61, #b48458, #a2764f, #8c6146);
-
-
-    background-size: 400% 100%;
-    animation: moveGradient 8s ease infinite;
-    font-family: "Cormorant", serif;
-    font-size: 1.5rem;
-
+    font-family: "Courier New", monospace; /* Use a terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
+    font-size: 1.2rem; /* Slightly smaller font size for terminal feel */
+    line-height: 1.6; /* Adjust line height for readability */
     margin: 0;
-    /* Removes all default margins */
     padding: 0;
-    /* No extra space inside the body */
     width: 100%;
-    /* Ensures it doesn't exceed the viewport */
     box-sizing: border-box;
-    /* Includes padding in width calculations */
     overflow-x: hidden;
-    /* Prevents horizontal scrolling */
-
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Ensure the body covers the full viewport height */
-    margin: 0; /* Remove default body margin */
 }
 
+/* General body styling */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    color: white;
+    background-color: #000000;
+}
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Courier New", monospace; /* Use a terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
+    font-size: 1.2rem; /* Slightly smaller font size for terminal feel */
+    line-height: 1.6; /* Adjust line height for readability */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
 
 /* Define the animation for the gradient */
 @keyframes moveGradient {
@@ -118,11 +128,15 @@ body {
 
 /* Custom button style */
 .btn-custom {
-    background-color: whitesmoke;
-    color: black;
-    border: 2px solid black;
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
+    border: 1px solid #00ff00; /* Green border */
+    padding: 10px 20px;
+    text-transform: uppercase; /* Make text uppercase for terminal feel */
+    font-size: 1rem;
     transition: all 0.3s ease;
-    margin-bottom: 5%;
+    text-decoration: none; /* Remove underline by default */
 }
 
 .btn-custom:focus {
@@ -134,45 +148,65 @@ body {
 }
 
 .btn-custom:hover {
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    /* Optional: Adds a shadow effect on hover */
+    text-decoration: underline; /* Underline text on hover */
+    background-color: #000000; /* Keep the background black */
+    color: #00ff00; /* Keep the text neon green */
+    border: 1px solid #00ff00; /* Keep the border green */
 }
 
-.hero .btn-custom:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    /* Optional: Adds a shadow effect on hover */
-    background-color: black;
+/* Fix underline alignment for the Menu button */
+.dropdown .btn-custom {
+    display: inline-block; /* Ensure the button behaves like an inline element */
+    text-align: center; /* Center-align the text */
+    padding: 10px 20px; /* Adjust padding for proper spacing */
+    text-decoration: none; /* Remove underline by default */
+    width: auto; /* Ensure the width fits the content */
 }
 
-.hero .btn-custom{
-    background-color: transparent;
+.dropdown .btn-custom:hover {
+    text-decoration: underline; /* Add underline on hover */
+    text-underline-offset: 3px; /* Adjust the underline position */
 }
 
-.btn-custom:active {
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    box-shadow: none !important;
-    outline: none !important;
+/* Skill Flags with minimal styling */
+.skill-flag {
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
+    font-size: 0.9rem;
+    font-weight: 400; /* Thinner font weight */
+    padding: 5px 10px;
+    border: 1px solid #00ff00; /* Green border */
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-custom:focus-visible {
-    outline: none !important;
+.skill-flag:hover {
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle green glow */
 }
 
-.dropdown-menu {
-    background-color: white;
-    border: 1px solid black;
+/* Minimal green glow for text */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    font-weight: 400; /* Thinner font weight */
+    color: #00ff00; /* Neon green */
+    text-shadow: none; /* Remove glow effect for a cleaner terminal look */
 }
 
+/* Section titles */
 .section-title {
-    font-size: 3rem;
-    text-align: center;
-    padding-top: 0%;
-    color: white;
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    font-weight: 400; /* Thinner font weight */
+    color: #00ff00; /* Neon green */
+    text-shadow: none; /* Remove glow effect */
+    text-align: left; /* Align text to the left for terminal feel */
+}
+
+/* Skills section headers */
+#skills h2, #skills h5 {
+    color: #00ff00; /* Neon green color */
+    text-shadow: 0 0 5px #00ff00; /* Reduced glow effect */
 }
 
 #projects {
@@ -189,25 +223,27 @@ body {
 
 .project-card {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: none;
+    border: 2px solid black; /* Green border */
     position: relative;
     z-index: 1;
     margin-bottom: 50px;
     background-color: white;
     color: #000000;
-    transition: transform 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
     height: 100%;
 }
 
 .project-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    border-color: rgba(25, 26, 27, 0.5);
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #00ff00;
+    box-shadow: 0 4px 16px #00ff00;
 }
 
 .card-title {
-    font-size: 2rem;
+    font-size: 1.5rem; /* Adjusted font size for smaller project names */
+    font-weight: 500; /* Optional: Adjust font weight for better readability */
+    text-align: center; /* Optional: Center-align the project names */
+    margin-bottom: 10px; /* Add some spacing below the title */
 }
 
 .card-text {
@@ -227,22 +263,22 @@ body {
 }
 
 footer {
-    text-align: center;
-    /* Centers all content within the footer */
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
     padding: 20px;
-    /* Adds spacing inside the footer */
-    background-color: white;
-    /* Optional: Adds a light background color */
-    font-size: 1rem;
-    color: #333;
-    /* Adjust text color for readability */
+    text-align: center;
+    border-top: 1px solid #00ff00; /* Green border at the top */
 }
 
-footer p {
-    margin: 0;
-    /* Removes default margin */
-    padding-bottom: 10px;
-    /* Adds spacing below the text */
+/* Links styled like terminal hyperlinks */
+a {
+    color: #00ff00; /* Neon green */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover */
 }
 
 .social-links {
@@ -261,18 +297,8 @@ footer p {
 
 .linkpic {
     width: 30px;
-    /* Adjust size of the icons */
-    height: auto;
-    /* Maintains aspect ratio */
-    transition: transform 0.3s ease;
-    /* Adds a hover animation */
+    height: 30px;
 }
-
-.linkpic:hover {
-    transform: scale(1.2);
-    /* Slightly enlarges the icon on hover */
-}
-
 
 /* Profile picture styling */
 .profile-picture {
@@ -283,12 +309,8 @@ footer p {
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease-in-out;
 }
 
-.profile-picture:hover {
-    transform: scale(1.2);
-}
 
 /* Profile text styling */
 .profile-text {
@@ -405,8 +427,9 @@ section {
 
 /* Progress bar container */
 .progress {
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #000000; /* Black background */
+    border: 1px solid #00ff00; /* Green border */
+    border-radius: 5px;
     overflow: hidden;
     height: 20px;
     margin: 10px 0;
@@ -427,10 +450,10 @@ section {
 
 /* Progress bar fill */
 .progress-bar {
-    background-color: #4caf50; /* Green color */
+    background-color: #00ff00; /* Neon green */
     height: 100%;
     text-align: center;
-    color: white;
+    color: #000000; /* Black text */
     font-size: 0.9rem;
     line-height: 20px; /* Align text vertically */
     transition: width 0.5s ease-in-out;
@@ -445,23 +468,63 @@ section {
 }
 
 .skill-flag {
-    background-color: #f0f0f0;
-    color: #000;
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Neon green text */
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 400; /* Thinner font weight */
     padding: 5px 10px;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #00ff00; /* Green border */
+    border-radius: 5px; /* Slightly rounded corners */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skill-flag:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle green glow */
 }
 
 /* Ensure enough space between skill flags and the button */
 .project-card .card-body {
     position: relative;
     padding-bottom: 60px; /* Add padding to create space for the button */
+}
+
+/* Round the corners of all cards in the carousel */
+#experiences .carousel-item .card {
+    border-radius: 25px; /* Increase the corner rounding for all cards */
+    overflow: hidden; /* Ensure content stays within the rounded corners */
+    width: 100%; /* Ensure the card takes up the full width of its container */
+    max-width: 600px; /* Limit the maximum width */
+    height: 400px; /* Set a consistent height for all cards */
+    margin: 0 auto; /* Center the card horizontally */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: space-between; /* Space out content evenly */
+    box-sizing: border-box; /* Include padding and border in the dimensions */
+}
+
+/* Ensure images inside the cards fit the rounded corners */
+#experiences .carousel-item .card img {
+    border-top-left-radius: 15px; /* Match the card's corner rounding */
+    border-top-right-radius: 15px; /* Match the card's corner rounding */
+    height: 200px; /* Set a fixed height for images */
+    object-fit: cover; /* Ensure images maintain their aspect ratio */
+    width: 100%; /* Ensure images fill the card width */
+}
+
+/* Ensure the Experiences section has enough spacing */
+#experiences {
+    margin-bottom: 2rem; /* Reduce space below the Experiences section */
+    padding-bottom: 1rem; /* Adjust padding to prevent content from being cut off */
+}
+
+/* Ensure the carousel fits properly */
+#experiencesCarousel {
+    overflow: visible; /* Ensure the carousel content is not clipped */
+}
+
+/* Ensure the carousel items have proper spacing */
+#experiences .carousel-item {
+    padding: 1rem; /* Add padding around each carousel item */
 }

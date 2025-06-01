@@ -80,8 +80,10 @@ body {
     width: 2.3rem;
     height: auto;
     animation: bounce 2s infinite;
-    position: relative;   
-    bottom: -10vh;      /* Position image relative to .scroll-down */            /* Adjust if necessary */
+    position: relative;
+    bottom: -10vh; /* Position image relative to .scroll-down */
+    filter: brightness(0) invert(1) hue-rotate(120deg); /* Convert to white, then apply green filter */
+    transition: filter 0.3s ease; /* Smooth transition for hover effect */
 }
 
 
@@ -121,9 +123,86 @@ body {
 /* Adjust hero-title for smaller screens */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.5rem; /* Smaller font size for mobile */
+        margin-bottom: 2rem; /* Reduce spacing below the title */
     }
 
+    /* Adjust button size in the hero section */
+    .btn-custom {
+        font-size: 0.9rem; /* Slightly smaller font size */
+        padding: 8px 16px; /* Reduce padding for smaller buttons */
+    }
+
+    /* Adjust About Me section */
+    #about {
+        padding: 3%; /* Reduce padding for smaller screens */
+    }
+
+    .profile-picture {
+        width: 70vw; /* Adjust profile picture size */
+        height: 70vw;
+    }
+
+    .profile-text {
+        font-size: 1.5rem; /* Reduce font size for readability */
+        text-align: center; /* Ensure text is centered */
+    }
+
+    /* Adjust carousel card size */
+    #experiences .carousel-item .card {
+        max-width: 90%; /* Reduce card width for smaller screens */
+        height: auto; /* Allow height to adjust dynamically */
+    }
+
+    #experiences .carousel-item .card img {
+        height: 150px; /* Reduce image height */
+    }
+
+    /* Adjust project card layout */
+    #projects .project-card {
+        max-width: 90%; /* Reduce card width for smaller screens */
+        margin: 0 auto 2rem auto; /* Center cards and add spacing below */
+    }
+
+    .card-title {
+        font-size: 1.2rem; /* Reduce project title font size */
+    }
+
+    .card-text {
+        font-size: 0.9rem; /* Reduce project description font size */
+    }
+
+    /* Adjust skills section */
+    #skills h2 {
+        font-size: 2.5rem; /* Reduce section title font size */
+    }
+
+    #skills h5 {
+        font-size: 1.5rem; /* Reduce subsection title font size */
+    }
+
+    .skill-item img {
+        width: 40px; /* Reduce skill icon size */
+        height: 40px;
+    }
+
+    .skill-item p {
+        font-size: 0.9rem; /* Reduce skill text font size */
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .social-links {
+        gap: 20px; /* Reduce spacing between social icons */
+    }
+
+    .linkpic {
+        width: 25px; /* Reduce social icon size */
+        height: 25px;
+    }
 }
 
 /* Custom button style */
@@ -248,6 +327,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-text {
     font-size: 1rem;
+}
+
+/* Center the About Me section */
+#about {
+    text-align: center; /* Center-align all text inside the section */
+    margin: 0 auto; /* Center the section horizontally */
+    padding: 5%; /* Add padding for spacing */
+    max-width: 800px; /* Limit the width for better readability */
+}
+
+/* Center the profile text and image */
+#about .d-flex {
+    flex-direction: column; /* Stack the content vertically */
+    align-items: center; /* Center-align the content */
+    justify-content: center; /* Center-align vertically */
+}
+
+.profile-text {
+    text-align: center; /* Center-align the text */
+    margin-top: 2rem; /* Add spacing above the text */
 }
 
 #about {
@@ -515,8 +614,8 @@ section {
 
 /* Ensure the Experiences section has enough spacing */
 #experiences {
-    margin-bottom: 2rem; /* Reduce space below the Experiences section */
-    padding-bottom: 1rem; /* Adjust padding to prevent content from being cut off */
+    margin-bottom: 0; /* Reduce space below the Experiences section */
+    padding-bottom: 0; /* Adjust padding to prevent content from being cut off */
 }
 
 /* Ensure the carousel fits properly */
@@ -527,4 +626,15 @@ section {
 /* Ensure the carousel items have proper spacing */
 #experiences .carousel-item {
     padding: 1rem; /* Add padding around each carousel item */
+}
+
+/* Make footer logos white by default */
+footer .linkpic {
+    filter: brightness(0) invert(1); /* Converts the logos to white */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Slightly enlarge footer logos on hover */
+footer .linkpic:hover {
+    transform: scale(1.1); /* Slightly enlarge the logo */
 }

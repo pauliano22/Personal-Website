@@ -59,10 +59,13 @@
         <div class="d-flex flex-column-reverse flex-md-row align-items-center justify-content-around"
             style="padding: 5%; ">
             <p class="profile-text ms-md-4">
-                I am currently pursuing a degree in Computer Science at Cornell University, with intended Minors
-                in Artificial Intelligence and Finance. I have many interests, including:
+                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$  ls
                 <br>
-                <p1 id="typewriter"></p1>
+                <span class="highlight-blue">cornell_university  major_computer_science  minor_artificial_intelligence  minor_applied_economics interests</span> 
+                <br>
+                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$  cd interests
+                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~/interests</span>$ 
+                find . -name "<p1 id="typewriter"></p1>"
             </p>
             <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
         </div>
@@ -374,7 +377,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const phrases = ["web development.", "software engineering.", "app development.", "quantitative finance.", "entrepreneurship.", "cybersecurity.", "investing."];
+        const phrases = ["web_development", "software_engineering", "app_development", "quantitative_finance", "entrepreneurship", "cybersecurity", "investing", "machine_learning", "artificial_intelligence", "data_science", "economics"];
         const typewriterElement = document.getElementById("typewriter");
         let currentPhraseIndex = 0;
         let currentText = "";
@@ -382,7 +385,7 @@
 
         function typeEffect() {
             const currentPhrase = phrases[currentPhraseIndex];
-            const cursor = "_"; // Underscore to simulate the cursor
+            const cursor = "|"; // Underscore to simulate the cursor
 
             if (!deleting && currentText.length < currentPhrase.length) {
                 currentText += currentPhrase.charAt(currentText.length);
@@ -398,7 +401,7 @@
             }
 
             // Add a space before the word and underscore immediately after the text
-            typewriterElement.textContent = " " + currentText + cursor;
+            typewriterElement.innerHTML = currentText + '<span class="block-cursor">&nbsp;</span>';
             setTimeout(typeEffect, deleting ? 100 : 100); // Faster deleting, slower typing
         }
 

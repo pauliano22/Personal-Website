@@ -203,6 +203,28 @@ body {
         width: 25px; /* Reduce social icon size */
         height: 25px;
     }
+
+    /* Adjust skill flags for mobile */
+@media (max-width: 768px) {
+    .skill-flag {
+        font-size: 0.7rem; /* Reduce font size for skill flags */
+        padding: 3px 6px; /* Reduce padding for smaller flags */
+        border-radius: 3px; /* Slightly smaller rounded corners */
+    }
+
+    /* Ensure skill flags fit inside the carousel */
+    #experiences .skills-container {
+        flex-wrap: wrap; /* Allow skill flags to wrap to the next line */
+        justify-content: center; /* Center-align skill flags */
+        gap: 5px; /* Reduce spacing between skill flags */
+    }
+
+    /* Shrink text size in the About Me section */
+    #about .profile-text {
+        font-size: 1.2rem; /* Reduce font size for better readability on mobile */
+        line-height: 1.4; /* Adjust line height for readability */
+    }
+}
 }
 
 /* Custom button style */
@@ -359,6 +381,22 @@ h1, h2, h3, h4, h5, h6 {
     padding: 5%;
     max-width: 95%;
     margin-left: 2.5%;
+}
+
+/* Adjust the layout of the About Me section */
+#about .profile-picture {
+    position: relative; /* Enable precise positioning */
+    top: -20px; /* Move the profile picture up by 20px */
+    margin-bottom: 0; /* Remove any extra bottom margin */
+}
+
+/* Adjust the layout of the About Me section */
+#about .profile-picture {
+    margin-top: -40px; /* Move the profile picture up */
+}
+
+#about .profile-text {
+    margin-bottom: 1rem; /* Reduce the spacing above the text */
 }
 
 footer {
@@ -637,4 +675,41 @@ footer .linkpic {
 /* Slightly enlarge footer logos on hover */
 footer .linkpic:hover {
     transform: scale(1.1); /* Slightly enlarge the logo */
+}
+
+/* Highlight specific words in red */
+.highlight-red {
+    color: #ff0000; /* Bright red color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+.highlight-green {
+    color: #00ff00; /* Bright red color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+.highlight-blue {
+    color: blue; /* Bright blue color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+/* Underline specific phrases in red */
+.underline-red {
+    text-decoration: underline;
+    text-decoration-color: #ff0000; /* Red underline */
+    text-decoration-thickness: 2px; /* Optional: Adjust underline thickness */
+}
+
+.block-cursor {
+    display: inline-block;
+    width: 1px; /* Adjust width for the block */
+    height: 1.2em; /* Match the height of the text */
+    background-color: white; /* Neon green cursor */
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }

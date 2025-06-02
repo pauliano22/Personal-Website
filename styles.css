@@ -361,7 +361,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .profile-text {
     text-align: center; /* Center-align the text */
-    margin-top: 2rem; /* Add spacing above the text */
+    margin-top: 4rem; /* Add spacing above the text */
 }
 
 #about {
@@ -394,7 +394,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Adjust the About Me section text */
 #about .profile-text {
-    font-size: 1.4rem; /* Slightly larger font size for readability */
+    font-size: 1.5rem; /* Slightly larger font size for readability */
     line-height: 1.8; /* Adjust line height for better spacing */
     font-family: "Courier New", monospace; /* Terminal-like font */
     color: white; /* White terminal-style text */

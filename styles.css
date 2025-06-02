@@ -278,13 +278,7 @@ body {
     font-weight: 400; /* Thinner font weight */
     padding: 5px 10px;
     border: 1px solid #00ff00; /* Green border */
-    border-radius: 5px; /* Slightly rounded corners */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.skill-flag:hover {
-    transform: scale(1.05); /* Slight scaling effect */
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle green glow */
+    border-radius: 20px; /* Increase rounding for a pill-like shape */
 }
 
 /* Minimal green glow for text */
@@ -336,7 +330,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    border-color: #00ff00;
     box-shadow: 0 4px 16px #00ff00;
 }
 
@@ -353,10 +346,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Center the About Me section */
 #about {
-    text-align: center; /* Center-align all text inside the section */
+    text-align: left; /* Align all text to the left */
+    padding: 3%; /* Adjust padding for better spacing */
+    max-width: 800px; /* Limit the width for readability */
     margin: 0 auto; /* Center the section horizontally */
-    padding: 5%; /* Add padding for spacing */
-    max-width: 800px; /* Limit the width for better readability */
 }
 
 /* Center the profile text and image */
@@ -397,6 +390,16 @@ h1, h2, h3, h4, h5, h6 {
 
 #about .profile-text {
     margin-bottom: 1rem; /* Reduce the spacing above the text */
+}
+
+/* Adjust the About Me section text */
+#about .profile-text {
+    font-size: 1.4rem; /* Slightly larger font size for readability */
+    line-height: 1.8; /* Adjust line height for better spacing */
+    font-family: "Courier New", monospace; /* Terminal-like font */
+    color: white; /* White terminal-style text */
+    margin-top: 1rem; /* Add spacing above the text */
+    text-align: left; /* Align text to the left */
 }
 
 footer {
@@ -612,13 +615,13 @@ section {
     font-weight: 400; /* Thinner font weight */
     padding: 5px 10px;
     border: 1px solid #00ff00; /* Green border */
-    border-radius: 5px; /* Slightly rounded corners */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 20px; /* Increase rounding for a pill-like shape */
+    transition: box-shadow 0.2s ease;
 }
 
 .skill-flag:hover {
-    transform: scale(1.05); /* Slight scaling effect */
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle green glow */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Subtle green glow */
+    transition: box-shadow 0.3s ease; /* Smooth transition for the glow effect */
 }
 
 /* Ensure enough space between skill flags and the button */

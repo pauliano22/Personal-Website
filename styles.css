@@ -337,33 +337,53 @@ body {
 }
 
 @media (max-width: 768px) {
-    .section {
-        padding: 60px 20px 20px;
+    /* Hero Section */
+    .hero-section {
+        padding: 10% 5%; /* Reduce padding for smaller screens */
+        text-align: center; /* Center-align content */
     }
-    
-    .nav {
-        top: 10px;
-        right: 10px;
-        gap: 5px;
+
+    #canvas {
+        width: 100%; /* Ensure canvas fits the screen width */
+        height: auto; /* Adjust height dynamically */
     }
-    
-    .nav button {
-        padding: 6px 12px;
-        font-size: 10px;
+
+    /* Internship Cards Container */
+    .internship-cards-container {
+        width: 90%; /* Increase width for smaller screens */
+        max-width: none; /* Remove max-width restriction */
+        margin: 0 auto; /* Center the container */
+        gap: 1rem; /* Reduce spacing between cards */
     }
-    
+
+    .internship-card {
+        padding: 1rem; /* Reduce padding for smaller screens */
+        border-radius: 10px; /* Slightly increase rounding for better appearance */
+    }
+
+    /* Section Titles */
     .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
+        font-size: 1.8rem; /* Reduce font size for smaller screens */
+        margin-bottom: 1.5rem; /* Adjust spacing */
     }
-    
-    .about-header {
-        flex-direction: column;
-        text-align: center;
+
+    /* Skills Section */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust column size */
+        gap: 1rem; /* Reduce spacing between skill items */
     }
-    
-    .about-header h2 {
-        margin-left: 0 !important;
-        margin-top: 1rem;
+
+    .skill-item {
+        padding: 0.5rem; /* Reduce padding */
+    }
+
+    .skill-icon {
+        font-size: 30px; /* Reduce icon size */
+        width: 50px; /* Adjust width */
+        height: 50px; /* Adjust height */
+    }
+
+    .skill-name {
+        font-size: 0.7rem; /* Reduce font size */
     }
 }

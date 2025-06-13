@@ -4,408 +4,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
-
-    <!-- Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&display=swap" rel="stylesheet">
+    <title>Paul Iacobucci - Particle Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icons/favicon.png" type="image/png">
-
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 
 <body>
-    <!-- Dropdown Section (replacing navbar) -->
-    <div class="container mt-4">
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle btn-custom" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Menu
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#about">About Me</a></li>
-                <li><a class="dropdown-item" href="#projects">Projects</a></li>
-                <li><a class="dropdown-item" href="#skills">Skills</a></li>
-            </ul>
-        </div>
+    <!-- Hero Section with Canvas -->
+    <div class="hero-section" id="home">
+        <canvas id="canvas"></canvas>
     </div>
+    
+    <div class="custom-cursor"></div>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1 class="hero-title">
-            Paul Iacobucci
-        </h1>
-        <a href="https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing"
-            class="btn btn-custom btn-lg" style="position: relative; top: 10%;">Download My
-            Resume
-        </a>
-        <div class="scroll-down">
-            <a href="#about">
-                <img src="images/chevron-down.png" alt="Scroll Down">
-            </a>
-        </div>
+    <nav class="nav">
+        <button class="active" onclick="scrollToSection(0)">HOME</button>
+        <button onclick="scrollToSection(1)">ABOUT</button>
+        <button onclick="scrollToSection(2)">EXPERIENCE</button>
+        <button onclick="scrollToSection(3)">PROJECTS</button>
+        <button onclick="scrollToSection(4)">SKILLS</button>
+        <button onclick="scrollToSection(5)">CONTACT</button>
+        <button class="resume" onclick="openResume()">RESUME</button>
+    </nav>
 
-    </header>
-
-    <!-- About Me Section -->
-    <div id="about" style="margin-bottom: 10%;">
-        <div class="about-header d-flex align-items-center">
-            <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
-            <h2 class="section-title" style="color: #00ff00; margin-left: 1rem;">About Me</h2>
-        </div>
-        <div class="d-flex flex-column align-items-start justify-content-start" style="padding: 5%;">
-            <p class="profile-text">
-                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ ls
-                <br>
-                <span class="highlight-red">Cornell_University</span>&nbsp;&nbsp;&nbsp;
-                <span>CS_Major</span>&nbsp;&nbsp;&nbsp;
-                <span>AI_Minor</span>&nbsp;&nbsp;&nbsp;
-                <span>Applied_Economics_Minor</span>&nbsp;&nbsp;&nbsp;
-                <span class="highlight-blue">interests</span>
-                <br>
-                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ cd interests
-                <br>
-                <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~/interests</span>$ find . -name "<p1 id="typewriter"></p1>"
-            </p>
-        </div>
-    </div>
-
-    <!-- Experiences Section -->
-    <div id="experiences">
-        <h2 class="section-title" style="color: #00ff00; text-align: center; margin-bottom: 2rem;">Experience</h2>
-        <div id="experiencesCarousel" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner" style="padding-top: 10%;">
-                <!-- L3Harris Experience -->
-                <div class="carousel-item active">
-                    <div class="card project-card mx-auto" style="max-width: 600px;">
-                        <img src="images/L3.png" class="card-img-top" alt="L3Harris Technologies">
-                        <div class="card-body">
-                            <h5 class="card-title">Software Engineering Intern</h5>
-                            <div class="skills-container">
-                                <span class="skill-flag">C++</span>
-                                <span class="skill-flag">Embedded Systems</span>
-                                <span class="skill-flag">DevOps</span>
-                                <span class="skill-flag">Linux</span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- ABOUT SECTION -->
+        <div class="section" id="about">
+            <div class="about-content">
+                <div class="about-header">
+                    <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
+                    <h2 style="color: #00ff00; margin-left: 1rem; font-family: 'Courier New', monospace;">About Me</h2>
                 </div>
-                <!-- rapStudy Experience -->
-                <div class="carousel-item">
-                    <div class="card project-card mx-auto" style="max-width: 600px;">
-                        <img src="images/rapstudy.jpg" class="card-img-top" alt="rapStudy">
-                        <div class="card-body">
-                            <h5 class="card-title">Software Engineering Intern</h5>
-                            <div class="skills-container">
-                                <span class="skill-flag">React</span>
-                                <span class="skill-flag">Firebase</span>
-                                <span class="skill-flag">JavaScript</span>
-                                <span class="skill-flag">UI/UX</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#experiencesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Projects Section -->
-    <div id="projects">
-        <h2 class="section-title" style="color: #00ff00; text-align: center; margin-bottom: 2rem;">Projects</h2>
-        <div class="row gx-4 gy-4">
-            <!-- OCaml Theorem Prover -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/ocaml.jpg" class="card-img-top" alt="OCaml Theorem Prover">
-                    <div class="card-body">
-                        <h5 class="card-title">OCaml Theorem Prover</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">OCaml</span>
-                            <span class="skill-flag">LaTeX</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=7xwDIO6k9Gc" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
-            <!-- High-Frequency Stock Trading System -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/project6.jpg" class="card-img-top" alt="Stock Prediction Algorithm">
-                    <div class="card-body">
-                        <h5 class="card-title">Stock Backtesting Engine/Performance Prediction</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">C++</span>
-                            <span class="skill-flag">PyTorch</span>
-                        </div>
-                        <a href="https://github.com/pauliano22/Stock-Algo" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
-            <!-- LockedIn: Professional Networking App -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/project4.jpg" class="card-img-top" alt="LockedIn - Networking App">
-                    <div class="card-body">
-                        <h5 class="card-title">LockedIn: Professional Networking App</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">Python</span>
-                            <span class="skill-flag">Flask</span>
-                            <span class="skill-flag">Firebase</span>
-                            <span class="skill-flag">SQLAlchemy</span>
-                            <span class="skill-flag">Docker</span>
-                        </div>
-                        <a href="https://github.com/akh1lk/LockedIn" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Java GUI with Intelligent Image Cropping -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/project5.jpg" class="card-img-top" alt="Java GUI with Intelligent Cropping">
-                    <div class="card-body">
-                        <h5 class="card-title">Java GUI with Intelligent Image Cropping</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">Java</span>
-                            <span class="skill-flag">Algorithms</span>
-                            <span class="skill-flag">GUI Design</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=fqq5berJyJs" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Harbor: Develop Real Relationships -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/shipwreck.png" class="card-img-top" alt="Harbor">
-                    <div class="card-body">
-                        <h5 class="card-title">Harbor: Dating App</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">React Native</span>
-                            <span class="skill-flag">Node.js</span>
-                            <span class="skill-flag">Express.js</span>
-                            <span class="skill-flag">TypeScript</span>
-                            <span class="skill-flag">UI/UX</span>
-                        </div>
-                        <a href="https://github.com/GabrielCastilloH/app1" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Cornell Portfolio Management Club Website -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card project-card">
-                    <img src="images/logo-full.svg" class="card-img-top" style="padding: 10%; padding-top: 20%;" alt="CPMC Website">
-                    <div class="card-body">
-                        <h5 class="card-title">Club Website</h5>
-                        <div class="skills-container">
-                            <span class="skill-flag">HTML</span>
-                            <span class="skill-flag">CSS</span>
-                            <span class="skill-flag">JavaScript</span>
-                            <span class="skill-flag">Bootstrap</span>
-                            <span class="skill-flag">Web Design</span>
-                        </div>
-                        <a href="https://www.cornellportfoliomanagement.com" class="btn btn-custom"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">View
-                            Project</a>
-                    </div>
+                <div class="profile-text">
+                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ ls
+                    <br>
+                    <span class="highlight-red">Cornell_University</span>&nbsp;&nbsp;&nbsp;
+                    <span>CS_Major</span>&nbsp;&nbsp;&nbsp;
+                    <span>AI_Minor</span>&nbsp;&nbsp;&nbsp;
+                    <span>Applied_Economics_Minor</span>&nbsp;&nbsp;&nbsp;
+                    <span class="highlight-blue">interests</span>
+                    <br>
+                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ cd interests
+                    <br>
+                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~/interests</span>$
+                    find . -name "<span id="typewriter"></span>"
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Tools Section -->
-    <div id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="row text-center g-4">
-            <div class="col-md-4">
-                <h5 class="mb-3">Languages</h5>
-                <div class="row">
-                    <div class="col-6 mb-4">
+        <!-- EXPERIENCE SECTION -->
+        <div class="section" id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="internship-cards-container">
+                <div class="internship-card">
+                    <img src="images/L3.png" alt="L3Harris Logo" class="company-logo">
+                    <div class="card-title">L3Harris Technologies</div>
+                    <div class="card-description">
+                        <strong>Software Engineering Intern</strong><br><br>
+                        Developed embedded systems software in C++ and implemented DevOps pipelines. Worked with Linux
+                        environments and real-time systems for defense applications.
+                    </div>
+                    <button class="card-button" onclick="viewExperience('L3Harris')">VIEW MORE</button>
+                </div>
+
+                <div class="internship-card">
+                    <img src="images/rapstudy.jpg" alt="rapStudy Logo" class="company-logo">
+                    <div class="card-title">rapStudy</div>
+                    <div class="card-description">
+                        <strong>Software Engineering Intern</strong><br><br>
+                        Built React frontend components and integrated Firebase backend. Focused on UI/UX improvements
+                        and JavaScript optimization for educational platform.
+                    </div>
+                    <button class="card-button" onclick="viewExperience('rapStudy')">VIEW MORE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS SECTION -->
+        <div class="section" id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-cards-container">
+                <div class="project-card">
+                    <img src="images/ocaml.jpg" alt="OCaml Logo" class="project-image">
+                    <div class="card-title">OCaml Theorem Prover</div>
+                    <div class="card-description">Functional programming project implementing automated theorem proving
+                        algorithms in OCaml with comprehensive LaTeX documentation and formal verification methods.
+                    </div>
+                    <button class="card-button" onclick="viewProject('OCaml Theorem Prover')">VIEW MORE</button>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project6.jpg" alt="Stock Engine Logo" class="project-image">
+                    <div class="card-title">Stock Backtesting Engine</div>
+                    <div class="card-description">High-performance C++ trading system with PyTorch ML models for market
+                        prediction, backtesting capabilities, and quantitative analysis tools.</div>
+                    <button class="card-button" onclick="viewProject('Stock Engine')">VIEW MORE</button>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project4.jpg" alt="LockedIn Logo" class="project-image">
+                    <div class="card-title">LockedIn: Professional Networking</div>
+                    <div class="card-description">Full-stack web application with Python Flask backend, Firebase
+                        integration, SQLAlchemy ORM, and Docker containerization for scalable deployment.</div>
+                    <button class="card-button" onclick="viewProject('LockedIn')">VIEW MORE</button>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project5.jpg" alt="Image Cropping Logo" class="project-image">
+                    <div class="card-title">Intelligent Image Cropping GUI</div>
+                    <div class="card-description">Java desktop application with advanced algorithms for automated
+                        intelligent image processing, cropping, and seam carving techniques.</div>
+                    <button class="card-button" onclick="viewProject('Image Cropping')">VIEW MORE</button>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/shipwreck.png" alt="Harbor Logo" class="project-image">
+                    <div class="card-title">Harbor: Dating App</div>
+                    <div class="card-description">React Native mobile application with Node.js backend, Express.js API,
+                        TypeScript for type safety, and real-time messaging features.</div>
+                    <button class="card-button" onclick="viewProject('Harbor')">VIEW MORE</button>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/cpmc.png" alt="CPMC Website Logo" class="project-image">
+                    <div class="card-title">Cornell Portfolio Management Club</div>
+                    <div class="card-description">Responsive club website built with HTML, CSS, JavaScript, and
+                        Bootstrap for professional presentation and member engagement.</div>
+                    <button class="card-button" onclick="viewProject('CPMC Website')">VIEW MORE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS SECTION -->
+        <div class="section" id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <!-- Languages -->
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
                         <div class="skill-item">
-                            <img src="icons/cplusplus-icon.svg" alt="C++" class="img-fluid">
-                            <p>C++</p>
+                            <i class="devicon-cplusplus-plain skill-icon"></i>
+                            <div class="skill-name">C++</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-java-plain skill-icon"></i>
+                            <div class="skill-name">Java</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-python-plain skill-icon"></i>
+                            <div class="skill-name">Python</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-html5-plain skill-icon"></i>
+                            <div class="skill-name">HTML</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-css3-plain skill-icon"></i>
+                            <div class="skill-name">CSS</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-typescript-plain skill-icon"></i>
+                            <div class="skill-name">TypeScript</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-javascript-plain skill-icon"></i>
+                            <div class="skill-name">JavaScript</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-ocaml-plain skill-icon"></i>
+                            <div class="skill-name">OCaml</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-go-plain skill-icon"></i>
+                            <div class="skill-name">Go</div>
                         </div>
                     </div>
-                    <div class="col-6 mb-4">
+                </div>
+
+                <!-- Frameworks -->
+                <div class="skill-category">
+                    <h3>Frameworks</h3>
+                    <div class="skill-items">
                         <div class="skill-item">
-                            <img src="icons/java-icon.svg" alt="Java" class="img-fluid">
-                            <p>Java</p>
+                            <i class="devicon-react-original skill-icon"></i>
+                            <div class="skill-name">React</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-react-original skill-icon"></i>
+                            <div class="skill-name">React Native</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-bootstrap-plain skill-icon"></i>
+                            <div class="skill-name">Bootstrap</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-nodejs-plain skill-icon"></i>
+                            <div class="skill-name">Node.js</div>
                         </div>
                     </div>
-                    <div class="col-6 mb-4">
+                </div>
+
+                <!-- Tools -->
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <div class="skill-items">
                         <div class="skill-item">
-                            <img src="icons/javascript-icon.svg" alt="JavaScript" class="img-fluid">
-                            <p>JavaScript</p>
+                            <i class="devicon-docker-plain skill-icon"></i>
+                            <div class="skill-name">Docker</div>
                         </div>
-                    </div>
-                    <div class="col-6 mb-4">
                         <div class="skill-item">
-                            <img src="icons/python-icon.svg" alt="Python" class="img-fluid">
-                            <p>Python</p>
+                            <i class="devicon-git-plain skill-icon"></i>
+                            <div class="skill-name">Git</div>
                         </div>
-                    </div>
-                    <div class="col-6 mb-4">
                         <div class="skill-item">
-                            <img src="icons/html-icon.svg" alt="HTML" class="img-fluid">
-                            <p>HTML</p>
+                            <i class="devicon-firebase-plain skill-icon"></i>
+                            <div class="skill-name">Firebase</div>
                         </div>
-                    </div>
-                    <div class="col-6 mb-4">
                         <div class="skill-item">
-                            <img src="icons/css-icon.svg" alt="CSS" class="img-fluid">
-                            <p>CSS</p>
+                            <i class="devicon-postman-plain skill-icon"></i>
+                            <div class="skill-name">Postman</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-junit-plain skill-icon"></i>
+                            <div class="skill-name">JUnit</div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-mongodb-plain skill-icon"></i>
+                            <div class="skill-name">MongoDB</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <h5 class="mb-3">Frameworks</h5>
-                <div class="row">
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/react-icon.svg" alt="React" class="img-fluid">
-                            <p>React</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/react-native-icon.svg" alt="React Native" class="img-fluid">
-                            <p>React Native</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/nodejs-icon.svg" alt="Node.js" class="img-fluid">
-                            <p>Node.js</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/bootstrap-icon.svg" alt="Bootstrap" class="img-fluid">
-                            <p>Bootstrap</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h5 class="mb-3">Tools</h5>
-                <div class="row">
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/git-icon.svg" alt="Git" class="img-fluid">
-                            <p>Git</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/junit-icon.svg" alt="JUnit" class="img-fluid">
-                            <p>JUnit</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/docker-icon.svg" alt="Docker" class="img-fluid">
-                            <p>Docker</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/postman-icon.svg" alt="Postman" class="img-fluid">
-                            <p>Postman</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/mongodb-icon.svg" alt="MongoDB" class="img-fluid">
-                            <p>MongoDB</p>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="skill-item">
-                            <img src="icons/firebase-icon.svg" alt="Firebase" class="img-fluid">
-                            <p>Firebase</p>
-                        </div>
-                    </div>
-                </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div class="section" id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-buttons">
+                <a href="mailto:pauliano2005@gmail.com" class="contact-button">EMAIL</a>
+                <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank"
+                    class="contact-button">LINKEDIN</a>
+                <a href="https://github.com/pauliano22" target="_blank" class="contact-button">GITHUB</a>
             </div>
         </div>
     </div>
 
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const cursor = document.querySelector('.custom-cursor');
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Paul Iacobucci. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank" aria-label="LinkedIn">
-                <img src="icons/linkedin.png" alt="LinkedIn" class="linkpic" />
-            </a>
-            <a href="https://github.com/pauliano22" target="_blank" aria-label="GitHub">
-                <img src="icons/github.png" alt="GitHub" class="linkpic" />
-            </a>
-            <a href="mailto:pauliano2005@gmail.com" target="_blank" aria-label="Email">
-                <img src="icons/gmail.png" alt="Email" class="linkpic" />
-            </a>
-        </div>
-    </footer>
-</body>
+        let mouse = { x: 0, y: 0 };
+        let particles = [];
+        let backgroundParticles = [];
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const phrases = ["web_development", "software_engineering", "app_development", "quantitative_finance", "entrepreneurship", "cybersecurity", "investing", "machine_learning", "artificial_intelligence", "data_science", "economics"];
-        const typewriterElement = document.getElementById("typewriter");
-        let currentPhraseIndex = 0;
-        let currentText = "";
-        let deleting = false;
+        // Text to display in hero section
+        const heroText = [
+            { text: 'PAUL IACOBUCCI', size: 60, x: 0, y: 0 },
+            { text: 'CS @ CORNELL', size: 20, x: 0, y: 0 }
+        ];
 
-        function typeEffect() {
-            const currentPhrase = phrases[currentPhraseIndex];
-            const cursor = "|"; // Underscore to simulate the cursor
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-            if (!deleting && currentText.length < currentPhrase.length) {
-                currentText += currentPhrase.charAt(currentText.length);
-            } else if (deleting && currentText.length > 0) {
-                currentText = currentText.slice(0, -1);
-            } else if (!deleting && currentText.length === currentPhrase.length) {
-                deleting = true;
-                setTimeout(typeEffect, 2000); // Pause before deleting
-                return;
-            } else if (deleting && currentText.length === 0) {
-                deleting = false;
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-            }
+            // Position hero text
+            heroText.forEach((line, index) => {
+                line.x = canvas.width / 2;
+                line.y = canvas.height / 2 + (index === 0 ? -40 : 40);
+            });
 
-            // Add a space before the word and underscore immediately after the text
-            typewriterElement.innerHTML = currentText + '<span class="block-cursor">&nbsp;</span>';
-            setTimeout(typeEffect, deleting ? 100 : 100); // Faster deleting, slower typing
+            createHeroText();
+            initBackgroundParticles();
         }
 
-        typeEffect();
-    });
-</script>
+        class Dot {
+            constructor(x, y) {
+                this.homeX = x;
+                this.homeY = y;
+                this.x = x;
+                this.y = y;
+                this.vx = 0;
+                this.vy = 0;
+            }
+
+            update() {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                // Apply force if the particle is close to the mouse
+                if (dist < 100) {
+                    let force = (100 - dist) / 100;
+                    this.vx -= (dx / dist) * force * 2;
+                    this.vy -= (dy / dist) * force * 2;
+                }
+
+                // Return to original location
+                let homeDx = this.homeX - this.x;
+                let homeDy = this.homeY - this.y;
+                this.vx += homeDx * 0.01;
+                this.vy += homeDy * 0.01;
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+            }
+
+            draw() {
+                ctx.fillStyle = '#00ff00';
+                ctx.fillRect(this.x | 0, this.y | 0, 2, 2);
+            }
+        }
+
+        class BackgroundParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.size = Math.random() * 3 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = '#00ff00';
+                ctx.fillRect(this.x | 0, this.y | 0, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function initBackgroundParticles() {
+            backgroundParticles = [];
+            for (let i = 0; i < 100; i++) { // Reduced number of particles
+                backgroundParticles.push(new BackgroundParticle());
+            }
+        }
+
+        function createHeroText() {
+            particles = [];
+
+            const temp = document.createElement('canvas');
+            const tempCtx = temp.getContext('2d');
+
+            heroText.forEach(line => {
+                tempCtx.font = `${line.size}px Courier New`;
+                const width = tempCtx.measureText(line.text).width;
+
+                temp.width = width + 20;
+                temp.height = line.size + 20;
+
+                tempCtx.clearRect(0, 0, temp.width, temp.height);
+                tempCtx.font = `${line.size}px Courier New`;
+                tempCtx.fillStyle = '#00ff00';
+                tempCtx.fillText(line.text, 10, line.size);
+
+                const imageData = tempCtx.getImageData(0, 0, temp.width, temp.height);
+                const data = imageData.data;
+
+                const spacing = line.size < 25 ? 1 : 2;
+
+                for (let y = 0; y < temp.height; y += spacing) {
+                    for (let x = 0; x < temp.width; x += spacing) {
+                        const alpha = data[(y * temp.width + x) * 4 + 3];
+                        if (alpha > 128) {
+                            particles.push(new Dot(
+                                line.x - width / 2 + x - 10,
+                                line.y - line.size / 2 + y - 10
+                            ));
+                        }
+                    }
+                }
+            });
+        }
+
+        function animate() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw background particles
+            backgroundParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw text particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        function scrollToSection(index) {
+            const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+            
+            if (index === 0) {
+                // Scroll to top (hero section)
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                // Scroll to other sections
+                const targetSection = document.getElementById(sections[index]);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Update active button
+            document.querySelectorAll('.nav button:not(.resume)').forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
+        }
+
+        function updateActiveSection() {
+            const scrollY = window.scrollY;
+            const heroHeight = window.innerHeight;
+            
+            if (scrollY < heroHeight / 2) {
+                // In hero section
+                document.querySelectorAll('.nav button:not(.resume)').forEach((b, i) => {
+                    b.classList.toggle('active', i === 0);
+                });
+            } else {
+                // In other sections
+                const sections = document.querySelectorAll('.main-content .section');
+                let currentSection = 0;
+                
+                sections.forEach((section, index) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2) {
+                        currentSection = index + 1; // +1 because hero is index 0
+                    }
+                });
+
+                document.querySelectorAll('.nav button:not(.resume)').forEach((b, i) => {
+                    b.classList.toggle('active', i === currentSection);
+                });
+            }
+        }
+
+        function viewProject(projectName) {
+            const projectUrls = {
+                'OCaml Theorem Prover': 'https://www.youtube.com/watch?v=7xwDIO6k9Gc',
+                'Stock Engine': 'https://github.com/pauliano22/Stock-Algo',
+                'LockedIn': 'https://github.com/akh1lk/LockedIn',
+                'Image Cropping': 'https://www.youtube.com/watch?v=fqq5berJyJs',
+                'Harbor': 'https://github.com/GabrielCastilloH/app1',
+                'CPMC Website': 'https://www.cornellportfoliomanagement.com'
+            };
+
+            if (projectUrls[projectName]) {
+                window.open(projectUrls[projectName], '_blank');
+            }
+        }
+
+        function viewExperience(companyName) {
+            alert(`Experience at ${companyName} - More details coming soon!`);
+        }
+
+        function openResume() {
+            window.open('https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing', '_blank');
+        }
+
+        // Typewriter effect
+        document.addEventListener("DOMContentLoaded", function () {
+            const phrases = ["web_development", "software_engineering", "app_development", "quantitative_finance", "entrepreneurship", "cybersecurity", "investing", "machine_learning", "artificial_intelligence", "data_science", "economics"];
+            const typewriterElement = document.getElementById("typewriter");
+
+            if (typewriterElement) {
+                let currentPhraseIndex = 0;
+                let currentText = "";
+                let deleting = false;
+
+                function typeEffect() {
+                    const currentPhrase = phrases[currentPhraseIndex];
+
+                    if (!deleting && currentText.length < currentPhrase.length) {
+                        currentText += currentPhrase.charAt(currentText.length);
+                    } else if (deleting && currentText.length > 0) {
+                        currentText = currentText.slice(0, -1);
+                    } else if (!deleting && currentText.length === currentPhrase.length) {
+                        deleting = true;
+                        setTimeout(typeEffect, 2000);
+                        return;
+                    } else if (deleting && currentText.length === 0) {
+                        deleting = false;
+                        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                    }
+
+                    typewriterElement.innerHTML = currentText + '<span class="block-cursor">&nbsp;</span>';
+                    setTimeout(typeEffect, deleting ? 100 : 100);
+                }
+
+                typeEffect();
+            }
+        });
+
+        // Mouse tracking - FIXED for hero section only
+        document.addEventListener('mousemove', e => {
+            // Only track mouse when in hero section
+            if (window.scrollY < window.innerHeight) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY; // No scroll offset needed since canvas is in viewport
+            }
+            
+            cursor.style.left = e.clientX - 5 + 'px';
+            cursor.style.top = e.clientY - 5 + 'px';
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            resize();
+            animate();
+        });
+
+        window.addEventListener('scroll', updateActiveSection);
+        window.addEventListener('resize', resize);
+    </script>
+</body>
 
 </html>

@@ -1,718 +1,369 @@
-/* Ensure the body takes up the full viewport */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    color: white;
-    background-color: #000000;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Courier New", monospace; /* Use a terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    font-size: 1.2rem; /* Slightly smaller font size for terminal feel */
-    line-height: 1.6; /* Adjust line height for readability */
+* {
     margin: 0;
     padding: 0;
-    width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden;
-}
-
-/* General body styling */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    color: white;
-    background-color: #000000;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Courier New", monospace; /* Use a terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    font-size: 1.2rem; /* Slightly smaller font size for terminal feel */
-    line-height: 1.6; /* Adjust line height for readability */
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #00ff00;
     overflow-x: hidden;
+    cursor: none;
 }
 
-/* Define the animation for the gradient */
-@keyframes moveGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.scroll-down {
-    display: flex;              /* Make the container a flexbox */
-    justify-content: center;    /* Center horizontally */
-    align-items: center;        /* Center vertically if needed */
-    position: relative;         /* Ensures the positioning works if needed */
-}
-
-.scroll-down img {
-    width: 2.3rem;
-    height: auto;
-    animation: bounce 2s infinite;
+/* Hero Section with Canvas */
+.hero-section {
     position: relative;
-    bottom: -10vh; /* Position image relative to .scroll-down */
-    filter: brightness(0) invert(1) hue-rotate(120deg); /* Convert to white, then apply green filter */
-    transition: filter 0.3s ease; /* Smooth transition for hover effect */
-}
-
-
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-
-.hero {
-    text-align: center;
-    padding: 20% 5%;
-    color: #333;
     height: 100vh;
-    place-items: center;
+    overflow: hidden;
 }
 
-.hero-title {
-    font-size: 7rem;
-    margin-bottom: 5%;
-
-}
-
-.p1 {
-    font-size: 1rem;
-    margin-bottom: 0;
-}
-
-/* Adjust hero-title for smaller screens */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem; /* Smaller font size for mobile */
-        margin-bottom: 2rem; /* Reduce spacing below the title */
-    }
-
-    /* Adjust button size in the hero section */
-    .btn-custom {
-        font-size: 0.9rem; /* Slightly smaller font size */
-        padding: 8px 16px; /* Reduce padding for smaller buttons */
-    }
-
-    /* Adjust About Me section */
-    #about {
-        padding: 3%; /* Reduce padding for smaller screens */
-    }
-
-    .profile-picture {
-        width: 70vw; /* Adjust profile picture size */
-        height: 70vw;
-    }
-
-    .profile-text {
-        font-size: 1.5rem; /* Reduce font size for readability */
-        text-align: center; /* Ensure text is centered */
-    }
-
-    /* Adjust carousel card size */
-    #experiences .carousel-item .card {
-        max-width: 90%; /* Reduce card width for smaller screens */
-        height: auto; /* Allow height to adjust dynamically */
-    }
-
-    #experiences .carousel-item .card img {
-        height: 150px; /* Reduce image height */
-    }
-
-    /* Adjust project card layout */
-    #projects .project-card {
-        max-width: 90%; /* Reduce card width for smaller screens */
-        margin: 0 auto 2rem auto; /* Center cards and add spacing below */
-    }
-
-    .card-title {
-        font-size: 1.2rem; /* Reduce project title font size */
-    }
-
-    .card-text {
-        font-size: 0.9rem; /* Reduce project description font size */
-    }
-
-    /* Adjust skills section */
-    #skills h2 {
-        font-size: 2.5rem; /* Reduce section title font size */
-    }
-
-    #skills h5 {
-        font-size: 1.5rem; /* Reduce subsection title font size */
-    }
-
-    .skill-item img {
-        width: 40px; /* Reduce skill icon size */
-        height: 40px;
-    }
-
-    .skill-item p {
-        font-size: 0.9rem; /* Reduce skill text font size */
-    }
-
-    /* Footer adjustments */
-    footer {
-        padding: 10px; /* Reduce padding for smaller screens */
-    }
-
-    .social-links {
-        gap: 20px; /* Reduce spacing between social icons */
-    }
-
-    .linkpic {
-        width: 25px; /* Reduce social icon size */
-        height: 25px;
-    }
-
-    /* Adjust skill flags for mobile */
-@media (max-width: 768px) {
-    .skill-flag {
-        font-size: 0.7rem; /* Reduce font size for skill flags */
-        padding: 3px 6px; /* Reduce padding for smaller flags */
-        border-radius: 3px; /* Slightly smaller rounded corners */
-    }
-
-    /* Ensure skill flags fit inside the carousel */
-    #experiences .skills-container {
-        flex-wrap: wrap; /* Allow skill flags to wrap to the next line */
-        justify-content: center; /* Center-align skill flags */
-        gap: 5px; /* Reduce spacing between skill flags */
-    }
-
-    /* Shrink text size in the About Me section */
-    #about .profile-text {
-        font-size: 1.2rem; /* Reduce font size for better readability on mobile */
-        line-height: 1.4; /* Adjust line height for readability */
-    }
-}
-}
-
-/* Custom button style */
-.btn-custom {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    border: 1px solid #00ff00; /* Green border */
-    padding: 10px 20px;
-    text-transform: uppercase; /* Make text uppercase for terminal feel */
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    text-decoration: none; /* Remove underline by default */
-}
-
-.btn-custom:focus {
-    background-color: black !important;
-    color: white !important;
-    border: 2px solid black !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.btn-custom:hover {
-    text-decoration: underline; /* Underline text on hover */
-    background-color: #000000; /* Keep the background black */
-    color: #00ff00; /* Keep the text neon green */
-    border: 1px solid #00ff00; /* Keep the border green */
-}
-
-/* Fix underline alignment for the Menu button */
-.dropdown .btn-custom {
-    display: inline-block; /* Ensure the button behaves like an inline element */
-    text-align: center; /* Center-align the text */
-    padding: 10px 20px; /* Adjust padding for proper spacing */
-    text-decoration: none; /* Remove underline by default */
-    width: auto; /* Ensure the width fits the content */
-}
-
-.dropdown .btn-custom:hover {
-    text-decoration: underline; /* Add underline on hover */
-    text-underline-offset: 3px; /* Adjust the underline position */
-}
-
-/* Skill Flags with minimal styling */
-.skill-flag {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    font-size: 0.9rem;
-    font-weight: 400; /* Thinner font weight */
-    padding: 5px 10px;
-    border: 1px solid #00ff00; /* Green border */
-    border-radius: 20px; /* Increase rounding for a pill-like shape */
-}
-
-/* Minimal green glow for text */
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    font-weight: 400; /* Thinner font weight */
-    color: #00ff00; /* Neon green */
-    text-shadow: none; /* Remove glow effect for a cleaner terminal look */
-}
-
-/* Section titles */
-.section-title {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    font-weight: 400; /* Thinner font weight */
-    color: #00ff00; /* Neon green */
-    text-shadow: none; /* Remove glow effect */
-    text-align: left; /* Align text to the left for terminal feel */
-}
-
-/* Skills section headers */
-#skills h2, #skills h5 {
-    color: #00ff00; /* Neon green color */
-    text-shadow: 0 0 5px #00ff00; /* Reduced glow effect */
-}
-
-#projects {
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 5%;
-    justify-content: center;
-}
-
-#projects .row{
-    display: flex;
-    flex-wrap: wrap; /* Ensures cards wrap to the next row if needed */
-    justify-content: space-evenly; /* Evenly spaces the cards with equal gaps */
-}
-
-.project-card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 2px solid black; /* Green border */
-    position: relative;
-    z-index: 1;
-    margin-bottom: 50px;
-    background-color: white;
-    color: #000000;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
     height: 100%;
+    z-index: 1;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #00ff00;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: difference;
+}
+
+.nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav button {
+    background: #000; /* Set background to black */
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: #00ff00; /* Highlight active or hovered buttons */
+    color: #000;
+}
+
+.nav button.resume {
+    background: #00ff00;
+    color: #000;
+}
+
+.nav button.resume:hover {
+    background: transparent;
+    color: #00ff00;
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    z-index: 10;
+    background: #000;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 80px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: #00ff00;
+}
+
+.about-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-picture {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 2px solid #00ff00;
+    object-fit: cover;
+}
+
+.profile-text {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    background: rgba(0, 255, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
+
+.highlight-green { color: #00ff00; }
+.highlight-blue { color: #0099ff; }
+.highlight-red { color: #ff4444; }
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Internship Cards Container */
+.internship-cards-container {
+    display: flex; /* Use flex for vertical layout */
+    flex-direction: column; /* Arrange cards vertically */
+    gap: 2rem; /* Maintain spacing between cards */
+    width: 40%;
+    max-width: 800px; /* Adjust width for a vertical layout */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Project Cards Container */
+.project-cards-container {
+    display: grid; /* Use grid for rows */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Maintain rows */
+    gap: 2rem; /* Maintain spacing between cards */
+    width: 100%;
+    max-width: 1200px; /* Adjust width for a row layout */
+}
+
+/* Internship Card */
+.internship-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid #00ff00;
+    padding: 2rem; /* Increase padding for larger cards */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: auto; /* Increase height for larger cards */
+}
+
+.internship-card:hover {
+    background: rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Project Card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid #00ff00;
+    padding: 1.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 500px; /* Maintain uniform height for project cards */
 }
 
 .project-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    box-shadow: 0 4px 16px #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.company-logo,
+.project-image {
+    width: 100%;
+    height: 150px; /* Set a fixed height for images */
+    object-fit: contain; /* Ensure images fit within the fixed height */
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+/* Internship Images */
+.company-logo {
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the card */
+    margin-bottom: 1rem;
+    border-radius: 5px; /* Optional: Slight rounding for consistency */
 }
 
 .card-title {
-    font-size: 1.5rem; /* Adjusted font size for smaller project names */
-    font-weight: 500; /* Optional: Adjust font weight for better readability */
-    text-align: center; /* Optional: Center-align the project names */
-    margin-bottom: 10px; /* Add some spacing below the title */
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #00ff00;
 }
 
-.card-text {
-    font-size: 1rem;
-}
-
-/* Center the About Me section */
-#about {
-    text-align: left; /* Align all text to the left */
-    padding: 3%; /* Adjust padding for better spacing */
-    max-width: 800px; /* Limit the width for readability */
-    margin: 0 auto; /* Center the section horizontally */
-}
-
-/* Center the profile text and image */
-#about .d-flex {
-    flex-direction: column; /* Stack the content vertically */
-    align-items: center; /* Center-align the content */
-    justify-content: center; /* Center-align vertically */
-}
-
-.profile-text {
-    text-align: center; /* Center-align the text */
-    margin-top: 4rem; /* Add spacing above the text */
-}
-
-#about {
-    border-radius: 15px;
-    min-height: 100vh;
-    background-color: #000000;
-    z-index: 2;
-    border: 2px black;
-    color: white;
-    padding: 5%;
-    max-width: 95%;
-    margin-left: 2.5%;
-}
-
-/* Adjust the layout of the About Me section */
-#about .profile-picture {
-    position: relative; /* Enable precise positioning */
-    top: -20px; /* Move the profile picture up by 20px */
-    margin-bottom: 0; /* Remove any extra bottom margin */
-}
-
-/* Adjust the layout of the About Me section */
-#about .profile-picture {
-    margin-top: -40px; /* Move the profile picture up */
-}
-
-#about .profile-text {
-    margin-bottom: 1rem; /* Reduce the spacing above the text */
-}
-
-/* Adjust the About Me section text */
-#about .profile-text {
-    font-size: 1.5rem; /* Slightly larger font size for readability */
-    line-height: 1.8; /* Adjust line height for better spacing */
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    color: white; /* White terminal-style text */
-    margin-top: 1rem; /* Add spacing above the text */
-    text-align: left; /* Align text to the left */
-}
-
-footer {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    padding: 20px;
-    text-align: center;
-    border-top: 1px solid #00ff00; /* Green border at the top */
-}
-
-/* Links styled like terminal hyperlinks */
-a {
-    color: #00ff00; /* Neon green */
-    text-decoration: none; /* Remove underline */
-}
-
-a:hover {
-    text-decoration: underline; /* Add underline on hover */
-}
-
-.social-links {
-    display: flex;
-    gap: 50px;           /* adds 50px space between each icon */
-    justify-content: center;  /* centers the group */
-    align-items: center;
-    margin-top: 1rem;
-  }
-
-.social-links a {
-    display: inline-block;
-    /* Ensures the links behave like inline elements */
-    text-decoration: none;
-}
-
-.linkpic {
-    width: 30px;
-    height: 30px;
-}
-
-/* Profile picture styling */
-.profile-picture {
-    width: 50vw;
-    height: 50vw;
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-}
-
-
-/* Profile text styling */
-.profile-text {
-    font-size: 2rem;
+.card-description {
+    font-size: 0.9rem;
     line-height: 1.5;
-    text-align: center;
-    margin-top: 5%;
-    margin-right: 5%;
+    margin-bottom: 1.5rem;
+    color: #ccc;
 }
 
-@media (min-width: 768px) {
-    .profile-text {
-        text-align: left;
-    }
+.card-button {
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    margin-top: auto;
 }
 
-@media (max-width: 768px) {
-    #experiences .card {
-        margin: 0 16px; /* Adds left and right margin */
-    }
+.card-button:hover {
+    background: #00ff00;
+    color: #000;
 }
 
-/* Adjust profile-picture for smaller screens */
-@media (max-width: 768px) {
-    .profile-picture {
-        width: 80vw;
-        height: 80vw;
-    }
-}
-
-.dropdown {
-    position: fixed;
-    top: 5%;
-    right: 5%;
-    /* Reduced to ensure it stays within viewport */
-    z-index: 2;
-    transition: background-color 0.3s ease;
-}
-
-section {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 95%;
-    /* Adjusts for smaller screens */
-}
-
-@media (min-width: 768px) {
-    section {
-        max-width: 1200px;
-    }
-}
-
-.linkpic {
-    width: 30px;
-    height: 30px;
-}
-
-/* Skills SECTION */
-#skills {
-    background-color: #000000;
-    color: white;
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     width: 100%;
-    padding: 0;
-    justify-content: center;
-    padding: 4rem 2rem 0rem 2rem;
-    padding-bottom: 5%;
-    border-radius: 15px;
-    max-width: 95%;
-    margin-bottom: 2.5%;
-    margin-left: 2.5%;
-    text-decoration: none;
+    max-width: 1000px;
 }
 
-#skills h2 {
-    font-size: 3.5rem;
+.skill-category {
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid #00ff00;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+.skill-category h3 {
+    color: #00ff00;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
     text-align: center;
 }
 
-#skills h5 {
-    font-weight: 400;
-    font-size: 1.8rem;
-    text-align: center;
-}
-
-#skills div .col-6 {
-    padding: 0 0.5rem 0 0.5rem !important;
-}
-
-#skills div .col-md-4 {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 0 1.5rem 0 1.5rem !important;
-    max-width: 350px;
+.skill-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
 }
 
 .skill-item {
-    background-color: white;
-    color: #000000;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-}
-
-.skill-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 5px;
-}
-
-.skill-item p {
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Progress bar container */
-.progress {
-    background-color: #000000; /* Black background */
-    border: 1px solid #00ff00; /* Green border */
-    border-radius: 5px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px 0;
-    width: 100%;
-}
-
-/* Animate progress bars on load */
-.progress-bar {
-    width: 0;
-    animation: fillProgress 2s forwards;
-}
-
-@keyframes fillProgress {
-    to {
-        width: var(--progress-width);
-    }
-}
-
-/* Progress bar fill */
-.progress-bar {
-    background-color: #00ff00; /* Neon green */
-    height: 100%;
-    text-align: center;
-    color: #000000; /* Black text */
-    font-size: 0.9rem;
-    line-height: 20px; /* Align text vertically */
-    transition: width 0.5s ease-in-out;
-}
-
-/* Skill Flags */
-.skills-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.skill-icon {
+    font-size: 40px;
+    width: 80px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+    fill: #00ff00;
+}
+
+.skill-name {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 2rem;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+    justify-content: center;
 }
 
-.skill-flag {
-    font-family: "Courier New", monospace; /* Terminal-like font */
-    background-color: #000000; /* Black background */
-    color: #00ff00; /* Neon green text */
-    font-size: 0.9rem;
-    font-weight: 400; /* Thinner font weight */
-    padding: 5px 10px;
-    border: 1px solid #00ff00; /* Green border */
-    border-radius: 20px; /* Increase rounding for a pill-like shape */
-    transition: box-shadow 0.2s ease;
+.contact-button {
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
-.skill-flag:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Subtle green glow */
-    transition: box-shadow 0.3s ease; /* Smooth transition for the glow effect */
+.contact-button:hover {
+    background: #00ff00;
+    color: #000;
 }
 
-/* Ensure enough space between skill flags and the button */
-.project-card .card-body {
-    position: relative;
-    padding-bottom: 60px; /* Add padding to create space for the button */
-}
-
-/* Round the corners of all cards in the carousel */
-#experiences .carousel-item .card {
-    border-radius: 25px; /* Increase the corner rounding for all cards */
-    overflow: hidden; /* Ensure content stays within the rounded corners */
-    width: 100%; /* Ensure the card takes up the full width of its container */
-    max-width: 600px; /* Limit the maximum width */
-    height: 400px; /* Set a consistent height for all cards */
-    margin: 0 auto; /* Center the card horizontally */
-    display: flex;
-    flex-direction: column; /* Ensure content stacks vertically */
-    justify-content: space-between; /* Space out content evenly */
-    box-sizing: border-box; /* Include padding and border in the dimensions */
-}
-
-/* Ensure images inside the cards fit the rounded corners */
-#experiences .carousel-item .card img {
-    border-top-left-radius: 15px; /* Match the card's corner rounding */
-    border-top-right-radius: 15px; /* Match the card's corner rounding */
-    height: 200px; /* Set a fixed height for images */
-    object-fit: cover; /* Ensure images maintain their aspect ratio */
-    width: 100%; /* Ensure images fill the card width */
-}
-
-/* Ensure the Experiences section has enough spacing */
-#experiences {
-    margin-bottom: 0; /* Reduce space below the Experiences section */
-    padding-bottom: 0; /* Adjust padding to prevent content from being cut off */
-}
-
-/* Ensure the carousel fits properly */
-#experiencesCarousel {
-    overflow: visible; /* Ensure the carousel content is not clipped */
-}
-
-/* Ensure the carousel items have proper spacing */
-#experiences .carousel-item {
-    padding: 1rem; /* Add padding around each carousel item */
-}
-
-/* Make footer logos white by default */
-footer .linkpic {
-    filter: brightness(0) invert(1); /* Converts the logos to white */
-    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for hover effect */
-}
-
-/* Slightly enlarge footer logos on hover */
-footer .linkpic:hover {
-    transform: scale(1.1); /* Slightly enlarge the logo */
-}
-
-/* Highlight specific words in red */
-.highlight-red {
-    color: #ff0000; /* Bright red color */
-    font-weight: bold; /* Optional: Make the text bold */
-}
-
-.highlight-green {
-    color: #00ff00; /* Bright red color */
-    font-weight: bold; /* Optional: Make the text bold */
-}
-
-.highlight-blue {
-    color: blue; /* Bright blue color */
-    font-weight: bold; /* Optional: Make the text bold */
-}
-
-/* Underline specific phrases in red */
-.underline-red {
-    text-decoration: underline;
-    text-decoration-color: #ff0000; /* Red underline */
-    text-decoration-thickness: 2px; /* Optional: Adjust underline thickness */
+#typewriter {
+    display: inline;
 }
 
 .block-cursor {
-    display: inline-block;
-    width: 1px; /* Adjust width for the block */
-    height: 1.2em; /* Match the height of the text */
-    background-color: white; /* Neon green cursor */
-    animation: blink 1s step-start infinite;
+    background: #00ff00;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    50% {
-        opacity: 0;
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 20px 20px;
+    }
+    
+    .nav {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+    
+    .nav button {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-header h2 {
+        margin-left: 0 !important;
+        margin-top: 1rem;
     }
 }

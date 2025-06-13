@@ -294,9 +294,9 @@ body {
 }
 
 .contact-button {
-    background: transparent;
+    background: #00ff00; /* Green background by default */
     border: 1px solid #00ff00;
-    color: #00ff00;
+    color: #000; /* Black text to contrast with green background */
     padding: 12px 24px;
     text-decoration: none;
     font-family: 'Courier New', monospace;
@@ -306,8 +306,30 @@ body {
 }
 
 .contact-button:hover {
-    background: #00ff00;
-    color: #000;
+    background: #000; /* Black background on hover */
+    color: #00ff00; /* Green text on hover */
+}
+
+.contact-logo {
+    width: 25px; /* Adjust logo size */
+    height: 25px;
+    margin-right: 8px; /* Add spacing between logo and text */
+    vertical-align: middle; /* Align logo with text */
+    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.contact-button:hover .contact-logo {
+    filter: invert(1); /* Invert logo colors on hover */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    background: #000;
+    padding: 1rem;
+    border-top: 1px solid #00ff00;
 }
 
 #typewriter {
@@ -327,13 +349,19 @@ body {
 @media (max-width: 768px) {
     /* Hero Section */
     .hero-section {
-        padding: 10% 5%; /* Reduce padding for smaller screens */
+        padding: 5% 2%; /* Reduce padding for smaller screens */
         text-align: center; /* Center-align content */
     }
 
     #canvas {
         width: 100%; /* Ensure canvas fits the screen width */
         height: auto; /* Adjust height dynamically */
+    }
+
+    /* Hero Text */
+    .hero-title {
+        font-size: 2.5rem; /* Reduce font size for mobile */
+        margin-bottom: 2rem; /* Adjust spacing */
     }
 
     /* Internship Cards Container */

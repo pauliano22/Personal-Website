@@ -16,8 +16,6 @@
     <div class="hero-section" id="home">
         <canvas id="canvas"></canvas>
     </div>
-    
-    <div class="custom-cursor"></div>
 
     <nav class="nav">
         <button class="active" onclick="scrollToSection(0)">HOME</button>
@@ -236,6 +234,10 @@
                             <i class="devicon-mongodb-plain skill-icon"></i>
                             <div class="skill-name">MongoDB</div>
                         </div>
+                        <div class="skill-item">
+                            <i class="devicon-linux-plain skill-icon"></i>
+                            <div class="skill-name">Linux</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -297,9 +299,9 @@
                 let dy = mouse.y - this.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Apply force if the particle is close to the mouse
-                if (dist < 100) {
-                    let force = (100 - dist) / 100;
+                // Apply force if the particle is within the circle radius
+                if (dist < 40) { // Circle radius is 40 pixels
+                    let force = (40 - dist) / 40; // Calculate force based on distance
                     this.vx -= (dx / dist) * force * 2;
                     this.vy -= (dy / dist) * force * 2;
                 }
@@ -307,8 +309,8 @@
                 // Return to original location
                 let homeDx = this.homeX - this.x;
                 let homeDy = this.homeY - this.y;
-                this.vx += homeDx * 0.01;
-                this.vy += homeDy * 0.01;
+                this.vx += homeDx * 0.005;
+                this.vy += homeDy * 0.005;
 
                 this.x += this.vx;
                 this.y += this.vy;
@@ -394,6 +396,27 @@
                     }
                 }
             });
+
+            // Add downward-pointing arrow below "CS @ Cornell"
+            const arrowSize = 30; // Size of the arrowhead
+            const arrowX = canvas.width / 2; // Center horizontally
+            const arrowY = canvas.height / 2 + 80; // Position below "CS @ Cornell"
+
+            // Create the arrow shaft
+            const shaftHeight = 20; // Height of the arrow shaft
+            const shaftWidth = 10; // Width of the arrow shaft
+            for (let y = 0; y < shaftHeight; y++) {
+                for (let x = -shaftWidth / 2; x <= shaftWidth / 2; x++) {
+                    particles.push(new Dot(arrowX + x, arrowY + y)); // Shaft positioned above the arrowhead
+                }
+            }
+
+            // Create the arrowhead
+            for (let y = 0; y < arrowSize; y++) {
+                for (let x = -arrowSize + y; x <= arrowSize - y; x++) {
+                    particles.push(new Dot(arrowX + x, arrowY + shaftHeight + y)); // Arrowhead positioned below the shaft
+                }
+            }
         }
 
         function animate() {
@@ -417,7 +440,7 @@
 
         function scrollToSection(index) {
             const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
-            
+
             if (index === 0) {
                 // Scroll to top (hero section)
                 window.scrollTo({
@@ -443,7 +466,7 @@
         function updateActiveSection() {
             const scrollY = window.scrollY;
             const heroHeight = window.innerHeight;
-            
+
             if (scrollY < heroHeight / 2) {
                 // In hero section
                 document.querySelectorAll('.nav button:not(.resume)').forEach((b, i) => {
@@ -453,7 +476,7 @@
                 // In other sections
                 const sections = document.querySelectorAll('.main-content .section');
                 let currentSection = 0;
-                
+
                 sections.forEach((section, index) => {
                     const rect = section.getBoundingClientRect();
                     if (rect.top <= window.innerHeight / 2) {
@@ -524,18 +547,6 @@
             }
         });
 
-        // Mouse tracking - FIXED for hero section only
-        document.addEventListener('mousemove', e => {
-            // Only track mouse when in hero section
-            if (window.scrollY < window.innerHeight) {
-                mouse.x = e.clientX;
-                mouse.y = e.clientY; // No scroll offset needed since canvas is in viewport
-            }
-            
-            cursor.style.left = e.clientX - 5 + 'px';
-            cursor.style.top = e.clientY - 5 + 'px';
-        });
-
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             resize();
@@ -544,6 +555,10 @@
 
         window.addEventListener('scroll', updateActiveSection);
         window.addEventListener('resize', resize);
+        document.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
     </script>
 </body>
 

@@ -351,6 +351,7 @@ footer {
     .hero-section {
         padding: 5% 2%; /* Reduce padding for smaller screens */
         text-align: center; /* Center-align content */
+        height: auto; /* Allow height to adjust dynamically */
     }
 
     #canvas {
@@ -362,6 +363,11 @@ footer {
     .hero-title {
         font-size: 2.5rem; /* Reduce font size for mobile */
         margin-bottom: 2rem; /* Adjust spacing */
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem; /* Reduce subtitle font size */
+        margin-bottom: 1rem; /* Adjust spacing */
     }
 
     /* Internship Cards Container */

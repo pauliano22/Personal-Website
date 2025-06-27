@@ -693,7 +693,7 @@
 
             // Create media element based on type
             if (type === 'video') {
-                content.innerHTML = `<video controls autoplay preload="metadata" playsinline webkit-playsinline>
+                content.innerHTML = `<video autoplay muted loop playsinline webkit-playsinline disablePictureInPicture controlslist="nodownload nofullscreen noremoteplayback">
                     <source src="${imageUrl}" type="video/quicktime">
                     <source src="${imageUrl}" type="video/mp4">
                     Your browser does not support the video tag.

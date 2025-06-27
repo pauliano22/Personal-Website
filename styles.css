@@ -569,9 +569,25 @@ footer {
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.media-content video.loaded {
-    opacity: 1;
-    transform: scale(1) rotateY(0deg);
+/* Hide video controls completely */
+.media-content video::-webkit-media-controls {
+    display: none !important;
+}
+
+.media-content video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.media-content video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.media-content video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+.media-content video {
+    pointer-events: none; /* Prevent user interaction */
 }
 
 .media-content iframe {
@@ -690,14 +706,18 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
         z-index: 100;
+        max-width: calc(100vw - 20px); /* Ensure it doesn't overflow */
     }
 
     .nav button {
         padding: 6px 8px;
         font-size: 10px;
-        flex: 1;
+        flex: 0 1 auto; /* Allow buttons to shrink and grow */
         min-width: 45px;
-        max-width: 70px;
+        max-width: none; /* Remove max-width constraint */
+        white-space: nowrap; /* Prevent text wrapping inside buttons */
+        text-overflow: ellipsis; /* Add ellipsis for very long text */
+        overflow: hidden;
     }
 
     /* About section mobile fixes */

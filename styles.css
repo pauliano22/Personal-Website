@@ -724,12 +724,15 @@ footer {
         overflow-x: hidden;
         min-height: 100vh;
         position: relative;
+        width: 100vw;
+        max-width: 100vw;
     }
 
     #canvas {
+        width: 100vw !important;
+        max-width: 100vw !important;
         min-width: 100vw;
-        width: 100vw;
-        max-width: 100vw;
+        overflow: hidden;
     }
 
     /* Navigation mobile fixes */

@@ -152,9 +152,9 @@
                     <div class="card-description">
                         <strong>Software Engineering Intern</strong>
                         <ul>
-                            <li>Primary contributor to next-gen radios, integrating TAK capabilities through extensive customization of the open-source GoATAK codebase in Golang, adding tailored features for firefighters, police, and first responders</li>
-                            <li>Built custom Linux distributions and embedded system images using Yocto Project and BitBake to deploy and test new features on constrained hardware, gaining deep expertise in embedded systems and OS internals</li>
-                            <li>Collaborated on tactical data systems interfacing with Palantir's AI platform, including direct engagement with Palantir engineers on data pipeline improvements</li>
+                            <li>Customized open-source GoATAK codebase in Golang, integrating TAK capabilities for firefighters, police, and first responders</li>
+                            <li>Built custom Linux distributions using Yocto Project and BitBake for embedded system deployment and testing</li>
+                            <li>Collaborated on tactical data systems interfacing with Palantir's AI platform</li>
                         </ul>
                     </div>
                     <button class="card-button" onclick="viewExperience('L3Harris')">VIEW MORE</button>
@@ -421,6 +421,16 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
+            // Scale text size for mobile
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                heroText[0].size = Math.min(window.innerWidth / 8, 45); // Scale main title
+                heroText[1].size = Math.min(window.innerWidth / 25, 16); // Scale subtitle
+            } else {
+                heroText[0].size = 60; // Desktop size
+                heroText[1].size = 20; // Desktop size
+            }
+
             // Position hero text
             heroText.forEach((line, index) => {
                 line.x = canvas.width / 2;
@@ -503,7 +513,9 @@
 
         function initBackgroundParticles() {
             backgroundParticles = [];
-            for (let i = 0; i < 100; i++) { // Reduced number of particles
+            // Reduce particles on mobile for better performance
+            const particleCount = window.innerWidth <= 768 ? 50 : 100;
+            for (let i = 0; i < particleCount; i++) {
                 backgroundParticles.push(new BackgroundParticle());
             }
         }
@@ -518,50 +530,58 @@
                 tempCtx.font = `${line.size}px Courier New`;
                 const width = tempCtx.measureText(line.text).width;
 
-                temp.width = width + 20;
-                temp.height = line.size + 20;
+                // Ensure text fits within viewport width
+                const maxWidth = window.innerWidth - 40; // 20px padding on each side
+                const scale = Math.min(1, maxWidth / width);
+                const scaledSize = line.size * scale;
+                const scaledWidth = width * scale;
+
+                temp.width = scaledWidth + 20;
+                temp.height = scaledSize + 20;
 
                 tempCtx.clearRect(0, 0, temp.width, temp.height);
-                tempCtx.font = `${line.size}px Courier New`;
+                tempCtx.font = `${scaledSize}px Courier New`;
                 tempCtx.fillStyle = '#00ff00';
-                tempCtx.fillText(line.text, 10, line.size);
+                tempCtx.fillText(line.text, 10, scaledSize);
 
                 const imageData = tempCtx.getImageData(0, 0, temp.width, temp.height);
                 const data = imageData.data;
 
-                const spacing = line.size < 25 ? 1 : 2;
+                // Adjust spacing based on screen size
+                const spacing = window.innerWidth <= 768 ? 2 : (line.size < 25 ? 1 : 2);
 
                 for (let y = 0; y < temp.height; y += spacing) {
                     for (let x = 0; x < temp.width; x += spacing) {
                         const alpha = data[(y * temp.width + x) * 4 + 3];
                         if (alpha > 128) {
                             particles.push(new Dot(
-                                line.x - width / 2 + x - 10,
-                                line.y - line.size / 2 + y - 10
+                                line.x - scaledWidth / 2 + x - 10,
+                                line.y - scaledSize / 2 + y - 10
                             ));
                         }
                     }
                 }
             });
 
-            // Add downward-pointing arrow below "CS @ Cornell"
-            const arrowSize = 30; // Size of the arrowhead
-            const arrowX = canvas.width / 2; // Center horizontally
-            const arrowY = canvas.height / 2 + 80; // Position below "CS @ Cornell"
+            // Add downward-pointing arrow below "CS @ Cornell" (scale for mobile)
+            const arrowScale = window.innerWidth <= 768 ? 0.7 : 1;
+            const arrowSize = 30 * arrowScale;
+            const arrowX = canvas.width / 2;
+            const arrowY = canvas.height / 2 + (80 * arrowScale);
 
             // Create the arrow shaft
-            const shaftHeight = 20; // Height of the arrow shaft
-            const shaftWidth = 10; // Width of the arrow shaft
-            for (let y = 0; y < shaftHeight; y++) {
-                for (let x = -shaftWidth / 2; x <= shaftWidth / 2; x++) {
-                    particles.push(new Dot(arrowX + x, arrowY + y)); // Shaft positioned above the arrowhead
+            const shaftHeight = 20 * arrowScale;
+            const shaftWidth = 10 * arrowScale;
+            for (let y = 0; y < shaftHeight; y += (window.innerWidth <= 768 ? 2 : 1)) {
+                for (let x = -shaftWidth / 2; x <= shaftWidth / 2; x += (window.innerWidth <= 768 ? 2 : 1)) {
+                    particles.push(new Dot(arrowX + x, arrowY + y));
                 }
             }
 
             // Create the arrowhead
-            for (let y = 0; y < arrowSize; y++) {
-                for (let x = -arrowSize + y; x <= arrowSize - y; x++) {
-                    particles.push(new Dot(arrowX + x, arrowY + shaftHeight + y)); // Arrowhead positioned below the shaft
+            for (let y = 0; y < arrowSize; y += (window.innerWidth <= 768 ? 2 : 1)) {
+                for (let x = -arrowSize + y; x <= arrowSize - y; x += (window.innerWidth <= 768 ? 2 : 1)) {
+                    particles.push(new Dot(arrowX + x, arrowY + shaftHeight + y));
                 }
             }
         }

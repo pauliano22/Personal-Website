@@ -471,7 +471,7 @@
             particles = [];
 
             const temp = document.createElement('canvas');
-            const tempCtx = temp.getContext('2d');
+            const tempCtx = temp.getContext('2d', { willReadFrequently: true });
 
             heroText.forEach(line => {
                 tempCtx.font = `${line.size}px Courier New`;
@@ -667,6 +667,13 @@
             mouse.y = e.clientY;
         });
 
+        // Add this function before the openMedia function
+        function escapeKeyListener(event) {
+            if (event.key === 'Escape') {
+                closeMedia();
+            }
+        }
+
         // Media Gallery Functions
         function openMedia(filename, caption, imageUrl, type = 'image') {
             const viewer = document.getElementById('mediaViewer');
@@ -686,7 +693,7 @@
 
             // Create media element based on type
             if (type === 'video') {
-                content.innerHTML = `<video controls autoplay preload="metadata">
+                content.innerHTML = `<video controls autoplay preload="metadata" playsinline webkit-playsinline>
                     <source src="${imageUrl}" type="video/quicktime">
                     <source src="${imageUrl}" type="video/mp4">
                     Your browser does not support the video tag.

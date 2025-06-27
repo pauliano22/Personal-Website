@@ -153,13 +153,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to flex-start */
     background: rgba(0, 255, 0, 0.05);
     border: 1px solid #00ff00;
     padding: 2rem; /* Increase padding for larger cards */
     border-radius: 5px;
     transition: all 0.3s ease;
-    text-align: center;
+    text-align: left; /* Changed from center to left */
     height: auto; /* Increase height for larger cards */
 }
 
@@ -173,13 +173,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to flex-start */
     background: rgba(0, 255, 0, 0.05);
     border: 1px solid #00ff00;
     padding: 1.5rem;
     border-radius: 5px;
     transition: all 0.3s ease;
-    text-align: center;
+    text-align: left; /* Changed from center to left */
     height: 500px; /* Maintain uniform height for project cards */
 }
 
@@ -195,6 +195,7 @@ body {
     object-fit: contain; /* Ensure images fit within the fixed height */
     margin-bottom: 1rem;
     border-radius: 10px;
+    align-self: center; /* Keep images centered */
 }
 
 /* Internship Images */
@@ -204,6 +205,7 @@ body {
     object-fit: contain; /* Ensure the image fits within the card */
     margin-bottom: 1rem;
     border-radius: 5px; /* Optional: Slight rounding for consistency */
+    align-self: center; /* Keep images centered */
 }
 
 .card-title {
@@ -211,6 +213,8 @@ body {
     font-weight: bold;
     margin-bottom: 1rem;
     color: #00ff00;
+    text-align: left; /* Ensure titles are left-aligned */
+    width: 100%;
 }
 
 .card-description {
@@ -218,6 +222,20 @@ body {
     line-height: 1.5;
     margin-bottom: 1.5rem;
     color: #ccc;
+    text-align: left; /* Left-align descriptions */
+    width: 100%;
+}
+
+/* Add bullet point styles */
+.card-description ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    padding-left: 0;
+}
+
+.card-description li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .card-button {
@@ -230,6 +248,7 @@ body {
     font-size: 12px;
     transition: all 0.3s ease;
     margin-top: auto;
+    align-self: flex-start; /* Align button to the left */
 }
 
 .card-button:hover {
@@ -569,6 +588,11 @@ footer {
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.media-content video.loaded {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+}
+
 /* Hide video controls completely */
 .media-content video::-webkit-media-controls {
     display: none !important;
@@ -586,8 +610,21 @@ footer {
     display: none !important;
 }
 
-.media-content video {
-    pointer-events: none; /* Prevent user interaction */
+.media-content video::-moz-media-controls {
+    display: none !important;
+}
+
+.media-content video::-o-media-controls {
+    display: none !important;
+}
+
+.media-content video::-ms-media-controls {
+    display: none !important;
+}
+
+/* Remove pointer-events to allow video loading but prevent user controls */
+.media-content video[controls] {
+    pointer-events: none;
 }
 
 .media-content iframe {

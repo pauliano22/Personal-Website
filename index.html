@@ -54,7 +54,7 @@
                 
                 <!-- Personal Introduction -->
                 <div class="intro-paragraph">
-                    <p>Hey there! I'm Paul, a Computer Science student at Cornell University and I'm from Rochester, NY. When I'm not coding, you'll find me in the gym, on the golf course, or hitting the slopes. I love trying new things, whether it's a new food, game, or activity. I have a passion for building things that try to solve real problems and I'm excited to learn more about SWE and entrepreneurship.</p>
+                    <p>Hey there! I'm Paul, a <span class="highlight-blue">Computer Science</span> student at <span class="highlight-red">Cornell University</span> and I'm from <span class="highlight-orange">Rochester, NY</span>. I've played sports all my life, so when I'm not coding, you'll find me in the <span class="highlight-green">gym</span> or on the <span class="highlight-green">golf</span> course. Feel free to reach out!</p>
                 </div>
             </div>
         </div>
@@ -154,31 +154,36 @@
             <h2 class="section-title">Experience</h2>
             <div class="internship-cards-container">
                 <div class="internship-card">
-                    <img src="images/L3.png" alt="L3Harris Logo" class="company-logo">
+                    <img src="images/L3.png" alt="L3Harris Logo" class="company-logo l3harris-logo">
                     <div class="card-title">L3Harris Technologies</div>
-                    <div class="card-description">
-                        <strong>Software Engineering Intern</strong>
-                        <ul>
-                            <li>Developed and customized open-source software solutions using Go programming language</li>
-                            <li>Built custom Linux distributions and embedded systems for deployment and testing</li>
-                            <li>Collaborated on enterprise software systems and platform integrations</li>
-                        </ul>
+                    <div class="card-subtitle">Software Engineering Intern</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Golang</span>
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Fiber</span>
+                        <span class="tech-tag">Linux</span>
+                        <span class="tech-tag">Yocto Project</span>
+                        <span class="tech-tag">BitBake</span>
+                        <span class="tech-tag">WebRTC</span>
+                        <span class="tech-tag">Palantir Foundry</span>
                     </div>
-                    <button class="card-button" onclick="viewExperience('L3Harris')">VIEW MORE</button>
                 </div>
 
                 <div class="internship-card">
-                    <img src="images/rapstudy.jpg" alt="rapStudy Logo" class="company-logo">
+                    <img src="images/rapstudy.jpg" alt="rapStudy Logo" class="company-logo rapstudy-logo">
                     <div class="card-title">rapStudy</div>
-                    <div class="card-description">
-                        <strong>Software Engineering Intern</strong>
-                        <ul>
-                            <li>Built React frontend components and integrated Firebase backend</li>
-                            <li>Focused on UI/UX improvements</li>
-                            <li>Optimized JavaScript for educational platform</li>
-                        </ul>
+                    <div class="card-subtitle">Software Engineering Intern</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Clever SSO</span>
+                        <span class="tech-tag">ClassLink SSO</span>
+                        <span class="tech-tag">Azure</span>
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">Algolia</span>
                     </div>
-                    <button class="card-button" onclick="viewExperience('rapStudy')">VIEW MORE</button>
                 </div>
             </div>
         </div>
@@ -188,107 +193,116 @@
             <h2 class="section-title">Projects</h2>
             <div class="project-cards-container">
                 <div class="project-card">
+                    <img src="images/camelot.png" alt="Camelot Logo" class="project-image">
+                    <div class="card-title">Camelot: Security Monitoring</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">YOLO</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">RabbitMQ</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                    <button class="card-button" onclick="viewProject('Camelot')">LINK</button>
+                </div>
+
+                <div class="project-card">
                     <img src="images/lion1.png" alt="Vocera Logo" class="project-image">
                     <div class="card-title">Lion Project</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>Trained model to tell apart human from AI voices with 90%+ accuracy</li>
-                            <li>Used that model in a desktop app, mobile app, and chrome extension</li>
-                            <li>ONNX, Huggingface, PyTorch, Sci-kit Learn, Flask, Librosa, Kivy</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">ONNX</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Hugging Face</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('Lion')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('Lion')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/vocera.png" alt="Vocera Logo" class="project-image">
-                    <div class="card-title">Vocera: AI Deepfake Detection App</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>React Native mobile app with biometric authentication</li>
-                            <li>FastAPI backend with advanced machine learning</li>
-                            <li>Secure voice verification platform</li>
-                        </ul>
+                    <div class="card-title">Vocera: AI Voice Authentication App</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">OpenAI Whisper</span>
+                        <span class="tech-tag">SpeechBrain</span>
+                        <span class="tech-tag">OpenSMILE</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('Vocera')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('Vocera')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/ocaml.jpg" alt="OCaml Logo" class="project-image">
                     <div class="card-title">OCaml Theorem Prover</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>Automated theorem proving algorithms in OCaml</li>
-                            <li>Comprehensive LaTeX documentation</li>
-                            <li>Formal verification methods implementation</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">OCaml</span>
+                        <span class="tech-tag">LaTeX</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('OCaml Theorem Prover')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('OCaml Theorem Prover')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/project6.jpg" alt="Stock Engine Logo" class="project-image">
                     <div class="card-title">Stock Backtesting Engine</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>High-performance C++ trading system with PyTorch ML models</li>
-                            <li>Market prediction and backtesting capabilities</li>
-                            <li>Quantitative analysis tools for trading strategies</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Python</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('Stock Engine')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('Stock Engine')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/project4.jpg" alt="LockedIn Logo" class="project-image">
                     <div class="card-title">LockedIn: Professional Networking</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>Full-stack web application with Python Flask backend</li>
-                            <li>Firebase integration and SQLAlchemy ORM</li>
-                            <li>Docker containerization for scalable deployment</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">GCP</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('LockedIn')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('LockedIn')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/project5.jpg" alt="Image Cropping Logo" class="project-image">
                     <div class="card-title">Intelligent Image Cropping GUI</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>Java desktop application with advanced algorithms</li>
-                            <li>Automated intelligent image processing and cropping</li>
-                            <li>Seam carving techniques for content-aware resizing</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('Image Cropping')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('Image Cropping')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/shipwreck.png" alt="Harbor Logo" class="project-image">
                     <div class="card-title">Harbor: Dating App</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>React Native mobile application with Node.js backend</li>
-                            <li>Express.js API with TypeScript for type safety</li>
-                            <li>Real-time messaging features and user matching</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">TypeScript</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('Harbor')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('Harbor')">LINK</button>
                 </div>
 
                 <div class="project-card">
                     <img src="images/cpmc.png" alt="CPMC Website Logo" class="project-image">
                     <div class="card-title">Cornell Portfolio Management Club</div>
-                    <div class="card-description">
-                        <ul>
-                            <li>Responsive club website built with HTML, CSS, JavaScript</li>
-                            <li>Bootstrap framework for professional presentation</li>
-                            <li>Member engagement features and event management</li>
-                        </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
                     </div>
-                    <button class="card-button" onclick="viewProject('CPMC Website')">VIEW MORE</button>
+                    <button class="card-button" onclick="viewProject('CPMC Website')">LINK</button>
                 </div>
             </div>
         </div>
@@ -679,6 +693,7 @@
 
         function viewProject(projectName) {
             const projectUrls = {
+                'Camelot': 'https://github.com/pauliano22/Camelot',
                 'OCaml Theorem Prover': 'https://www.youtube.com/watch?v=7xwDIO6k9Gc',
                 'Stock Engine': 'https://github.com/pauliano22/Stock-Algo',
                 'LockedIn': 'https://github.com/akh1lk/LockedIn',

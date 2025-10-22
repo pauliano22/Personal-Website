@@ -111,7 +111,7 @@ body {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.6;
-    background: rgba(0, 255, 0, 0.1);
+    background: black;
     padding: 20px;
     border: 1px solid #00ff00;
     border-radius: 5px;
@@ -120,7 +120,7 @@ body {
 .highlight-green { color: #00ff00; }
 .highlight-blue { color: #0099ff; }
 .highlight-red { color: #ff4444; }
-
+.highlight-orange{ color: #ff8800; }
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -154,18 +154,40 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start; /* Changed from center to flex-start */
-    background: rgba(0, 255, 0, 0.05);
+    background: #000000; /* Truly black background */
     border: 1px solid #00ff00;
-    padding: 2rem; /* Increase padding for larger cards */
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    padding: 1.5rem;
+    border-radius: 12px; /* Smoother, more rounded corners */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth easing */
     text-align: left; /* Changed from center to left */
-    height: auto; /* Increase height for larger cards */
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1); /* Subtle green shadow */
 }
 
 .internship-card:hover {
-    background: rgba(0, 255, 0, 0.1);
-    transform: translateY(-5px);
+    background: #000000; /* Stay truly black on hover */
+    transform: translateY(-8px) scale(1.02); /* More pronounced lift with subtle scale */
+    box-shadow: 0 12px 24px rgba(0, 255, 0, 0.25), 
+                0 0 20px rgba(0, 255, 0, 0.15); /* Enhanced glow effect */
+    border-color: #00ff00; /* Brighter border on hover */
+}
+
+/* Subtitle for internship position */
+.card-subtitle {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.internship-card:hover .card-subtitle {
+    color: #e0e0e0;
+}
+
+.internship-card:hover .card-title {
+    color: #00ff88;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
 /* Project Card */
@@ -174,28 +196,39 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start; /* Changed from center to flex-start */
-    background: rgba(0, 255, 0, 0.05);
+    background: #000000; /* Truly black background */
     border: 1px solid #00ff00;
     padding: 1.5rem;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    border-radius: 12px; /* Smoother, more rounded corners */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth easing */
     text-align: left; /* Changed from center to left */
-    height: 500px; /* Maintain uniform height for project cards */
+    height: 380px; /* Reduced from 500px */
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1); /* Subtle green shadow */
 }
 
 .project-card:hover {
-    background: rgba(0, 255, 0, 0.1);
-    transform: translateY(-5px);
+    background: #000000; /* Stay truly black on hover */
+    transform: translateY(-8px) scale(1.02); /* More pronounced lift with subtle scale */
+    box-shadow: 0 12px 24px rgba(0, 255, 0, 0.25), 
+                0 0 20px rgba(0, 255, 0, 0.15); /* Enhanced glow effect */
+    border-color: #00ff00; /* Brighter border on hover */
 }
 
 .company-logo,
 .project-image {
     width: 100%;
-    height: 150px; /* Set a fixed height for images */
+    height: 120px; /* Reduced from 150px */
     object-fit: contain; /* Ensure images fit within the fixed height */
     margin-bottom: 1rem;
-    border-radius: 10px;
+    border-radius: 8px;
     align-self: center; /* Keep images centered */
+    background: transparent; /* Ensure background is transparent for logo blending */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                filter 0.4s ease; /* Smooth transitions */
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05); /* Subtle zoom on card hover */
 }
 
 /* Internship Images */
@@ -208,6 +241,18 @@ body {
     align-self: center; /* Keep images centered */
 }
 
+/* L3Harris logo specific filter to brighten gray text */
+.l3harris-logo {
+    filter: brightness(5.0) contrast(1.1);
+    /* This brightens the gray text to white while keeping the red vibrant */
+}
+
+/* rapStudy logo specific filter to turn gray background black */
+.rapstudy-logo {
+    filter: brightness(0.6) contrast(1.3) saturate(1.4);
+    /* Darkens gray background to black while keeping blue vibrant */
+}
+
 .card-title {
     font-size: 1.2rem;
     font-weight: bold;
@@ -215,45 +260,75 @@ body {
     color: #00ff00;
     text-align: left; /* Ensure titles are left-aligned */
     width: 100%;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Subtle glow */
+}
+
+.project-card:hover .card-title {
+    color: #00ff88; /* Slightly brighter on hover */
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
 .card-description {
     font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
     color: #ccc;
     text-align: left; /* Left-align descriptions */
     width: 100%;
+    transition: color 0.3s ease;
 }
 
-/* Add bullet point styles */
-.card-description ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-    padding-left: 0;
+.project-card:hover .card-description {
+    color: #e0e0e0; /* Brighter text on hover */
 }
 
-.card-description li {
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
+/* Tech bubbles/tags styling */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem; /* Reduced from 1.5rem */
+}
+
+.tech-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tech-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.3);
 }
 
 .card-button {
     background: transparent;
     border: 1px solid #00ff00;
     color: #00ff00;
-    padding: 8px 16px;
+    padding: 10px 20px;
     cursor: pointer;
     font-family: 'Courier New', monospace;
     font-size: 12px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin-top: auto;
     align-self: flex-start; /* Align button to the left */
+    border-radius: 6px; /* Rounded corners for smoothness */
+    box-shadow: 0 2px 4px rgba(0, 255, 0, 0.1);
 }
 
 .card-button:hover {
     background: #00ff00;
     color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.4);
 }
 
 .skills-grid {
@@ -265,7 +340,7 @@ body {
 }
 
 .skill-category {
-    background: rgba(0, 255, 0, 0.05);
+    background: black;
     border: 1px solid #00ff00;
     padding: 1.5rem;
     border-radius: 5px;
@@ -373,7 +448,7 @@ footer {
 }
 
 .terminal-window {
-    background: rgba(0, 0, 0, 0.9);
+    background: black;
     border: 2px solid #00ff00;
     border-radius: 8px;
     padding: 1rem;
@@ -701,7 +776,7 @@ footer {
 .intro-paragraph {
     margin-top: 2rem;
     padding: 1.5rem;
-    background: rgba(0, 255, 0, 0.05);
+    background: black;
     border: 1px solid #00ff00;
     border-radius: 5px;
     font-family: 'Courier New', monospace;
@@ -803,10 +878,12 @@ footer {
 
     .project-card {
         height: auto;
-        min-height: 400px;
+        min-height: 350px; /* Reduced from 400px */
         padding: 1rem;
         width: 100%;
         box-sizing: border-box;
+        background: #000000; /* Ensure black background on mobile */
+        border-radius: 12px; /* Maintain smooth corners */
     }
 
     .project-image {
@@ -820,6 +897,16 @@ footer {
         margin-bottom: 0.8rem;
         line-height: 1.3;
         word-wrap: break-word;
+    }
+
+    .tech-tags {
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .tech-tag {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
     }
 
     .card-description {
@@ -840,6 +927,13 @@ footer {
         padding: 1.5rem;
         height: auto;
         min-height: 300px;
+        background: #000000; /* Ensure black background on mobile */
+        border-radius: 12px; /* Maintain smooth corners */
+    }
+
+    .card-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
     }
 
     .company-logo {
@@ -1009,7 +1103,7 @@ footer {
     }
 
     .project-card {
-        min-height: 350px;
+        min-height: 300px; /* Reduced from 350px */
         padding: 0.8rem;
     }
 

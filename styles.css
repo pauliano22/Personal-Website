@@ -9,13 +9,14 @@ body {
     background: #ffffff;
     color: #333;
     line-height: 1.6;
-    overflow: hidden;
+    overflow-x: hidden; /* Changed from overflow: hidden */
+    overflow-y: auto; /* Allow vertical scrolling on mobile */
 }
 
 /* Hero Section with Particle Text */
 .hero-section {
     position: relative;
-    height: 100vh;
+    min-height: 100vh; /* Changed from height to min-height */
     width: 100vw;
     overflow: hidden;
     background: #ffffff;
@@ -47,19 +48,18 @@ body {
     border: 3px solid #333;
     z-index: 10;
 }
-/* 1. Bio Keywords: Keep text color same, just add normal underline */
+
 .underline {
     text-decoration: underline;
-    color: inherit; /* Ensures text stays the color of the paragraph */
+    color: inherit;
     cursor: default;
 }
 
-/* 2. Bottom Links: Teal text with standard teal underline */
 .links a, 
 .links a:visited, 
 .links a:hover, 
 .links a:active {
-    color: #008080 !important; /* Standard Teal */
+    color: #008080 !important;
     text-decoration: underline;
     font-weight: bold;
     margin-right: 20px;
@@ -69,16 +69,14 @@ body {
     opacity: 0.7;
 }
 
-/* Authentic C++ Comment Style */
 .comment {
-    color: #008000;       /* Standard IDE Green */
-    font-style: italic;   /* Comments are usually italicized in editors */
+    color: #008000;
+    font-style: italic;
     font-family: 'Courier New', monospace;
 }
 
-/* Ensure your existing highlights override the green comment color */
 .highlight-red, .highlight-blue {
-    font-style: normal;   /* Optional: keeps key words non-italic */
+    font-style: normal;
     font-weight: bold;
 }
 
@@ -97,7 +95,7 @@ body {
     color: #000000;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    font-size: .8rem;
+    font-size: 0.8rem;
 }
 
 .highlight-blue {
@@ -106,7 +104,6 @@ body {
 
 .highlight-red {
     color: #ff4444;
-   
 }
 
 .highlight-green {
@@ -137,28 +134,70 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Ensure scrolling works */
+    }
+
+    .hero-section {
+        min-height: 100vh; /* Allow content to expand */
+        padding-bottom: 2rem; /* Add bottom padding */
+    }
+
     .profile-picture {
-        width: 100px;
-        height: 100px;
-        right: 10%;
-        top: 35%;
+        width: 120px; /* Increased from 100px */
+        height: 120px;
+        right: 5%; /* Moved closer to edge */
+        top: 20%; /* Moved up */
     }
 
     .content-below {
-        bottom: 10%;
-        left: 5%;
+        position: relative; /* Changed from absolute */
+        bottom: auto;
+        left: auto;
+        margin-top: 60vh; /* Push content down below particles */
         padding: 0 1.5rem;
-        max-width: 85%;
+        max-width: 100%; /* Use full width */
+        width: 100%;
     }
 
     .bio {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
+        font-size: 0.75rem; /* Slightly smaller */
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
     }
 
     .links {
         gap: 1rem;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .links a {
+        margin-right: 10px; /* Reduced spacing */
     }
 }
 
+/* Extra small devices */
+@media (max-width: 480px) {
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        top: 15%;
+    }
+
+    .content-below {
+        padding: 0 1rem;
+        margin-top: 55vh;
+    }
+
+    .bio {
+        font-size: 0.7rem;
+    }
+
+    .links {
+        gap: 0.75rem;
+    }
+
+    .links a {
+        font-size: 0.75rem;
+    }
+}

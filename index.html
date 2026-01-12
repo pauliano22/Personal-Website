@@ -5,474 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paul Iacobucci</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 
 <body>
-    <!-- Hero Section with Canvas -->
+    <!-- Hero Section with Particle Text -->
     <div class="hero-section" id="home">
         <canvas id="canvas"></canvas>
-    </div>
-
-    <nav class="nav">
-        <button class="active" onclick="scrollToSection(0)">HOME</button>
-        <button onclick="scrollToSection(1)">ABOUT</button>
-        <button onclick="scrollToSection(2)">MEMORIES</button>
-        <button onclick="scrollToSection(3)">EXPERIENCE</button>
-        <button onclick="scrollToSection(4)">PROJECTS</button>
-        <button onclick="scrollToSection(5)">SKILLS</button>
-        <button onclick="scrollToSection(6)">CONTACT</button>
-        <button class="resume" onclick="openResume()">RESUME</button>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- ABOUT SECTION -->
-        <div class="section" id="about">
-            <div class="about-content">
-                <div class="about-header">
-                    <img src="images/profile.jpg" alt="Profile Picture" class="profile-picture">
-                    <h2 style="color: #00ff00; margin-left: 1rem; font-family: 'Courier New', monospace;">About Me</h2>
-                </div>
-                <div class="profile-text">
-                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ ls
-                    <br>
-                    <span class="highlight-red">Cornell_University</span>&nbsp;&nbsp;&nbsp;
-                    <span>CS_Major</span>&nbsp;&nbsp;&nbsp;
-                    <span>AI_Minor</span>&nbsp;&nbsp;&nbsp;
-                    <span>Applied_Economics_Minor</span>&nbsp;&nbsp;&nbsp;
-                    <span class="highlight-blue">interests</span>
-                    <br>
-                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~</span>$ cd interests
-                    <br>
-                    <span class="highlight-green">paul@IAC22</span>:<span class="highlight-blue">~/interests</span>$
-                    find . -name "<span id="typewriter"></span>"
-                </div>
-                
-                <!-- Personal Introduction -->
-                <div class="intro-paragraph">
-                    <p>Hey there! I'm Paul, a <span class="highlight-blue">Computer Science</span> student at <span class="highlight-red">Cornell University</span> and I'm from <span class="highlight-orange">Rochester, NY</span>. I've played sports all my life, so when I'm not coding, you'll find me in the <span class="highlight-green">gym</span> or on the <span class="highlight-green">golf</span> course. Feel free to reach out!</p>
-                </div>
+        
+        <!-- Profile picture to the right of particles -->
+        <img src="images/profile.jpg" alt="Paul Iacobucci" class="profile-picture">
+        
+        <!-- Content Below Particles -->
+        <div class="content-below">
+            <p class="bio">
+                // Hi! I'm Paul, a second year student at <span class="highlight-red">Cornell University</span> studying Computer Science.
+                <br><br>
+                I specialize in systems programming and embedded design. My work building Linux 
+                kernels at <span style="text-decoration: underline;">L3Harris Technologies</span> sparked a curiosity for FPGAs, and I am now exploring 
+                high-level synthesis to learn how to build ultra-low latency hardware. 
+                <br><br>
+                // I'm also deeply interested in finance, economics, and entrepreneurship.
+                <br><br>
+                // FOR FUN: lifting (road to 315 bench), golf, and traveling
+            </p>
+            
+            <div class="links">
+                <a href="mailto:pmi22@cornell.edu">email</a>
+                <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank">linkedin</a>
+                <a href="https://github.com/pauliano22" target="_blank">github</a>
+                <a href="https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing" target="_blank">resume</a>
             </div>
         </div>
-        <!-- MEMORIES SECTION -->
-        <div class="section" id="memories">
-            <div class="media-section">
-                <h2 class="section-title">~/memories</h2>
-                
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <div class="terminal-button"></div>
-                            <div class="terminal-button"></div>
-                            <div class="terminal-button"></div>
-                        </div>
-                        <div class="terminal-title">paul@IAC22: ~/memories</div>
-                    </div>
-
-                    <div class="terminal-line">
-                        <span class="prompt">paul@IAC22</span>:<span style="color: #0099ff;">~/memories</span>$ <span class="command">cd ~/memories</span>
-                    </div>
-                    
-                    <div class="terminal-line">
-                        <span class="prompt">paul@IAC22</span>:<span style="color: #0099ff;">~/memories</span>$ <span class="command">ls -lah</span>
-                    </div>
-
-                    <div class="terminal-line">
-                        <span style="color: #666;">total 2.4G</span>
-                    </div>
-
-                    <!-- Media Items -->
-                    <div class="media-item" onclick="openMedia('first_dunk_2021.mov', 'My first dunk! This is why I have chronic knee pain.', 'videos/first_dunk_2021.mov', 'video')">
-                        <span class="file-icon">🎬</span>
-                        <img src="images/first_dunk_2021_thumb.jpg" class="media-thumbnail" alt="thumbnail">
-                        <span class="media-filename">2021-02-14_first_dunk.mov</span>
-                        <span class="media-comment"># First time dunking!</span>
-                    </div>
-
-                    <div class="media-item" onclick="openMedia('varsity_football_2023.mov', 'Playing varsity football in fall 2023 - one of my favorite games of the season.', 'videos/varsity_football_2023.mov', 'video')">
-                        <span class="file-icon">🎬</span>
-                        <img src="images/varsity_football_2023_thumb.jpg" class="media-thumbnail" alt="thumbnail">
-                        <span class="media-filename">2023-10-12_varsity_football.mov</span>
-                        <span class="media-comment"># Varsity football clips</span>
-                    </div>
-
-                    <div class="media-item" onclick="openMedia('first_frontflip_skiing_2024.mov', 'First frontflip on skis! May or may not have landed on my neck a few times.', 'videos/first_frontflip_skiing_2024.mov', 'video')">
-                        <span class="file-icon">🎬</span>
-                        <img src="images/first_frontflip_skiing_2024_thumb.jpg" class="media-thumbnail" alt="thumbnail">
-                        <span class="media-filename">2024-03-10_first_frontflip_skiing.mov</span>
-                        <span class="media-comment"># First frontflip on skis!</span>
-                    </div>
-
-                    <div class="media-item" onclick="openMedia('berkeley_ai_hackathon_2025.jpg', 'At the UC Berkeley AI Hackathon in San Francisco, summer 2025! First time on the west coast.', 'images/berkeley_ai_hackathon_2024.jpg')">
-                        <span class="file-icon">📸</span>
-                        <img src="images/berkeley_ai_hackathon_2024.jpg" class="media-thumbnail" alt="thumbnail">
-                        <span class="media-filename">2025-06-20_berkeley_ai_hackathon.jpg</span>
-                        <span class="media-comment"># UC Berkeley AI Hackathon</span>
-                    </div>
-
-                    <div class="media-item" onclick="openMedia('bench_press_275_2025.mov', 'Hit a new PR of 275 on bench! Been working towards this for months.', 'videos/bench_press_275_2025.mov', 'video')">
-                        <span class="file-icon">🎬</span>
-                        <img src="images/bench_press_275_2025_thumb.jpg" class="media-thumbnail" alt="thumbnail">
-                        <span class="media-filename">2025-07-03_bench_press_275.mov</span>
-                        <span class="media-comment"># New bench PR!</span>
-                    </div>
-
-                    <div class="terminal-line">
-                        <span class="prompt">paul@IAC22</span>:<span style="color: #0099ff;">~/memories</span>$ <span class="typing-cursor">_</span>
-                    </div>
-                </div>
-
-                <!-- Media Viewer -->
-                <div id="mediaViewer" class="media-viewer">
-                    <div class="media-viewer-content">
-                        <button class="close-btn" onclick="closeMedia()">× close</button>
-                        
-                        <div class="viewer-header">
-                            <div class="terminal-line">
-                                <span class="prompt">paul@IAC22</span>:<span style="color: #0099ff;">~/memories</span>$ <span class="command" id="openCommand">cat filename.jpg</span>
-                            </div>
-                        </div>
-                        
-                        <div class="media-content" id="mediaContent">
-                            <!-- Media will be inserted here -->
-                        </div>
-                        
-                        <div class="media-caption" id="mediaCaption">
-                            <!-- Caption will be inserted here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- EXPERIENCE SECTION -->
-        <div class="section" id="experience">
-            <h2 class="section-title">Experience</h2>
-            <div class="internship-cards-container">
-                <div class="internship-card">
-                    <img src="images/L3.png" alt="L3Harris Logo" class="company-logo l3harris-logo">
-                    <div class="card-title">L3Harris Technologies</div>
-                    <div class="card-subtitle">Software Engineering Intern</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Golang</span>
-                        <span class="tech-tag">Vue.js</span>
-                        <span class="tech-tag">Fiber</span>
-                        <span class="tech-tag">Linux</span>
-                        <span class="tech-tag">Yocto Project</span>
-                        <span class="tech-tag">BitBake</span>
-                        <span class="tech-tag">WebRTC</span>
-                        <span class="tech-tag">Palantir Foundry</span>
-                    </div>
-                </div>
-
-                <div class="internship-card">
-                    <img src="images/rapstudy.jpg" alt="rapStudy Logo" class="company-logo rapstudy-logo">
-                    <div class="card-title">rapStudy</div>
-                    <div class="card-subtitle">Software Engineering Intern</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Clever SSO</span>
-                        <span class="tech-tag">ClassLink SSO</span>
-                        <span class="tech-tag">Azure</span>
-                        <span class="tech-tag">Redux</span>
-                        <span class="tech-tag">Algolia</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECTS SECTION -->
-        <div class="section" id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="project-cards-container">
-                <div class="project-card">
-                    <img src="images/camelot-white.png" alt="Camelot Logo" class="project-image">
-                    <div class="card-title">Camelot: Security Monitoring</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">YOLO</span>
-                        <span class="tech-tag">OpenCV</span>
-                        <span class="tech-tag">RabbitMQ</span>
-                        <span class="tech-tag">Redis</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Camelot')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/lion1.png" alt="Vocera Logo" class="project-image">
-                    <div class="card-title">Lion Project</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">scikit-learn</span>
-                        <span class="tech-tag">ONNX</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Kotlin</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Hugging Face</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Lion')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/vocera.png" alt="Vocera Logo" class="project-image">
-                    <div class="card-title">Vocera: AI Voice Authentication App</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">OpenAI Whisper</span>
-                        <span class="tech-tag">SpeechBrain</span>
-                        <span class="tech-tag">OpenSMILE</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Vocera')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/ocaml.jpg" alt="OCaml Logo" class="project-image">
-                    <div class="card-title">OCaml Theorem Prover</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">OCaml</span>
-                        <span class="tech-tag">LaTeX</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('OCaml Theorem Prover')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/project6.jpg" alt="Stock Engine Logo" class="project-image">
-                    <div class="card-title">Stock Backtesting Engine</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Stock Engine')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/project4.jpg" alt="LockedIn Logo" class="project-image">
-                    <div class="card-title">LockedIn: Professional Networking</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Swift</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">SQLAlchemy</span>
-                        <span class="tech-tag">AWS S3</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">GCP</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('LockedIn')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/project5.jpg" alt="Image Cropping Logo" class="project-image">
-                    <div class="card-title">Intelligent Image Cropping GUI</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Java</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Image Cropping')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/shipwreck.png" alt="Harbor Logo" class="project-image">
-                    <div class="card-title">Harbor: Dating App</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express.js</span>
-                        <span class="tech-tag">TypeScript</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('Harbor')">LINK</button>
-                </div>
-
-                <div class="project-card">
-                    <img src="images/cpmc.png" alt="CPMC Website Logo" class="project-image">
-                    <div class="card-title">Cornell Portfolio Management Club</div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML/CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <button class="card-button" onclick="viewProject('CPMC Website')">LINK</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- SKILLS SECTION -->
-        <div class="section" id="skills">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <!-- Languages -->
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="devicon-cplusplus-plain skill-icon"></i>
-                            <div class="skill-name">C++</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-java-plain skill-icon"></i>
-                            <div class="skill-name">Java</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-python-plain skill-icon"></i>
-                            <div class="skill-name">Python</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-html5-plain skill-icon"></i>
-                            <div class="skill-name">HTML</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-css3-plain skill-icon"></i>
-                            <div class="skill-name">CSS</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-typescript-plain skill-icon"></i>
-                            <div class="skill-name">TypeScript</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-javascript-plain skill-icon"></i>
-                            <div class="skill-name">JavaScript</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-ocaml-plain skill-icon"></i>
-                            <div class="skill-name">OCaml</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-go-plain skill-icon"></i>
-                            <div class="skill-name">Go</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Frameworks -->
-                <div class="skill-category">
-                    <h3>Frameworks</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="devicon-react-original skill-icon"></i>
-                            <div class="skill-name">React</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-react-original skill-icon"></i>
-                            <div class="skill-name">React Native</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-bootstrap-plain skill-icon"></i>
-                            <div class="skill-name">Bootstrap</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-nodejs-plain skill-icon"></i>
-                            <div class="skill-name">Node.js</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="devicon-docker-plain skill-icon"></i>
-                            <div class="skill-name">Docker</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-git-plain skill-icon"></i>
-                            <div class="skill-name">Git</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-firebase-plain skill-icon"></i>
-                            <div class="skill-name">Firebase</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-postman-plain skill-icon"></i>
-                            <div class="skill-name">Postman</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-junit-plain skill-icon"></i>
-                            <div class="skill-name">JUnit</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-mongodb-plain skill-icon"></i>
-                            <div class="skill-name">MongoDB</div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="devicon-linux-plain skill-icon"></i>
-                            <div class="skill-name">Linux</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CONTACT SECTION -->
-        <div class="section" id="contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-buttons">
-                <a href="mailto:pauliano2005@gmail.com" class="contact-button">
-                    <img src="icons/gmail.png" alt="Gmail Logo" class="contact-logo"> EMAIL
-                </a>
-                <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank" class="contact-button">
-                    <img src="icons/linkedin.png" alt="LinkedIn Logo" class="contact-logo"> LINKEDIN
-                </a>
-                <a href="https://github.com/pauliano22" target="_blank" class="contact-button">
-                    <img src="icons/github.png" alt="GitHub Logo" class="contact-logo"> GITHUB
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>Paul Iacobucci 2025</p>
-        </footer>
     </div>
 
     <script>
+        // Canvas Particle Animation - Mouse Interactive Only
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        const cursor = document.querySelector('.custom-cursor');
 
         let mouse = { x: 0, y: 0 };
         let particles = [];
-        let backgroundParticles = [];
 
-        // Text to display in hero section
         const heroText = [
             { text: 'PAUL IACOBUCCI', size: 60, x: 0, y: 0 },
-            { text: 'CS @ CORNELL', size: 20, x: 0, y: 0 }
+            { text: 'CS @ CORNELL UNIVERSITY', size: 20, x: 0, y: 0 }
         ];
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            // Scale text size for mobile
             const isMobile = window.innerWidth <= 768;
             if (isMobile) {
-                heroText[0].size = Math.min(window.innerWidth / 8, 45); // Scale main title
-                heroText[1].size = Math.min(window.innerWidth / 25, 16); // Scale subtitle
+                heroText[0].size = Math.min(window.innerWidth / 8, 45);
+                heroText[1].size = Math.min(window.innerWidth / 25, 16);
             } else {
-                heroText[0].size = 60; // Desktop size
-                heroText[1].size = 20; // Desktop size
+                heroText[0].size = 70;
+                heroText[1].size = 42;
             }
 
-            // Position hero text
+            // Position text in upper left area
             heroText.forEach((line, index) => {
-                line.x = canvas.width / 2;
-                line.y = canvas.height / 2 + (index === 0 ? -40 : 40);
+                line.x = canvas.width * 0.3; // 30% from left instead of centered
+                line.y = canvas.height * 0.35 + (index === 0 ? -40 : 40); // 35% from top instead of 50%
             });
 
             createHeroText();
-            initBackgroundParticles();
         }
 
         class Dot {
@@ -490,14 +90,14 @@
                 let dy = mouse.y - this.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Apply force if the particle is within the circle radius
-                if (dist < 40) { // Circle radius is 40 pixels
-                    let force = (40 - dist) / 40; // Calculate force based on distance
+                // Mouse interaction - particles move away from cursor
+                if (dist < 40) {
+                    let force = (40 - dist) / 40;
                     this.vx -= (dx / dist) * force * 2;
                     this.vy -= (dy / dist) * force * 2;
                 }
 
-                // Return to original location
+                // Return to home position
                 let homeDx = this.homeX - this.x;
                 let homeDy = this.homeY - this.y;
                 this.vx += homeDx * 0.005;
@@ -511,46 +111,8 @@
             }
 
             draw() {
-                ctx.fillStyle = '#00ff00';
+                ctx.fillStyle = '#333333';
                 ctx.fillRect(this.x | 0, this.y | 0, 2, 2);
-            }
-        }
-
-        class BackgroundParticle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.7;
-                this.vy = (Math.random() - 0.5) * 0.7;
-                this.alpha = Math.random() * 0.5 + 0.1;
-                this.size = Math.random() * 3 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = '#00ff00';
-                ctx.fillRect(this.x | 0, this.y | 0, this.size, this.size);
-                ctx.restore();
-            }
-        }
-
-        function initBackgroundParticles() {
-            backgroundParticles = [];
-            // Reduce particles on mobile for better performance
-            const particleCount = window.innerWidth <= 768 ? 50 : 100;
-            for (let i = 0; i < particleCount; i++) {
-                backgroundParticles.push(new BackgroundParticle());
             }
         }
 
@@ -564,8 +126,7 @@
                 tempCtx.font = `${line.size}px Courier New`;
                 const width = tempCtx.measureText(line.text).width;
 
-                // Ensure text fits within viewport width
-                const maxWidth = window.innerWidth - 40; // 20px padding on each side
+                const maxWidth = window.innerWidth - 40;
                 const scale = Math.min(1, maxWidth / width);
                 const scaledSize = line.size * scale;
                 const scaledWidth = width * scale;
@@ -575,13 +136,12 @@
 
                 tempCtx.clearRect(0, 0, temp.width, temp.height);
                 tempCtx.font = `${scaledSize}px Courier New`;
-                tempCtx.fillStyle = '#00ff00';
+                tempCtx.fillStyle = '#333333';
                 tempCtx.fillText(line.text, 10, scaledSize);
 
                 const imageData = tempCtx.getImageData(0, 0, temp.width, temp.height);
                 const data = imageData.data;
 
-                // Adjust spacing based on screen size
                 const spacing = window.innerWidth <= 768 ? 2 : (line.size < 25 ? 1 : 2);
 
                 for (let y = 0; y < temp.height; y += spacing) {
@@ -596,41 +156,12 @@
                     }
                 }
             });
-
-            // Add downward-pointing arrow below "CS @ Cornell" (scale for mobile)
-            const arrowScale = window.innerWidth <= 768 ? 0.7 : 1;
-            const arrowSize = 30 * arrowScale;
-            const arrowX = canvas.width / 2;
-            const arrowY = canvas.height / 2 + (80 * arrowScale);
-
-            // Create the arrow shaft
-            const shaftHeight = 20 * arrowScale;
-            const shaftWidth = 10 * arrowScale;
-            for (let y = 0; y < shaftHeight; y += (window.innerWidth <= 768 ? 2 : 1)) {
-                for (let x = -shaftWidth / 2; x <= shaftWidth / 2; x += (window.innerWidth <= 768 ? 2 : 1)) {
-                    particles.push(new Dot(arrowX + x, arrowY + y));
-                }
-            }
-
-            // Create the arrowhead
-            for (let y = 0; y < arrowSize; y += (window.innerWidth <= 768 ? 2 : 1)) {
-                for (let x = -arrowSize + y; x <= arrowSize - y; x += (window.innerWidth <= 768 ? 2 : 1)) {
-                    particles.push(new Dot(arrowX + x, arrowY + shaftHeight + y));
-                }
-            }
         }
 
         function animate() {
-            ctx.fillStyle = '#000';
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Draw background particles
-            backgroundParticles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            // Draw text particles
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -639,267 +170,16 @@
             requestAnimationFrame(animate);
         }
 
-        function scrollToSection(index) {
-            const sections = ['home', 'about', 'memories', 'experience', 'projects', 'skills', 'contact'];
-
-            if (index === 0) {
-                // Scroll to top (hero section)
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            } else {
-                // Scroll to other sections
-                const targetSection = document.getElementById(sections[index]);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            // Update active button
-            document.querySelectorAll('.nav button:not(.resume)').forEach((button, i) => {
-                button.classList.toggle('active', i === index);
-            });
-        }
-
-        function updateActiveSection() {
-            const scrollY = window.scrollY;
-            const heroHeight = window.innerHeight;
-
-            if (scrollY < heroHeight / 2) {
-                // In hero section
-                document.querySelectorAll('.nav button:not(.resume)').forEach((b, i) => {
-                    b.classList.toggle('active', i === 0);
-                });
-            } else {
-                // In other sections
-                const sections = document.querySelectorAll('.main-content .section');
-                let currentSection = 0;
-
-                sections.forEach((section, index) => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight / 2) {
-                        currentSection = index + 1; // +1 because hero is index 0
-                    }
-                });
-
-                document.querySelectorAll('.nav button:not(.resume)').forEach((b, i) => {
-                    b.classList.toggle('active', i === currentSection);
-                });
-            }
-        }
-
-        function viewProject(projectName) {
-            const projectUrls = {
-                'Camelot': 'https://github.com/pauliano22/Camelot',
-                'OCaml Theorem Prover': 'https://www.youtube.com/watch?v=7xwDIO6k9Gc',
-                'Stock Engine': 'https://github.com/pauliano22/Stock-Algo',
-                'LockedIn': 'https://github.com/akh1lk/LockedIn',
-                'Image Cropping': 'https://www.youtube.com/watch?v=fqq5berJyJs',
-                'Harbor': 'https://github.com/GabrielCastilloH/app1',
-                'CPMC Website': 'https://pauliano22.github.io/cornell-portfolio-management-club/',
-                'Vocera': 'https://github.com/akh1lk/vocera',
-                'Lion': 'https://lion-project.vercel.app'
-            };
-
-            if (projectUrls[projectName]) {
-                window.open(projectUrls[projectName], '_blank');
-            }
-        }
-
-        function viewExperience(companyName) {
-            alert(`Experience at ${companyName} - More details coming soon!`);
-        }
-
-        function openResume() {
-            window.open('https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing', '_blank');
-        }
-
-        // Typewriter effect
-        document.addEventListener("DOMContentLoaded", function () {
-            const phrases = ["web_development", "software_engineering", "app_development", "quantitative_finance", "entrepreneurship", "cybersecurity", "investing", "machine_learning", "artificial_intelligence", "data_science", "economics"];
-            const typewriterElement = document.getElementById("typewriter");
-
-            if (typewriterElement) {
-                let currentPhraseIndex = 0;
-                let currentText = "";
-                let deleting = false;
-
-                function typeEffect() {
-                    const currentPhrase = phrases[currentPhraseIndex];
-
-                    if (!deleting && currentText.length < currentPhrase.length) {
-                        currentText += currentPhrase.charAt(currentText.length);
-                    } else if (deleting && currentText.length > 0) {
-                        currentText = currentText.slice(0, -1);
-                    } else if (!deleting && currentText.length === currentPhrase.length) {
-                        deleting = true;
-                        setTimeout(typeEffect, 2000);
-                        return;
-                    } else if (deleting && currentText.length === 0) {
-                        deleting = false;
-                        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                    }
-
-                    typewriterElement.innerHTML = currentText + '<span class="block-cursor">&nbsp;</span>';
-                    setTimeout(typeEffect, deleting ? 100 : 100);
-                }
-
-                typeEffect();
-            }
-        });
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             resize();
             animate();
         });
 
-        window.addEventListener('scroll', updateActiveSection);
         window.addEventListener('resize', resize);
         document.addEventListener('mousemove', e => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         });
-
-        // Add this function before the openMedia function
-        function escapeKeyListener(event) {
-            if (event.key === 'Escape') {
-                closeMedia();
-            }
-        }
-
-        // Media Gallery Functions
-        function openMedia(filename, caption, imageUrl, type = 'image') {
-            const viewer = document.getElementById('mediaViewer');
-            const content = document.getElementById('mediaContent');
-            const captionEl = document.getElementById('mediaCaption');
-            const command = document.getElementById('openCommand');
-
-            // Check if viewer is already open and close it first
-            if (viewer.classList.contains('active')) {
-                closeMedia();
-                setTimeout(() => openMedia(filename, caption, imageUrl, type), 500);
-                return;
-            }
-
-            // Update command
-            command.textContent = `cat ${filename}`;
-
-            // Create media element based on type
-            if (type === 'video') {
-                content.innerHTML = `<video autoplay muted loop playsinline webkit-playsinline disablePictureInPicture>
-                    <source src="${imageUrl}" type="video/quicktime">
-                    <source src="${imageUrl}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>`;
-                
-                // Add event listener to add loaded class when video starts playing
-                const video = content.querySelector('video');
-                if (video) {
-                    video.addEventListener('loadeddata', () => {
-                        video.classList.add('loaded');
-                    });
-                    video.addEventListener('canplay', () => {
-                        video.classList.add('loaded');
-                    });
-                }
-            } else if (type === 'youtube') {
-                // Extract video ID from YouTube URL
-                const videoId = extractYouTubeId(imageUrl);
-                content.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>`;
-            } else if (type === 'vimeo') {
-                // Extract video ID from Vimeo URL
-                const videoId = extractVimeoId(imageUrl);
-                content.innerHTML = `<iframe src="https://player.vimeo.com/video/${videoId}" 
-                    frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-            } else {
-                content.innerHTML = `<img src="${imageUrl}" alt="${filename}">`;
-            }
-
-            // Update caption
-            captionEl.textContent = caption;
-
-            // Show viewer with opening animation
-            viewer.style.display = 'block';
-            setTimeout(() => {
-                viewer.classList.add('active');
-            }, 10);
-
-            // Smooth scroll to viewer
-            setTimeout(() => {
-                viewer.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
-            }, 300);
-
-            // Animate media content after scroll
-            setTimeout(() => {
-                const mediaElement = content.querySelector('img, video, iframe');
-                const captionElement = captionEl;
-                
-                if (mediaElement && !mediaElement.classList.contains('loaded')) {
-                    mediaElement.classList.add('loaded');
-                }
-                
-                captionElement.classList.add('loaded');
-            }, 600);
-
-            // Add escape key listener
-            document.addEventListener('keydown', escapeKeyListener);
-        }
-
-        function closeMedia() {
-            const viewer = document.getElementById('mediaViewer');
-            const content = document.getElementById('mediaContent');
-            const captionEl = document.getElementById('mediaCaption');
-            
-            // Remove loaded classes for smooth close animation
-            const mediaElement = content.querySelector('img, video, iframe');
-            if (mediaElement) {
-                mediaElement.classList.remove('loaded');
-            }
-            captionEl.classList.remove('loaded');
-            
-            // Start closing animation
-            viewer.classList.remove('active');
-            
-            // Hide viewer completely after animation
-            setTimeout(() => {
-                viewer.style.display = 'none';
-                
-                // Scroll back to memories section
-                const memoriesSection = document.getElementById('memories');
-                if (memoriesSection) {
-                    memoriesSection.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }
-            }, 400);
-            
-            // Remove escape key listener
-            document.removeEventListener('keydown', escapeKeyListener);
-        }
-
-        // Helper function to extract YouTube video ID
-        function extractYouTubeId(url) {
-            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-            const match = url.match(regex);
-            return match ? match[1] : '';
-        }
-
-        // Helper function to extract Vimeo video ID
-        function extractVimeoId(url) {
-            const regex = /(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com\/)([0-9]+)/;
-            const match = url.match(regex);
-            return match ? match[1] : '';
-        }
     </script>
 </body>
 

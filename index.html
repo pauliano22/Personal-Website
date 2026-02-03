@@ -51,8 +51,7 @@
         let particles = [];
 
         const heroText = [
-            { text: 'PAUL IACOBUCCI', size: 60, x: 0, y: 0 },
-            { text: 'CS @ CORNELL UNIVERSITY', size: 20, x: 0, y: 0 }
+            { text: 'PAUL IACOBUCCI', size: 90, x: 0, y: 0 }
         ];
 
         function resize() {
@@ -60,18 +59,27 @@
             canvas.height = window.innerHeight;
 
             const isMobile = window.innerWidth <= 768;
+            const leftMargin = canvas.width * 0.05 + 32; // 5% + 2rem
+            const rightEdge = canvas.width * 0.85; // Picture right edge (100% - 15%)
+            const availableWidth = rightEdge - leftMargin;
+
+            // Calculate font size to fill available width
+            const temp = document.createElement('canvas');
+            const tempCtx = temp.getContext('2d');
+            tempCtx.font = '100px Courier New';
+            const baseWidth = tempCtx.measureText(heroText[0].text).width;
+            const targetSize = (availableWidth / baseWidth) * 100;
+
             if (isMobile) {
-                heroText[0].size = Math.min(window.innerWidth / 8, 45);
-                heroText[1].size = Math.min(window.innerWidth / 25, 16);
+                heroText[0].size = Math.min(window.innerWidth / 6, 60);
             } else {
-                heroText[0].size = 70;
-                heroText[1].size = 42;
+                heroText[0].size = targetSize;
             }
 
-            // Position text in upper left area
-            heroText.forEach((line, index) => {
-                line.x = canvas.width * 0.3; // 30% from left instead of centered
-                line.y = canvas.height * 0.35 + (index === 0 ? -40 : 40); // 35% from top instead of 50%
+            // Position text to align with content-below
+            heroText.forEach((line) => {
+                line.x = leftMargin;
+                line.y = canvas.height * 0.25; // 25% from top
             });
 
             createHeroText();
@@ -151,7 +159,7 @@
                         const alpha = data[(y * temp.width + x) * 4 + 3];
                         if (alpha > 128) {
                             particles.push(new Dot(
-                                line.x - scaledWidth / 2 + x - 10,
+                                line.x + x - 10,
                                 line.y - scaledSize / 2 + y - 10
                             ));
                         }

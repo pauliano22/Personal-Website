@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoE Research — Paul Iacobucci</title>
+    <link rel="icon" href="icons/favicon.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .nav-home {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #008080;
+            text-decoration: underline;
+        }
+
+        .nav-home:hover {
+            opacity: 0.7;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        /* ── Page wrapper ── */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* ── Header ── */
+        .research-header {
+            margin-bottom: 2.5rem;
+            border-left: 3px solid #333;
+            padding-left: 1.5rem;
+        }
+
+        .research-header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-header .subtitle {
+            font-size: 0.8rem;
+            color: #008080;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .research-header .intro {
+            font-size: 0.8rem;
+            color: #444;
+            line-height: 1.7;
+            max-width: 780px;
+        }
+
+        /* ── Section titles ── */
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: #008080;
+        }
+
+        /* ── Metrics row ── */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #e0e0e0;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 3rem;
+        }
+
+        .metric {
+            background: #fff;
+            padding: 1.25rem 1rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            font-size: 0.65rem;
+            color: #888;
+            margin-top: 0.3rem;
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* ── Plots ── */
+        .plots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .plot-card {
+            border: 1px solid #e0e0e0;
+        }
+
+        .plot-card a {
+            display: block;
+            overflow: hidden;
+        }
+
+        .plot-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .plot-card a:hover img {
+            opacity: 0.85;
+        }
+
+        .plot-caption {
+            padding: 0.75rem;
+            font-size: 0.68rem;
+            color: #555;
+            line-height: 1.5;
+            border-top: 1px solid #e0e0e0;
+            background: #fafafa;
+        }
+
+        .plot-caption strong {
+            color: #333;
+        }
+
+        /* ── Methodology ── */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .method-card {
+            border: 1px solid #e0e0e0;
+            padding: 1rem 1.25rem;
+        }
+
+        .method-card h3 {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.6rem;
+        }
+
+        .method-card h3::before {
+            content: '> ';
+            color: #008080;
+        }
+
+        .method-card p {
+            font-size: 0.72rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ── Tech stack ── */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid #333;
+            color: #333;
+            background: #fff;
+        }
+
+        /* ── Footer nav ── */
+        .footer-nav {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .footer-nav a {
+            color: #008080;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .footer-nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* ── Lightbox ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 999;
+            cursor: zoom-out;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 2px solid #444;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 680px) {
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .plots-grid,
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-header h1 {
+                font-size: 1.15rem;
+            }
+
+            .nav-title {
+                display: none;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-home">← pauliacobucci.com</a>
+        <span class="nav-title">Zhang Research Group · Cornell</span>
+    </nav>
+
+    <main class="page">
+
+        <!-- Header -->
+        <header class="research-header">
+            <h1>MoE Expert Load Profiling on H100 GPUs</h1>
+            <p class="subtitle">Cornell Zhang Research Group &nbsp;|&nbsp; Advisors: Prof. Zhiru Zhang, Yizhao Gao</p>
+            <p class="intro">
+                Profiled Mixture-of-Experts inference on 8× NVIDIA H100 80GB GPUs to characterize expert selection
+                patterns and quantify the performance cost of load imbalance in Expert Parallelism. Analyzed three MoE
+                models — MiniMax-M2.5 (230B params), gpt-oss-120b (117B), and gpt-oss-20b (21B) — using SGLang,
+                NVIDIA Nsight Systems, and DCGM.
+            </p>
+        </header>
+
+        <!-- Key Results -->
+        <p class="section-title">Key Results</p>
+        <div class="metrics">
+            <div class="metric">
+                <span class="metric-value">26B+</span>
+                <span class="metric-label">tokens routed</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">836M+</span>
+                <span class="metric-label">CUDA events analyzed</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">3</span>
+                <span class="metric-label">MoE models profiled</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">~20%</span>
+                <span class="metric-label">decode efficiency loss identified</span>
+            </div>
+        </div>
+
+        <!-- Plots -->
+        <p class="section-title">Plots</p>
+        <div class="plots-grid">
+
+            <div class="plot-card">
+                <a href="ep_analysis_summary.png" class="lightbox-trigger" target="_blank">
+                    <img src="ep_analysis_summary.png" alt="EP Wait Time Analysis" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>EP Wait Time Analysis:</strong> Per-GPU MoE compute duration and wait time distribution
+                    for MiniMax-M2.5. GPU 3 consistently takes longest (12.2μs avg), creating a mean 32.6μs wait for
+                    faster GPUs.
+                </p>
+            </div>
+
+            <div class="plot-card">
+                <a href="heatmap_normalized.png" class="lightbox-trigger" target="_blank">
+                    <img src="heatmap_normalized.png" alt="Normalized Expert Load Heatmap" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>Normalized Expert Load Heatmap:</strong> Token routing distribution across 256 experts
+                    and 62 layers during prefill on pile-10k (10,000 samples). Hot spots indicate heavily-loaded
+                    experts.
+                </p>
+            </div>
+
+            <div class="plot-card">
+                <a href="decode_expert_diversity.png" class="lightbox-trigger" target="_blank">
+                    <img src="decode_expert_diversity.png" alt="Expert Diversity" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>Expert Diversity:</strong> Each layer activates only 8–12 out of 256 experts per decode
+                    step (&lt;5% utilization), concentrating load on a small subset of experts.
+                </p>
+            </div>
+
+            <div class="plot-card">
+                <a href="load_balance_summary.png" class="lightbox-trigger" target="_blank">
+                    <img src="load_balance_summary.png" alt="Load Balance Summary" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>Load Balance Summary:</strong> Coefficient of variation of 4–5.5 across all layers
+                    (left) and total token load per expert showing 4–5× variance (right).
+                </p>
+            </div>
+
+            <div class="plot-card">
+                <a href="dcgmi_power_utilization.png" class="lightbox-trigger" target="_blank">
+                    <img src="dcgmi_power_utilization.png" alt="GPU Power & SM Utilization" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>GPU Power &amp; SM Utilization:</strong> DCGM monitoring during clean MiniMax-M2.5
+                    decode run. SM utilization oscillates between ~15–100%, confirming GPU idle periods during EP
+                    synchronization.
+                </p>
+            </div>
+
+            <div class="plot-card">
+                <a href="ep_analysis_gptoss120b.png" class="lightbox-trigger" target="_blank">
+                    <img src="ep_analysis_gptoss120b.png" alt="gpt-oss-120b EP Analysis" loading="lazy">
+                </a>
+                <p class="plot-caption">
+                    <strong>gpt-oss-120b EP Analysis:</strong> Higher mean EP wait time (48.2μs vs 32.6μs) despite
+                    fewer experts (128 vs 256), suggesting more severe routing imbalance.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Methodology -->
+        <p class="section-title">Methodology</p>
+        <div class="method-grid">
+
+            <div class="method-card">
+                <h3>Decode Trace</h3>
+                <p>500 MATH-500 problems, 512 max new tokens. Captures per-token expert selection across
+                    16,384 decode steps per model via instrumented SGLang inference.</p>
+            </div>
+
+            <div class="method-card">
+                <h3>Prefill Profiling</h3>
+                <p>10,000 pile-10k samples. Captures aggregate token routing statistics across all experts
+                    and layers, exposing structural load imbalance during the prefill phase.</p>
+            </div>
+
+            <div class="method-card">
+                <h3>Hardware Profiling</h3>
+                <p>Nsight Systems traces exported to SQLite (836M+ events). Queried for
+                    <code>fused_moe_kernel</code> timing spread across all 8 GPUs to isolate EP synchronization
+                    cost.</p>
+            </div>
+
+            <div class="method-card">
+                <h3>DCGM Monitoring</h3>
+                <p>DCGM power and SM utilization sampled at 1-second intervals during clean inference runs.
+                    Corroborates Nsight findings with system-level GPU activity signals.</p>
+            </div>
+
+        </div>
+
+        <!-- Tech Stack -->
+        <p class="section-title">Technologies</p>
+        <div class="tech-stack">
+            <span class="tech-tag">SGLang v0.5.9</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">NVIDIA Nsight Systems</span>
+            <span class="tech-tag">NVIDIA DCGM</span>
+            <span class="tech-tag">H100 80GB</span>
+            <span class="tech-tag">AWS EC2</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQLite</span>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-nav">
+            <a href="index.html">← back to pauliacobucci.com</a>
+        </div>
+
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        // Lightbox — open on click, close on click or Escape
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.lightbox-trigger').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                lightboxImg.src = link.href;
+                lightboxImg.alt = link.querySelector('img').alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\ep_analysis\\\\ep_analysis_summary.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\ep_analysis_summary.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\plots\\\\heatmap_normalized.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\heatmap_normalized.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\decode_trace\\\\decode_expert_diversity.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\decode_expert_diversity.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\plots\\\\load_balance_summary.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\load_balance_summary.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\dcgmi\\\\dcgmi_power_utilization.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\dcgmi_power_utilization.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\MiniMax-M2.5\\\\plots\\\\dcgmi_power_utilization.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\dcgmi_power_utilization.png\")",
+      "Bash(cp \"C:\\\\Users\\\\pmi\\\\Downloads\\\\final_deliverable\\\\gpt-oss-120b\\\\ep_analysis\\\\ep_analysis_summary.png\" \"C:\\\\Users\\\\pmi\\\\PROJECTS\\\\Projects\\\\PersonalSite\\\\ep_analysis_gptoss120b.png\")",
+      "Bash(ls:*)"
+    ]
+  }
+}

@@ -10,59 +10,218 @@
 </head>
 
 <body>
-    <!-- Hero Section with Particle Text -->
     <div class="hero-section" id="home">
         <canvas id="canvas"></canvas>
-        
-        <!-- Profile picture to the right of particles -->
-        <img src="images/profile.jpg" alt="Paul Iacobucci" class="profile-picture">
-        
-        <!-- Content Below Particles -->
+
         <div class="content-below">
+            <h1 class="mobile-name">PAUL IACOBUCCI</h1>
             <p class="bio">
-                Hi! I'm Paul, a student at <span class="highlight-red">Cornell University</span> studying Computer Science.
+                CS student @ <span class="accent">Cornell</span>, 3x SWE/ML Intern @ <span class="accent">L3Harris</span>.
                 <br><br>
-                // FOR FUN: lifting (315 bench?), golf, and traveling. I'm also a huge One Piece fan.
+                I've:  
                 <br>
-                // 
-                <a href="https://www.scoutconnect.co" target="_blank" style="text-decoration: underline; color: #008080">Scout</a>
-                <a href="https://www.ejretreats.com/" target="_blank" style="text-decoration: underline; color: #008080">E&J</a>
-                <a href="https://lion-project.vercel.app/" target="_blank" style="text-decoration: underline; color: #008080">Lion</a>
-                
+                - solo-engineered a platform backed by Cornell for 45,000+ alumni.
+                <br>
+                - shipped full-stack + embedded applications for a major defense contractor. 
+                <br>
+                - worked on AI infrastructure for industry clients through the Zhang Research Group.
+                <br><br>
+                <strong>Timeline:</strong> By taking the max credits every semester I've skipped 2 semesters to save my family tuition. Graduating May or Dec 2027 depending on spring/fall internships. 
+                <br><br>
+                <strong>Objective:</strong> SWE/ML/AI infra internships for Fall 2026, Spring/Summer 2027, full-time roles in Summer/Winter 2027.
+                <br><br>
+                Recruiters and entrepreneurs please reach me at pmi22@cornell.edu
             </p>
-            
+
             <div class="links">
-                <a href="mailto:pmi22@cornell.edu">email</a>
                 <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank">linkedin</a>
                 <a href="https://github.com/pauliano22" target="_blank">github</a>
-                <a href="https://drive.google.com/file/d/172YMRM4mycd6OuoL8yNmnhDYkdDNayze/view?usp=sharing" target="_blank">resume</a>
+                <a href="resume.pdf" target="_blank">resume</a>
                 <a href="research.html">research</a>
             </div>
         </div>
+
+        <div class="scroll-cue">scroll for more &#8595;</div>
+    </div>
+
+    <main class="page">
+
+        <p class="section-title">Experience</p>
+        <div class="list-container">
+            <details class="expandable-list">
+                <summary>
+                    <div class="list-title-group">
+                        <img src="logos/zhang.png" alt="Zhang Group" class="list-logo" onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>ZG</div>'">
+                        <span>Cornell Zhang Research Group</span>
+                    </div>
+                </summary>
+                <div class="expandable-content">
+                    <strong>Research Assistant:</strong> SP26 - Profiled Mixture-of-Experts inference on 8&times;H100 GPUs for an industry client.
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <div class="list-title-group">
+                        <img src="logos/l3harris.svg.png" alt="L3Harris" class="list-logo" onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>L3</div>'">
+                        <span>L3Harris Technologies</span>
+                    </div>
+                </summary>
+                <div class="expandable-content">
+                    <strong>Software Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Returning summer 2026 for ML inference on Qualcomm SoCs.
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <div class="list-title-group">
+                        <img src="logos/rapstudy.png" alt="RapStudy" class="list-logo" onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>RS</div>'">
+                        <span>RapStudy</span>
+                    </div>
+                </summary>
+                <div class="expandable-content">
+                    <strong>Software Engineering Intern:</strong> Full-stack development on a DoED-backed EdTech platform with a 3-engineer Cornell team.
+                </div>
+            </details>
+        </div>
+
+        <p class="section-title">Projects</p>
+        <div class="list-container">
+            <details class="expandable-list">
+                <summary>
+                    <span>Scout (Backed by Cornell)</span>
+                </summary>
+                <div class="expandable-content">
+                    A platform helping Cornell student-athletes network with and track relationships across 45,000+ Cornell athletic alumni. Solo full-stack build (Next.js + Expo/React Native) on a multi-tenant Postgres backend, shipped to 200+ active users.<br><br>
+                    <a href="https://www.scoutcornell.com/" target="_blank">View Site</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Lion AI Detection Suite</span>
+                </summary>
+                <div class="expandable-content">
+                    Trained a CNN on librosa features and ElevenLabs deepfakes; deployed via ONNX to mobile, Chrome extension, and desktop. Real-time audio capture + sliding-window inference + user alerts, shipped to 20+ users. Built with PyTorch and React Native.<br><br>
+                    <a href="https://lion-project.vercel.app/" target="_blank">View Site</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>HFT Mixture-of-Experts FPGA Engine</span>
+                </summary>
+                <div class="expandable-content">
+                    An FPGA trading pipeline that runs end-to-end in 444ns at 83.3M messages/sec. Register-partitioned limit order book, sparse MoE router pipelined to one trade per cycle, bit-exact RTL/C++ verification in Verilator.<br><br>
+                    <a href="https://github.com/pauliano22/hft-moe-fpga-engine" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Mini-TensorRT: DL Graph Compiler</span>
+                </summary>
+                <div class="expandable-content">
+                    A C++ deep-learning graph compiler with a CUDA backend. Conv-ReLU-Add fusion cuts DRAM traffic for a 25% end-to-end speedup; paged-attention KV cache doubles batch concurrency.<br><br>
+                    <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Triton GPU Performance Kernels</span>
+                </summary>
+                <div class="expandable-content">
+                    Fused Triton kernels on H100. LayerNorm runs 45.7% faster with symmetric FP8 quantization. Scaled FlashAttention to 16K context by tiling for SRAM and computing softmax online in one pass.<br><br>
+                    <a href="https://github.com/pauliano22/triton-gpu-kernels" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Digital Level &amp; Impact Monitor</span>
+                </summary>
+                <div class="expandable-content">
+                    An interrupt-driven tilt sensor and impact monitor on the FRDM-KL46Z (Cortex-M0+). Sleeps in <code>__WFI</code> between PIT timer wakeups; ARM assembly for the trig math; I2C accelerometer reads and UART alerting on impact.<br><br>
+                    <a href="https://github.coecis.cornell.edu/ece3140-spr2026/pmi22-vlz3" target="_blank">View GitHub</a>
+                </div>
+            </details>
+        </div>
+
+        <p class="section-title">Hackathons</p>
+        <div class="list-container">
+            <details class="expandable-list">
+                <summary>
+                    <span>Point72 Cubist Hackathon</span>
+                </summary>
+                <div class="expandable-content">
+                    Built an AI-orchestrated modular chess engine evaluation system. Used Claude via an MCP server to autonomously test, benchmark, and compare diverse AI-generated chess engines using SPRT and perft.<br><br>
+                    <a href="https://github.com/pauliano22/point72-ai-chess-engine" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>UC Berkeley AI Hackathon</span>
+                </summary>
+                <div class="expandable-content">
+                    <strong>Vocera:</strong> Biometric authentication and synthetic voice detection system built leveraging FastAPI, SpeechBrain, and OpenAI Whisper.<br><br>
+                    <a href="https://github.com/akh1lk/vocera" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>AppDev Hack Challenge FA24</span>
+                </summary>
+                <div class="expandable-content">
+                    <strong>LockedIn:</strong> Professional networking application. Awarded Best UI.<br><br>
+                    <a href="https://github.com/pauliano22/LockedIn" target="_blank">View GitHub</a>
+                </div>
+            </details>
+        </div>
+
+        <p class="section-title">Outside Work</p>
+        <p class="hobbies">
+            <span class="label">Lifting:</span> chasing a 315 lb (3 plate) bench. Current PR: 305<br>
+            <span class="label">Golf:</span> chasing single-digit handicap. Current handicap: ~12<br>
+            <span class="label">Travel:</span> I've unfortunately been stuck in upstate NY for a while.<br>
+            <span class="label">One Piece:</span> caught up, now on the rewatch grind.<br>
+            <span class="label">E&amp;J:</span> I help my cousin run a real estate business on the side. <a href="https://www.ejretreats.com/" target="_blank" style="text-decoration: underline; color: var(--text); font-weight: bold;">Check it out</a>.
+        </p>
+
+    </main>
+
+    <div class="ascii-wave">
+        <canvas id="wave-canvas"></canvas>
+    </div>
+    <div class="footer-text">
+        &copy; 2026 Paul Iacobucci
     </div>
 
     <script>
-        // Canvas Particle Animation - Mouse Interactive Only
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
 
-        let mouse = { x: 0, y: 0 };
+        let mouse = { x: -9999, y: -9999 };
         let particles = [];
 
         const heroText = [
             { text: 'PAUL IACOBUCCI', size: 90, x: 0, y: 0 }
         ];
 
+        const NAME_COLOR = '#000000';
+
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
             const isMobile = window.innerWidth <= 768;
-            const leftMargin = canvas.width * 0.05 + 32; // 5% + 2rem
-            const rightEdge = canvas.width * 0.85; // Picture right edge (100% - 15%)
-            const availableWidth = rightEdge - leftMargin;
+            
+            const contentWidth = Math.min(window.innerWidth, 760);
+            const leftMargin = (window.innerWidth - contentWidth) / 2 + 32; 
+            const availableWidth = contentWidth - 64;
 
-            // Calculate font size to fill available width
             const temp = document.createElement('canvas');
             const tempCtx = temp.getContext('2d');
             tempCtx.font = '100px Courier New';
@@ -75,10 +234,9 @@
                 heroText[0].size = targetSize;
             }
 
-            // Position text to align with content-below
             heroText.forEach((line) => {
                 line.x = leftMargin;
-                line.y = canvas.height * 0.25; // 25% from top
+                line.y = canvas.height * 0.25;
             });
 
             createHeroText();
@@ -99,14 +257,12 @@
                 let dy = mouse.y - this.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Mouse interaction - particles move away from cursor
                 if (dist < 40) {
                     let force = (40 - dist) / 40;
                     this.vx -= (dx / dist) * force * 2;
                     this.vy -= (dy / dist) * force * 2;
                 }
 
-                // Return to home position
                 let homeDx = this.homeX - this.x;
                 let homeDy = this.homeY - this.y;
                 this.vx += homeDx * 0.005;
@@ -120,21 +276,19 @@
             }
 
             draw() {
-                ctx.fillStyle = '#333333';
+                ctx.fillStyle = NAME_COLOR;
                 ctx.fillRect(this.x | 0, this.y | 0, 2, 2);
             }
         }
 
         function createHeroText() {
             particles = [];
-
             const temp = document.createElement('canvas');
             const tempCtx = temp.getContext('2d', { willReadFrequently: true });
 
             heroText.forEach(line => {
                 tempCtx.font = `${line.size}px Courier New`;
                 const width = tempCtx.measureText(line.text).width;
-
                 const maxWidth = window.innerWidth - 40;
                 const scale = Math.min(1, maxWidth / width);
                 const scaledSize = line.size * scale;
@@ -145,12 +299,11 @@
 
                 tempCtx.clearRect(0, 0, temp.width, temp.height);
                 tempCtx.font = `${scaledSize}px Courier New`;
-                tempCtx.fillStyle = '#333333';
+                tempCtx.fillStyle = NAME_COLOR;
                 tempCtx.fillText(line.text, 10, scaledSize);
 
                 const imageData = tempCtx.getImageData(0, 0, temp.width, temp.height);
                 const data = imageData.data;
-
                 const spacing = window.innerWidth <= 768 ? 2 : (line.size < 25 ? 1 : 2);
 
                 for (let y = 0; y < temp.height; y += spacing) {
@@ -168,14 +321,8 @@
         }
 
         function animate() {
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
 
@@ -190,6 +337,73 @@
             mouse.y = e.clientY;
         });
     </script>
+
+    <script>
+        (function () {
+            const wcanvas = document.getElementById('wave-canvas');
+            if (!wcanvas) return;
+            const wctx = wcanvas.getContext('2d');
+
+            const RAMP = ['.', ':', '+', '*', '?', '%', '$', 'S', '#', '@'];
+            const FONT_SIZE = 12;
+            const CHAR_W = 7.2;
+            const CHAR_H = 12;
+            
+            const COLOR_BASE = [0, 0, 0]; 
+
+            let cols, rows;
+            let t = 0;
+
+            function resize() {
+                wcanvas.width = wcanvas.offsetWidth * window.devicePixelRatio;
+                wcanvas.height = 200 * window.devicePixelRatio;
+                wcanvas.style.height = '200px';
+                wctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+                wctx.font = `${FONT_SIZE}px "Courier New", Courier, monospace`;
+                wctx.textBaseline = 'top';
+
+                cols = Math.ceil(wcanvas.offsetWidth / CHAR_W) + 2;
+                rows = Math.ceil(200 / CHAR_H) + 2;
+            }
+
+            function heightAt(x, time) {
+                const w1 = Math.sin(x * 0.025 + time * 0.6) * 0.5;
+                const w2 = Math.sin(x * 0.04  - time * 0.4) * 0.3;
+                const w3 = Math.sin(x * 0.07  + time * 0.9) * 0.2;
+                return (w1 + w2 + w3 + 1) * 0.5;
+            }
+
+            function draw() {
+                wctx.clearRect(0, 0, wcanvas.offsetWidth, 200);
+
+                for (let cx = 0; cx < cols; cx++) {
+                    const x = cx * CHAR_W;
+                    const h = heightAt(cx, t);
+                    const surfaceRow = Math.floor(rows * (0.30 + (1 - h) * 0.55));
+
+                    for (let cy = surfaceRow; cy < rows; cy++) {
+                        const depth = (cy - surfaceRow) / (rows - surfaceRow);
+                        const rampIdx = Math.min(
+                            RAMP.length - 1,
+                            Math.floor(depth * RAMP.length)
+                        );
+                        const ch = RAMP[rampIdx];
+                        const alpha = 0.35 + depth * 0.55;
+                        wctx.fillStyle = `rgba(${COLOR_BASE[0]}, ${COLOR_BASE[1]}, ${COLOR_BASE[2]}, ${alpha})`;
+                        wctx.fillText(ch, x, cy * CHAR_H);
+                    }
+                }
+
+                t += 0.05;
+                requestAnimationFrame(draw);
+            }
+
+            resize();
+            window.addEventListener('resize', resize);
+            requestAnimationFrame(draw);
+        })();
+    </script>
+
 </body>
 
 </html>

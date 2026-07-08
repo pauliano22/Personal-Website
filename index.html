@@ -50,7 +50,7 @@
                     </div>
                 </summary>
                 <div class="expandable-content">
-                    <strong>Research Assistant:</strong> SP26 - Profiled Mixture-of-Experts inference on 8&times;H100 GPUs for an industry client.
+                    <strong>Research Assistant:</strong> SP26 - present. Profiling Mixture-of-Experts inference on 8&times;H100 GPUs for an industry client designing custom AI silicon.
                 </div>
             </details>
 
@@ -62,7 +62,7 @@
                     </div>
                 </summary>
                 <div class="expandable-content">
-                    <strong>Software Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Returning summer 2026 for ML inference on Qualcomm SoCs.
+                    <strong>Software / ML Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Currently (summer '26) an ML Engineer Intern building real-time, on-device text-to-speech: an INT8-quantized model running through ONNX Runtime on embedded radio hardware.
                 </div>
             </details>
 
@@ -107,7 +107,7 @@
                 </summary>
                 <div class="expandable-content">
                     An FPGA trading pipeline that runs end-to-end in 444ns at 83.3M messages/sec. Register-partitioned limit order book, sparse MoE router pipelined to one trade per cycle, bit-exact RTL/C++ verification in Verilator.<br><br>
-                    <a href="https://github.com/pauliano22/hft-moe-fpga-engine" target="_blank">View GitHub</a>
+                    <a href="https://github.com/pauliano22/hft-fpga" target="_blank">View GitHub</a>
                 </div>
             </details>
 
@@ -116,7 +116,7 @@
                     <span>Mini-TensorRT: DL Graph Compiler</span>
                 </summary>
                 <div class="expandable-content">
-                    A C++ deep-learning graph compiler with a CUDA backend. Conv-ReLU-Add fusion cuts DRAM traffic for a 25% end-to-end speedup; paged-attention KV cache doubles batch concurrency.<br><br>
+                    A from-scratch C++ inference compiler: parses ONNX protobufs into a custom IR, fuses Conv-ReLU to cut DRAM round-trips (11.2% on cache-exceeding inputs), and runs a trained MNIST CNN through handwritten NCHW kernels that match ONNX Runtime's logits exactly.<br><br>
                     <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
                 </div>
             </details>
@@ -136,8 +136,7 @@
                     <span>Digital Level &amp; Impact Monitor</span>
                 </summary>
                 <div class="expandable-content">
-                    An interrupt-driven tilt sensor and impact monitor on the FRDM-KL46Z (Cortex-M0+). Sleeps in <code>__WFI</code> between PIT timer wakeups; ARM assembly for the trig math; I2C accelerometer reads and UART alerting on impact.<br><br>
-                    <a href="https://github.coecis.cornell.edu/ece3140-spr2026/pmi22-vlz3" target="_blank">View GitHub</a>
+                    An interrupt-driven tilt sensor and impact monitor on the FRDM-KL46Z (Cortex-M0+). Sleeps in <code>__WFI</code> between PIT timer wakeups; ARM assembly for the trig math; I2C accelerometer reads and UART alerting on impact.
                 </div>
             </details>
         </div>
@@ -150,7 +149,7 @@
                 </summary>
                 <div class="expandable-content">
                     Built an AI-orchestrated modular chess engine evaluation system. Used Claude via an MCP server to autonomously test, benchmark, and compare diverse AI-generated chess engines using SPRT and perft.<br><br>
-                    <a href="https://github.com/pauliano22/point72-ai-chess-engine" target="_blank">View GitHub</a>
+                    <a href="https://github.com/pauliano22/chesspoint72" target="_blank">View GitHub</a>
                 </div>
             </details>
 
@@ -177,9 +176,9 @@
 
         <p class="section-title">Some other things about me</p>
         <p class="hobbies">
-            I'm chasing a 315 lb (3 plate) bench press, and my current PR is 305<br>
+            I hit my goal of a 315 lb (3 plate) bench press this year<br>
             I love golf, someday I hope to be scratch, but I'm usually ~10-12 handicap<br>
-            I help my cousin run a real estate business on the side. <a href="https://www.ejretreats.com/" target="_blank" style="text-decoration: underline; color: var(--text); font-weight: bold;">Check it out</a>.
+            I help my cousin run a real estate business on the side.
         </p>
 
     </main>

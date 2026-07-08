@@ -31,7 +31,9 @@
             <div class="links">
                 <a href="https://www.linkedin.com/in/pauliacobucci777" target="_blank">linkedin</a>
                 <a href="https://github.com/pauliano22" target="_blank">github</a>
+                <a href="Paul_Iacobucci_Resume.pdf" target="_blank">resume</a>
                 <a href="research.html">research</a>
+                <a href="demo.html">demo</a>
             </div>
         </div>
 
@@ -50,7 +52,8 @@
                     </div>
                 </summary>
                 <div class="expandable-content">
-                    <strong>Research Assistant:</strong> SP26 - present. Profiling Mixture-of-Experts inference on 8&times;H100 GPUs for an industry client designing custom AI silicon.
+                    <strong>Research Assistant:</strong> SP26 - present. Profiling Mixture-of-Experts inference on 8&times;H100 GPUs for an industry client designing custom AI silicon.<br><br>
+                    <a href="research.html">Read the full writeup &rarr;</a>
                 </div>
             </details>
 
@@ -117,7 +120,7 @@
                 </summary>
                 <div class="expandable-content">
                     A from-scratch C++ inference compiler: parses ONNX protobufs into a custom IR, fuses Conv-ReLU to cut DRAM round-trips (11.2% on cache-exceeding inputs), and runs a trained MNIST CNN through handwritten NCHW kernels that match ONNX Runtime's logits exactly.<br><br>
-                    <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
+                    <a href="demo.html">Try it live (WASM)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
                 </div>
             </details>
 
@@ -128,6 +131,15 @@
                 <div class="expandable-content">
                     Fused Triton kernels on H100. LayerNorm runs 45.7% faster with symmetric FP8 quantization. Scaled FlashAttention to 16K context by tiling for SRAM and computing softmax online in one pass.<br><br>
                     <a href="https://github.com/pauliano22/triton-gpu-kernels" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Acoustic Shield: Tinnitus Hearing Device</span>
+                </summary>
+                <div class="expandable-content">
+                    A wearable hearing device for tinnitus relief. Live audio streams through a Teensy + SGTL5000 codec into a custom AudioStream class running up to five biquad notch filters at 44.1kHz, with coefficients computed on-device. A React Native app retunes the bands in real time over BLE. Filter math prototyped on desktop in C++ with RtAudio.
                 </div>
             </details>
 

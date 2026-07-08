@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="research">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-TensorRT in your browser</title>
+    <link rel="icon" href="icons/favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .demo-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        #draw-canvas {
+            border: 2px solid var(--border);
+            background: #ffffff;
+            cursor: crosshair;
+            touch-action: none;
+            image-rendering: pixelated;
+        }
+        .demo-controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .demo-controls button {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 6px 14px;
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+        }
+        .demo-controls button:hover { opacity: 0.5; }
+        .demo-result { min-width: 260px; }
+        .demo-digit {
+            font-size: 72px;
+            font-weight: bold;
+            line-height: 1;
+            min-height: 80px;
+        }
+        .logit-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            margin: 2px 0;
+        }
+        .logit-label { width: 12px; }
+        .logit-bar-track { flex: 1; height: 8px; }
+        .logit-bar {
+            height: 8px;
+            background: var(--text);
+            width: 0%;
+            transition: width 0.15s ease;
+        }
+        .demo-note {
+            font-size: 13px;
+            opacity: 0.75;
+            max-width: 640px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-home">&larr; back</a>
+        <span class="nav-title">Mini-TensorRT</span>
+    </nav>
+
+    <main class="page">
+
+        <p class="section-title">Draw a digit</p>
+
+        <p class="demo-note">
+            This page runs my <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank" style="color: var(--text);">from-scratch C++ inference engine</a>,
+            compiled to WebAssembly. Your drawing goes through the same handwritten kernels as the native build —
+            Conv+ReLU fused by the graph optimizer, MaxPool, Reshape, Gemm — on a small CNN trained to 93% on MNIST.
+            No server, no libraries: the C++ you see in the repo is what's classifying your handwriting right now.
+        </p>
+        <br>
+
+        <div class="demo-wrap">
+            <div>
+                <canvas id="draw-canvas" width="280" height="280"></canvas>
+                <div class="demo-controls">
+                    <button id="clear-btn">clear</button>
+                </div>
+            </div>
+
+            <div class="demo-result">
+                <div class="demo-digit" id="result-digit"></div>
+                <div id="logit-bars"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="footer-text">
+        &copy; 2026 Paul Iacobucci
+    </div>
+
+    <script src="engine.js"></script>
+    <script>
+        const canvas = document.getElementById('draw-canvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        const resultDigit = document.getElementById('result-digit');
+        const barsEl = document.getElementById('logit-bars');
+
+        // Build the 0-9 logit bar rows
+        const bars = [];
+        for (let d = 0; d < 10; d++) {
+            const row = document.createElement('div');
+            row.className = 'logit-row';
+            row.innerHTML = `<span class="logit-label">${d}</span><div class="logit-bar-track"><div class="logit-bar"></div></div>`;
+            barsEl.appendChild(row);
+            bars.push(row.querySelector('.logit-bar'));
+        }
+
+        function clearCanvas() {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, 280, 280);
+            resultDigit.textContent = '';
+            bars.forEach(b => b.style.width = '0%');
+        }
+        clearCanvas();
+
+        // --- Drawing (mouse + touch) ---
+        let drawing = false, last = null;
+        function pos(e) {
+            const r = canvas.getBoundingClientRect();
+            const p = e.touches ? e.touches[0] : e;
+            return { x: (p.clientX - r.left) * (280 / r.width), y: (p.clientY - r.top) * (280 / r.height) };
+        }
+        function stroke(a, b) {
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 18;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+        }
+        function start(e) { drawing = true; last = pos(e); stroke(last, last); e.preventDefault(); }
+        function move(e) { if (!drawing) return; const p = pos(e); stroke(last, p); last = p; e.preventDefault(); }
+        function end() { if (!drawing) return; drawing = false; classify(); }
+
+        canvas.addEventListener('mousedown', start);
+        canvas.addEventListener('mousemove', move);
+        window.addEventListener('mouseup', end);
+        canvas.addEventListener('touchstart', start, { passive: false });
+        canvas.addEventListener('touchmove', move, { passive: false });
+        canvas.addEventListener('touchend', end);
+        document.getElementById('clear-btn').addEventListener('click', clearCanvas);
+
+        // --- MNIST-style preprocessing ---
+        // MNIST digits are size-normalized to 20x20 and centered by pixel mass
+        // in a 28x28 field; matching that makes hand-drawn input much more
+        // accurate than a naive downscale.
+        function preprocess() {
+            const img = ctx.getImageData(0, 0, 280, 280).data;
+            const gray = new Float32Array(280 * 280);
+            let minX = 280, minY = 280, maxX = -1, maxY = -1;
+            for (let y = 0; y < 280; y++) {
+                for (let x = 0; x < 280; x++) {
+                    const v = 1 - img[(y * 280 + x) * 4] / 255; // white bg -> 0, ink -> 1
+                    gray[y * 280 + x] = v;
+                    if (v > 0.1) {
+                        if (x < minX) minX = x; if (x > maxX) maxX = x;
+                        if (y < minY) minY = y; if (y > maxY) maxY = y;
+                    }
+                }
+            }
+            if (maxX < 0) return null; // empty canvas
+
+            // Scale the ink bounding box into 20x20
+            const boxW = maxX - minX + 1, boxH = maxY - minY + 1;
+            const scale = 20 / Math.max(boxW, boxH);
+            const scaled = document.createElement('canvas');
+            scaled.width = 28; scaled.height = 28;
+            const sctx = scaled.getContext('2d', { willReadFrequently: true });
+            sctx.fillStyle = '#ffffff';
+            sctx.fillRect(0, 0, 28, 28);
+            sctx.drawImage(canvas, minX, minY, boxW, boxH,
+                (28 - boxW * scale) / 2, (28 - boxH * scale) / 2, boxW * scale, boxH * scale);
+
+            // Grayscale + center of mass shift
+            const sdata = sctx.getImageData(0, 0, 28, 28).data;
+            let out = new Float32Array(784);
+            let mx = 0, my = 0, mass = 0;
+            for (let y = 0; y < 28; y++) {
+                for (let x = 0; x < 28; x++) {
+                    const v = 1 - sdata[(y * 28 + x) * 4] / 255;
+                    out[y * 28 + x] = v;
+                    mx += x * v; my += y * v; mass += v;
+                }
+            }
+            if (mass > 0) {
+                const dx = Math.round(13.5 - mx / mass), dy = Math.round(13.5 - my / mass);
+                const shifted = new Float32Array(784);
+                for (let y = 0; y < 28; y++) {
+                    for (let x = 0; x < 28; x++) {
+                        const sx = x - dx, sy = y - dy;
+                        if (sx >= 0 && sx < 28 && sy >= 0 && sy < 28) {
+                            shifted[y * 28 + x] = out[sy * 28 + sx];
+                        }
+                    }
+                }
+                out = shifted;
+            }
+            return out;
+        }
+
+        // --- Engine ---
+        let engine = null, pIn = 0, pOut = 0;
+        MiniTRT().then(m => {
+            engine = m;
+            pIn = m._malloc(784 * 4);
+            pOut = m._malloc(10 * 4);
+        });
+
+        function classify() {
+            if (!engine) return;
+            const pixels = preprocess();
+            if (!pixels) return;
+            engine.HEAPF32.set(pixels, pIn / 4);
+            const digit = engine._predict(pIn, pOut);
+            const logits = engine.HEAPF32.subarray(pOut / 4, pOut / 4 + 10);
+
+            resultDigit.textContent = digit;
+            const min = Math.min(...logits), max = Math.max(...logits);
+            for (let d = 0; d < 10; d++) {
+                bars[d].style.width = `${((logits[d] - min) / (max - min || 1)) * 100}%`;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -86,6 +86,16 @@
         <div class="list-container">
             <details class="expandable-list">
                 <summary>
+                    <span>Mini-TensorRT: DL Graph Compiler</span>
+                </summary>
+                <div class="expandable-content">
+                    A from-scratch C++ inference compiler: parses ONNX protobufs into a custom IR, fuses Conv-ReLU to cut DRAM round-trips (11.2% on cache-exceeding inputs), and runs a trained MNIST CNN through handwritten NCHW kernels that match ONNX Runtime's logits exactly.<br><br>
+                    <a href="demo.html">Try it live (WASM)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
                     <span>Scout (Backed by Cornell)</span>
                 </summary>
                 <div class="expandable-content">
@@ -114,15 +124,6 @@
                 </div>
             </details>
 
-            <details class="expandable-list">
-                <summary>
-                    <span>Mini-TensorRT: DL Graph Compiler</span>
-                </summary>
-                <div class="expandable-content">
-                    A from-scratch C++ inference compiler: parses ONNX protobufs into a custom IR, fuses Conv-ReLU to cut DRAM round-trips (11.2% on cache-exceeding inputs), and runs a trained MNIST CNN through handwritten NCHW kernels that match ONNX Runtime's logits exactly.<br><br>
-                    <a href="demo.html">Try it live (WASM)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
-                </div>
-            </details>
 
             <details class="expandable-list">
                 <summary>
@@ -403,6 +404,8 @@
             requestAnimationFrame(draw);
         })();
     </script>
+
+    <script src="luffy.js" defer></script>
 
 </body>
 

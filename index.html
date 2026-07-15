@@ -31,15 +31,6 @@
             <h1 class="mobile-name">PAUL IACOBUCCI</h1>
             <p class="bio">
                 CS student @ <span class="accent">Cornell</span>, 3x SWE/ML Intern @ <span class="accent">L3Harris</span>.
-                <br><br>
-                I'm interested in AI infrastructure, ML systems, and applied AI. 
-                <br><br>
-                At L3Harris, I had responsibility over multiple applications for first responders spanning the entire stack. I created UI, managed a multi-threaded Golang backend, integrated networking and video streaming, worked with edge ML, made custom Linux OS distros, and worked with embedded systems and hardware. 
-                <br><br>
-                I've also built a web/mobile app backed by Cornell servicing 45,000+ athlete alumni. 
-                <br><br>
-                On campus, I research AI infrastructure in the Zhang lab. In Spring '26 I was on a project specifically studying MoE models, and I'll continue that over the summer. Next semester I'm looking to expand to other projects.
-
             </p>
 
             <div class="links">
@@ -221,6 +212,10 @@
 
     </main>
 
+    <div class="falls-wrap" aria-hidden="true">
+        <canvas id="falls-canvas"></canvas>
+    </div>
+
     <div class="footer-text">
         &copy; 2026 Paul Iacobucci
     </div>
@@ -236,12 +231,18 @@
             { text: 'PAUL IACOBUCCI', size: 90, x: 0, y: 0 }
         ];
 
-        const NAME_COLOR = getComputedStyle(document.documentElement)
+        let NAME_COLOR = getComputedStyle(document.documentElement)
             .getPropertyValue('--text').trim() || '#000000';
+        const themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const updateNameColor = () => {
+            NAME_COLOR = getComputedStyle(document.documentElement)
+                .getPropertyValue('--text').trim() || '#000000';
+        };
+        if (themeQuery.addEventListener) themeQuery.addEventListener('change', updateNameColor);
 
         function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = canvas.offsetWidth || window.innerWidth;
+            canvas.height = canvas.offsetHeight || window.innerHeight;
 
             const isMobile = window.innerWidth <= 768;
             
@@ -364,6 +365,8 @@
             mouse.y = e.clientY;
         });
     </script>
+
+    <script src="effects.js" defer></script>
 
 </body>
 

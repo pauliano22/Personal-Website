@@ -5,9 +5,18 @@
 }
 
 :root {
-    --bg: #f5eedc; 
+    --bg: #f5eedc;
     --text: #000000;
     --border: #000000;
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #16130d;
+        --text: #eae2cc;
+        --border: #eae2cc;
+    }
 }
 
 body {
@@ -20,7 +29,7 @@ body {
 
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 72vh;
     width: 100vw;
     overflow: hidden;
     background: var(--bg);
@@ -38,10 +47,9 @@ body {
     pointer-events: none; 
 }
 
-/* Increased margin-top from 30vh to 35vh to clear the particle text */
 .content-below {
     position: relative;
-    margin: 35vh auto 4rem auto; 
+    margin: 31vh auto 4rem auto;
     width: 100%;
     max-width: 760px;
     padding: 0 2rem;
@@ -148,6 +156,10 @@ details.expandable-list summary::after {
 
 details.expandable-list[open] summary::after {
     transform: rotate(180deg);
+}
+
+details.expandable-list.closing summary::after {
+    transform: rotate(0deg);
 }
 
 details.expandable-list summary::-webkit-details-marker {
@@ -261,23 +273,18 @@ figcaption {
     text-transform: uppercase;
 }
 
-.ascii-wave {
-    width: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 0.6rem;
-    line-height: 1;
-    white-space: pre;
-    overflow: hidden;
-    padding: 0;
-    margin: 4rem 0 0;
-    border-top: 1px solid var(--border);
+/* The falls — the page's closing image */
+.falls-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-#wave-canvas {
+#falls-canvas {
     display: block;
     width: 100%;
-    height: 200px;
+    height: 230px;
+    border-top: 2px solid var(--border);
 }
 
 .footer-text {
@@ -335,8 +342,30 @@ figcaption {
     line-height: 1.7;
 }
 
+a:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .list-logo {
+        filter: grayscale(100%) brightness(0) invert(1);
+    }
+    .research-image {
+        background: #f5eedc;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation: none; }
+    details.expandable-list summary::after { transition: none; }
+}
+
 @media (max-width: 768px) {
     #canvas { display: none; }
+    .falls-wrap { padding: 0 1.25rem; }
+    #falls-canvas { height: 170px; }
     .hero-section {
         min-height: auto;
     }

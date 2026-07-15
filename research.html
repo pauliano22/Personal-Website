@@ -32,12 +32,12 @@
                     <p>Profiled five models to track decode latency. Found that the slowest GPU consistently took ~33% longer on compute per layer than the fastest GPU due to token routing skew.</p>
                     
                     <figure>
-                        <img src="ep_analysis_summary.png" alt="EP Wait Time Analysis Plot" class="research-image" onerror="this.style.display='none'">
+                        <img src="images/research/ep_analysis_summary.png" alt="EP Wait Time Analysis Plot" class="research-image" onerror="this.style.display='none'">
                         <figcaption>Fig 1: Per-GPU MoE compute duration showing synchronization wait times.</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="heatmap_normalized.png" alt="Normalized Expert Load Heatmap" class="research-image" onerror="this.style.display='none'">
+                        <img src="images/research/heatmap_normalized.png" alt="Normalized Expert Load Heatmap" class="research-image" onerror="this.style.display='none'">
                         <figcaption>Fig 2: Normalized expert load highlighting token routing skew.</figcaption>
                     </figure>
                 </div>
@@ -51,27 +51,27 @@
                     <p>Extended a simulator with a layer-by-layer Roofline model to classify layers as compute- or memory-bound. Finding: Expert Parallelism overhead scales with expert intermediate size, not expert count.</p>
                     
                     <figure>
-                        <img src="cross_model_ep_tp_ratio.png" alt="Cross-Model EP vs TP Comparison" class="research-image">
+                        <img src="images/research/cross_model_ep_tp_ratio.png" alt="Cross-Model EP vs TP Comparison" class="research-image">
                         <figcaption>Fig 3: Cross-model comparison of Tensor vs Expert parallelism efficiency.</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="roofline_mixtral_tp_vs_ep.png" alt="Mixtral-8x7B Roofline Plot" class="research-image">
+                        <img src="images/research/roofline_mixtral_tp_vs_ep.png" alt="Mixtral-8x7B Roofline Plot" class="research-image">
                         <figcaption>Fig 4: Mixtral-8x7B shows the widest gap between TP and EP efficiency.</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="roofline_qwen3_235b_tp_vs_ep.png" alt="Qwen3-235B Roofline Plot" class="research-image">
+                        <img src="images/research/roofline_qwen3_235b_tp_vs_ep.png" alt="Qwen3-235B Roofline Plot" class="research-image">
                         <figcaption>Fig 5: Qwen3-235B compounds per-layer All-to-All overhead across 94 layers.</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="roofline_gpt_oss_120b_tp_vs_ep.png" alt="gpt-oss-120b Roofline Plot" class="research-image">
+                        <img src="images/research/roofline_gpt_oss_120b_tp_vs_ep.png" alt="gpt-oss-120b Roofline Plot" class="research-image">
                         <figcaption>Fig 6: gpt-oss-120b shows a moderate EP penalty.</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="roofline_deepseek_v2_lite_tp_vs_ep.png" alt="DeepSeek-V2-Lite Roofline Plot" class="research-image">
+                        <img src="images/research/roofline_deepseek_v2_lite_tp_vs_ep.png" alt="DeepSeek-V2-Lite Roofline Plot" class="research-image">
                         <figcaption>Fig 7: DeepSeek-V2-Lite TP and EP points overlap closely due to large shared experts.</figcaption>
                     </figure>
                 </div>

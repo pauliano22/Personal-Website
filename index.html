@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paul Iacobucci</title>
+    <meta name="description"
+        content="CS student at Cornell and 3x SWE/ML intern at L3Harris. AI infrastructure, ML systems, and applied AI — MoE inference research, GPU kernels, FPGA trading engines, and embedded audio DSP.">
+    <link rel="canonical" href="https://pauliacobucci.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pauliacobucci.com/">
+    <meta property="og:title" content="Paul Iacobucci">
+    <meta property="og:description"
+        content="CS student at Cornell and 3x SWE/ML intern at L3Harris. AI infrastructure, ML systems, and applied AI.">
+    <meta property="og:image" content="https://pauliacobucci.com/images/profile.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Paul Iacobucci">
+    <meta name="twitter:description"
+        content="CS student at Cornell and 3x SWE/ML intern at L3Harris. AI infrastructure, ML systems, and applied AI.">
+    <meta name="twitter:image" content="https://pauliacobucci.com/images/profile.jpg">
     <link rel="icon" href="icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -153,6 +167,16 @@
                     <a href="https://www.youtube.com/watch?v=W9QhefcZJm4" target="_blank">Watch Demo Video</a>
                 </div>
             </details>
+
+            <details class="expandable-list">
+                <summary>
+                    <span>Odyssey: Interactive Theorem Prover</span>
+                </summary>
+                <div class="expandable-content">
+                    An interactive theorem prover in OCaml: logical proposition simplification, automated SAT solving, and a parsing/evaluation pipeline for mathematical proofs with automated LaTeX export.<br><br>
+                    <a href="https://www.youtube.com/watch?v=7xwDIO6k9Gc" target="_blank">Watch Demo Video</a>
+                </div>
+            </details>
         </div>
 
         <p class="section-title">Hackathons</p>
@@ -212,7 +236,8 @@
             { text: 'PAUL IACOBUCCI', size: 90, x: 0, y: 0 }
         ];
 
-        const NAME_COLOR = '#000000';
+        const NAME_COLOR = getComputedStyle(document.documentElement)
+            .getPropertyValue('--text').trim() || '#000000';
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -338,72 +363,6 @@
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         });
-    </script>
-
-    <script>
-        (function () {
-            const wcanvas = document.getElementById('wave-canvas');
-            if (!wcanvas) return;
-            const wctx = wcanvas.getContext('2d');
-
-            const RAMP = ['.', ':', '+', '*', '?', '%', '$', 'S', '#', '@'];
-            const FONT_SIZE = 12;
-            const CHAR_W = 7.2;
-            const CHAR_H = 12;
-            
-            const COLOR_BASE = [0, 0, 0]; 
-
-            let cols, rows;
-            let t = 0;
-
-            function resize() {
-                wcanvas.width = wcanvas.offsetWidth * window.devicePixelRatio;
-                wcanvas.height = 200 * window.devicePixelRatio;
-                wcanvas.style.height = '200px';
-                wctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-                wctx.font = `${FONT_SIZE}px "Courier New", Courier, monospace`;
-                wctx.textBaseline = 'top';
-
-                cols = Math.ceil(wcanvas.offsetWidth / CHAR_W) + 2;
-                rows = Math.ceil(200 / CHAR_H) + 2;
-            }
-
-            function heightAt(x, time) {
-                const w1 = Math.sin(x * 0.025 + time * 0.6) * 0.5;
-                const w2 = Math.sin(x * 0.04  - time * 0.4) * 0.3;
-                const w3 = Math.sin(x * 0.07  + time * 0.9) * 0.2;
-                return (w1 + w2 + w3 + 1) * 0.5;
-            }
-
-            function draw() {
-                wctx.clearRect(0, 0, wcanvas.offsetWidth, 200);
-
-                for (let cx = 0; cx < cols; cx++) {
-                    const x = cx * CHAR_W;
-                    const h = heightAt(cx, t);
-                    const surfaceRow = Math.floor(rows * (0.30 + (1 - h) * 0.55));
-
-                    for (let cy = surfaceRow; cy < rows; cy++) {
-                        const depth = (cy - surfaceRow) / (rows - surfaceRow);
-                        const rampIdx = Math.min(
-                            RAMP.length - 1,
-                            Math.floor(depth * RAMP.length)
-                        );
-                        const ch = RAMP[rampIdx];
-                        const alpha = 0.35 + depth * 0.55;
-                        wctx.fillStyle = `rgba(${COLOR_BASE[0]}, ${COLOR_BASE[1]}, ${COLOR_BASE[2]}, ${alpha})`;
-                        wctx.fillText(ch, x, cy * CHAR_H);
-                    }
-                }
-
-                t += 0.05;
-                requestAnimationFrame(draw);
-            }
-
-            resize();
-            window.addEventListener('resize', resize);
-            requestAnimationFrame(draw);
-        })();
     </script>
 
 </body>

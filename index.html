@@ -96,6 +96,15 @@
 
             <details class="expandable-list">
                 <summary>
+                    <span>Acoustic Shield: Tinnitus Hearing Device</span>
+                </summary>
+                <div class="expandable-content">
+                    A wearable hearing device for tinnitus relief, built across the full stack: live audio streams through a Teensy + SGTL5000 codec into a custom AudioStream class running up to five biquad notch filters at 44.1kHz, with coefficients computed on-device. A React Native app retunes the bands in real time over BLE. Filter math prototyped on desktop in C++ with RtAudio and verified against a Python reference implementation.
+                </div>
+            </details>
+
+            <details class="expandable-list">
+                <summary>
                     <span>Scout (Backed by Cornell)</span>
                 </summary>
                 <div class="expandable-content">
@@ -137,19 +146,11 @@
 
             <details class="expandable-list">
                 <summary>
-                    <span>Acoustic Shield: Tinnitus Hearing Device</span>
-                </summary>
-                <div class="expandable-content">
-                    A wearable hearing device for tinnitus relief. Live audio streams through a Teensy + SGTL5000 codec into a custom AudioStream class running up to five biquad notch filters at 44.1kHz, with coefficients computed on-device. A React Native app retunes the bands in real time over BLE. Filter math prototyped on desktop in C++ with RtAudio.
-                </div>
-            </details>
-
-            <details class="expandable-list">
-                <summary>
                     <span>Digital Level &amp; Impact Monitor</span>
                 </summary>
                 <div class="expandable-content">
-                    An interrupt-driven tilt sensor and impact monitor on the FRDM-KL46Z (Cortex-M0+). Sleeps in <code>__WFI</code> between PIT timer wakeups; ARM assembly for the trig math; I2C accelerometer reads and UART alerting on impact.
+                    An interrupt-driven tilt sensor and impact monitor on the FRDM-KL46Z (Cortex-M0+). Sleeps in <code>__WFI</code> between PIT timer wakeups; ARM assembly for the trig math; I2C accelerometer reads and UART alerting on impact.<br><br>
+                    <a href="https://www.youtube.com/watch?v=W9QhefcZJm4" target="_blank">Watch Demo Video</a>
                 </div>
             </details>
         </div>
@@ -404,8 +405,6 @@
             requestAnimationFrame(draw);
         })();
     </script>
-
-    <script src="luffy.js" defer></script>
 
 </body>
 

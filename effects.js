@@ -132,12 +132,13 @@
     })();
 
     /* ---------- 4. The falls ---------- */
-    /* An Ithaca gorge falls in side profile: a shale cliff on the left,
-       the creek running along the clifftop, water pouring over the brink
-       into a plunge pool, and the stream flowing off to the right.
-       Value noise advected with the flow keeps the motion coherent (no
-       per-frame flicker); the fall's sample grid is stretched toward the
-       bottom so streaks elongate as the water accelerates. */
+    /* The last section's title underline is the clifftop: a creek runs
+       along the rule, past the title text, and pours off its right end
+       down the page margin into a plunge pool, which drains off the
+       right edge of the screen. Value noise advected with the flow keeps
+       the motion coherent (no per-frame flicker); the fall's sample grid
+       is stretched toward the bottom so streaks elongate as the water
+       accelerates. */
     const falls = (function () {
         const canvas = document.getElementById('falls-canvas');
         if (!canvas) return null;
@@ -166,6 +167,28 @@
             return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
         }
 
+        let ledge = null; // the title underline, in canvas coordinates
+
+        function measure() {
+            const title = document.querySelector('.page-after-falls .section-title');
+            if (!title) { ledge = null; return; }
+            const cr = canvas.getBoundingClientRect();
+            const tr = title.getBoundingClientRect();
+            const cs = getComputedStyle(title);
+            const prevFont = ctx.font;
+            ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+            const text = (title.dataset.full || title.textContent).trim();
+            const spacing = parseFloat(cs.letterSpacing) || 0;
+            const textW = ctx.measureText(text.toUpperCase()).width + spacing * text.length;
+            ctx.font = prevFont;
+            ledge = {
+                x0: tr.left - cr.left,
+                x1: tr.right - cr.left,
+                y: tr.bottom - cr.top,
+                creekX: tr.left - cr.left + textW + 30
+            };
+        }
+
         function resize() {
             const dpr = window.devicePixelRatio || 1;
             const w = canvas.offsetWidth, h = canvas.offsetHeight;
@@ -177,6 +200,7 @@
             CW = ctx.measureText('M').width || 7.2;
             cols = Math.ceil(w / CW);
             rows = Math.floor(h / CH);
+            measure();
         }
 
         function boostAt(cx) {
@@ -190,67 +214,49 @@
 
         const FALL_RAMP = [' ', '.', ':', ';', '!', '|'];
         const MIST_RAMP = ['"', '*', 'o'];
-        const ROCK_RAMP = [':', '%', '#'];
         const BAND = 8; // width of the falling curtain, in cells
-
-        function brinkCol() { return Math.floor(cols * 0.34); }
-        function surfaceRow() { return rows - poolRows; }
-        function cliffEdge(cy) {
-            return brinkCol() - 1 + Math.round(2 * noise2(0.5, cy * 0.35) - 1);
-        }
 
         function draw(dt) {
             t += dt;
             ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+            if (!ledge) return;
             const [r, g, b] = ink;
-            const brink = brinkCol();
-            const surface = surfaceRow();
-            const plunge = brink + 2 + BAND / 2;
+            const surface = rows - poolRows;
+            const ledgeRow = Math.floor(ledge.y / CH);
+            const brinkC = Math.floor(ledge.x1 / CW); // where the underline ends
+            const creekC0 = Math.ceil(ledge.creekX / CW);
+            const fallH = Math.max(1, surface - ledgeRow);
+            const plunge = brinkC + 1 + BAND / 2;
 
-            // the creek along the clifftop, accelerating into the brink
-            for (let cy = 0; cy < 2; cy++) {
-                for (let cx = 0; cx < brink + 2; cx++) {
-                    const rush = 1 + Math.max(0, (cx - brink + 10) / 8);
-                    let v = noise2(cx * 0.13 - t * 1.6 * rush, cy * 4 + 2.2);
-                    v *= Math.min(1, cx / 3) * (0.75 + 0.25 * cy);
-                    if (v < 0.3) continue;
-                    const ch = cy === 0 ? (v > 0.6 ? '~' : '-') : (v > 0.6 ? '-' : '.');
+            // the creek: riding the title's underline, just past the text
+            for (let k = 0; k < 2; k++) {
+                const cy = ledgeRow - 1 - k;
+                if (cy < 0) break;
+                for (let cx = creekC0; cx <= brinkC + 1; cx++) {
+                    const rush = 1 + Math.max(0, (cx - brinkC + 10) / 8);
+                    let v = noise2(cx * 0.13 - t * 1.6 * rush, k * 4 + 2.2);
+                    v *= Math.min(1, (cx - creekC0) / 3) * (1 - k * 0.45);
+                    if (v < (k === 0 ? 0.3 : 0.5)) continue;
+                    const ch = k === 0 ? (v > 0.6 ? '~' : '-') : (v > 0.62 ? "'" : '.');
                     ctx.fillStyle = `rgba(${r},${g},${b},${(0.2 + 0.55 * v).toFixed(3)})`;
                     ctx.fillText(ch, cx * CW, cy * CH);
                 }
             }
 
-            // the shale cliff: a mostly bare face, horizontal strata, a firm edge
-            for (let cy = 2; cy < rows; cy++) {
-                const edge = cliffEdge(cy);
-                const strataRow = cy % 4 === 1;
-                for (let cx = 0; cx <= edge; cx++) {
-                    const h = hash(cx, cy);
-                    if (cx === edge) {
-                        ctx.fillStyle = `rgba(${r},${g},${b},0.55)`;
-                        ctx.fillText('#', cx * CW, cy * CH);
-                    } else if (strataRow && h > 0.25) {
-                        ctx.fillStyle = `rgba(${r},${g},${b},${(0.16 + 0.14 * h).toFixed(3)})`;
-                        ctx.fillText(h > 0.8 ? '=' : '-', cx * CW, cy * CH);
-                    } else if (!strataRow && h > 0.82) {
-                        ctx.fillStyle = `rgba(${r},${g},${b},${(0.1 + 0.25 * (h - 0.82)).toFixed(3)})`;
-                        ctx.fillText(ROCK_RAMP[Math.min(2, Math.floor((h - 0.82) * 12))], cx * CW, cy * CH);
-                    }
-                }
-            }
-
-            // the falls: over the brink, hugging the cliff down to the pool
-            for (let cy = 1; cy < surface; cy++) {
-                const arc = Math.min(2.5, Math.pow(cy / 6, 1.4)); // slight throw off the lip
-                const x0 = brink + 1 + Math.round(arc);
-                const wy = Math.pow(cy / surface, 0.62) * surface; // acceleration stretch
+            // the falls: off the right end of the line, down the margin
+            for (let cy = ledgeRow; cy < surface; cy++) {
+                const depth = cy - ledgeRow;
+                const arc = Math.min(2.5, Math.pow(depth / 6, 1.4)); // throw off the lip
+                const x0 = brinkC + 1 + Math.round(arc);
+                const wy = Math.pow(depth / fallH, 0.62) * fallH; // acceleration stretch
                 for (let i = 0; i < BAND; i++) {
                     const cx = x0 + i;
+                    if (cx >= cols) break;
                     const prof = 0.4 + 0.6 * Math.sin((i + 0.5) / BAND * Math.PI); // dense core, soft edges
                     let v = 0.72 * noise2(cx * 0.45, wy * 0.24 - t * 3.2)
                         + 0.28 * noise2(cx * 1.1 + 40, wy * 0.55 - t * 5.2);
                     v *= (0.55 + 0.75 * prof);
-                    if (cy < 3) v = Math.max(v, 0.65 * prof); // solid sheet at the lip
+                    if (depth < 3) v = Math.max(v, 0.65 * prof); // solid sheet at the lip
                     if (v < 0.32) continue;
                     const idx = Math.min(FALL_RAMP.length - 1,
                         1 + Math.floor((v - 0.32) / 0.68 * (FALL_RAMP.length - 1)));
@@ -268,6 +274,7 @@
             for (let m = -2; m <= 0; m++) {
                 const cy = surface + m;
                 for (let cx = plunge - 6; cx < plunge + BAND + 4; cx++) {
+                    if (cx >= cols) break;
                     let v = noise2(cx * 0.5, t * 3.4 + cy * 7) * (1 - Math.abs(m) * 0.25);
                     v += boostAt(cx);
                     if (v < 0.52) continue;
@@ -277,19 +284,19 @@
                 }
             }
 
-            // the pool, calming into a stream that exits right
+            // the pool, spreading into a stream that runs off the screen
             for (let p = 0; p < poolRows; p++) {
                 const cy = surface + p;
-                const rockEdge = cliffEdge(cy);
-                for (let cx = rockEdge + 1; cx < cols; cx++) {
+                const px0 = plunge - 10;
+                for (let cx = px0; cx < cols; cx++) {
                     const dist = Math.max(0, cx - plunge);
-                    const amp = 0.45 + 0.55 * Math.exp(-dist / 16);
+                    const amp = 0.42 + 0.58 * Math.exp(-dist / 16);
                     let v = Math.max(
                         noise2(cx * 0.15 - t * 1.5, 3.3 + p * 4),
                         0.85 * noise2(cx * 0.15 - t * 0.9, 9.9 + p * 4)
                     );
                     v = v * amp * (1 - p * 0.22) + boostAt(cx) * 0.6;
-                    v *= Math.min(1, (cols - 1 - cx) / 3);
+                    v *= Math.min(1, (cx - px0) / 4);
                     if (v < 0.3) continue;
                     const ch = p === 0 ? (v > 0.56 ? '~' : '-') : (v > 0.6 ? '-' : '.');
                     ctx.fillStyle = `rgba(${r},${g},${b},${(0.15 + 0.5 * v).toFixed(3)})`;
@@ -348,6 +355,7 @@
             });
         }
         window.addEventListener('resize', () => { resize(); if (REDUCED) draw(0); });
+        window.addEventListener('load', () => { measure(); if (REDUCED) draw(0); });
 
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
         const onTheme = () => { ink = hexToRgb(inkColor()); if (REDUCED) draw(0); };
@@ -371,7 +379,13 @@
             },
             setRider(fn) { rider = fn; },
             surfaceY() { return (rows - poolRows) * CH; },
-            plungeX() { return (brinkCol() + 2 + BAND / 2) * CW; },
+            plungeX() {
+                if (!ledge) return canvas.offsetWidth * 0.7;
+                return (Math.floor(ledge.x1 / CW) + 1 + BAND / 2) * CW;
+            },
+            brinkX() { return ledge ? ledge.x1 : canvas.offsetWidth * 0.7; },
+            creekY() { return ledge ? ledge.y : 0; },
+            lineX0() { return ledge ? ledge.x0 : 0; },
             width() { return canvas.offsetWidth; }
         };
     })();
@@ -445,21 +459,36 @@
             const W = falls.width();
             const surface = falls.surfaceY();
             const plunge = falls.plungeX();
+            const brink = falls.brinkX();
             const H = merry.height;
-            const DROP = 2.0, UNDER = 0.55;
-            const waterline = surface - H + 14; // hull sits in the water
-            const driftEnd = W - 40;
+            const deckY = falls.creekY() - H + 6; // hull riding the underline
+            const waterline = surface - H + 14;   // hull sitting in the pool
+            const xStart = falls.lineX0() + merry.width / 2;
+            const xEnd = brink - 16;
+            const SAIL_IN = Math.max(1.8, (xEnd - xStart) / 180);
+            const DROP = 1.4, UNDER = 0.55;
+            const outSpeed = Math.max(70, (W + merry.width - plunge - 30) / 7);
             let elapsed = 0, splashed = false;
 
             falls.setRider((dt) => {
                 elapsed += dt;
 
-                if (elapsed < DROP) {
-                    // bow tips over the brink, then the whole ship goes
-                    const p = elapsed / DROP;
-                    const y = -H + (surface - H * 0.6 + H) * p * p;
-                    const x = plunge + Math.sin(elapsed * 3) * 4;
-                    const rot = 0.1 + p * 0.28; // nosing down as she falls
+                if (elapsed < SAIL_IN) {
+                    // along the underline, past the title, toward the edge
+                    const p = elapsed / SAIL_IN;
+                    const x = xStart + (xEnd - xStart) * p;
+                    const y = deckY + Math.sin(elapsed * 2.2) * 1.5;
+                    ctx.save();
+                    ctx.translate(x, y + H / 2);
+                    ctx.rotate(Math.sin(elapsed * 2.2 + 0.4) * 0.03);
+                    ctx.drawImage(merry, -merry.width / 2, -H / 2);
+                    ctx.restore();
+                } else if (elapsed < SAIL_IN + DROP) {
+                    // over the edge of the line and down the falls
+                    const p = (elapsed - SAIL_IN) / DROP;
+                    const x = xEnd + 20 * p + (plunge - xEnd - 20) * p * p;
+                    const y = deckY + (surface - H * 0.6 - deckY) * p * p;
+                    const rot = 0.12 + 0.36 * Math.min(1, p * 1.6); // nosing down
                     ctx.save();
                     ctx.translate(x, y + H / 2);
                     ctx.rotate(rot);
@@ -469,16 +498,14 @@
                     splashed = true;
                     falls.splash(plunge, 2.4);
                     falls.splash(plunge + 24, 1.2);
-                } else if (elapsed > DROP + UNDER) {
-                    // she rights herself and sails off downstream
-                    const d = elapsed - DROP - UNDER;
-                    const x = plunge + 30 + d * 34;
-                    if (x > driftEnd + 40) { falls.setRider(null); playing = false; return; }
+                } else if (elapsed > SAIL_IN + DROP + UNDER) {
+                    // she rights herself and sails off the edge of the screen
+                    const d = elapsed - SAIL_IN - DROP - UNDER;
+                    const x = plunge + 30 + d * outSpeed;
+                    if (x > W + merry.width) { falls.setRider(null); playing = false; return; }
                     const y = waterline + Math.sin(d * 1.8) * 2.5;
                     const rot = Math.sin(d * 1.8 + 0.5) * 0.05;
-                    const alpha = x > driftEnd - 50 ? Math.max(0, (driftEnd + 40 - x) / 90) : 1;
                     ctx.save();
-                    ctx.globalAlpha = alpha;
                     ctx.translate(x, y + H / 2);
                     ctx.rotate(rot);
                     ctx.drawImage(merry, -merry.width / 2, -H / 2);

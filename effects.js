@@ -353,6 +353,21 @@
                 }
             }
 
+            // reeds on the bank at the foot of the rock, swaying in the spray
+            for (let s = 0; s < 5; s++) {
+                const rx = brinkC - 3 - s * 1.4 - noise2(s * 9.1, 0.3);
+                if (rx < 1) break;
+                const tall = 2 + (s * 7) % 3;
+                const sway = Math.sin(t * 1.1 + s * 1.7) * 2;
+                for (let k = 0; k <= tall; k++) {
+                    const cy = surface - 1 - k;
+                    const px = rx * CW + sway * (k / tall);
+                    const ch = k === tall ? "'" : '|';
+                    ctx.fillStyle = `rgba(${r},${g},${b},${k === tall ? 0.5 : 0.38})`;
+                    ctx.fillText(ch, px, cy * CH);
+                }
+            }
+
             // spray particles
             for (let i = drops.length - 1; i >= 0; i--) {
                 const d = drops[i];

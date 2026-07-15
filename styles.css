@@ -8,6 +8,7 @@
     --bg: #f5eedc;
     --text: #000000;
     --border: #000000;
+    --cornell: #b31b1b;
     color-scheme: light dark;
 }
 
@@ -16,6 +17,7 @@
         --bg: #16130d;
         --text: #eae2cc;
         --border: #eae2cc;
+        --cornell: #e05a5a;
     }
 }
 
@@ -29,7 +31,8 @@ body {
 
 .hero-section {
     position: relative;
-    min-height: 72vh;
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100vw;
     overflow: hidden;
     background: var(--bg);
@@ -49,7 +52,7 @@ body {
 
 .content-below {
     position: relative;
-    margin: 31vh auto 4rem auto;
+    margin: 35vh auto 4rem auto;
     width: 100%;
     max-width: 760px;
     padding: 0 2rem;
@@ -66,6 +69,10 @@ body {
 
 .bio span.accent {
     font-weight: bold;
+}
+
+.bio span.cornell {
+    color: var(--cornell);
 }
 
 .links {
@@ -354,6 +361,8 @@ summary:focus-visible {
     outline-offset: 3px;
 }
 
+.mobile-name { display: none; }
+
 @media (prefers-color-scheme: dark) {
     .list-logo {
         filter: grayscale(100%) brightness(0) invert(1);
@@ -371,11 +380,8 @@ summary:focus-visible {
 @media (max-width: 768px) {
     #canvas { display: none; }
     .page.page-after-falls { padding-bottom: 170px; }
-    .hero-section {
-        min-height: auto;
-    }
     .content-below {
-        margin: 15vh auto 2rem auto;
+        margin: 22vh auto 2rem auto;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -384,7 +390,6 @@ summary:focus-visible {
     .bio {
         max-width: 100%;
     }
-    .scroll-cue { display: none; }
     .page { padding: 3rem 1.25rem; }
     .mobile-name {
         display: block;
@@ -394,5 +399,3 @@ summary:focus-visible {
         letter-spacing: 0.05em;
     }
 }
-
-.mobile-name { display: none; }

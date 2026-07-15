@@ -181,11 +181,21 @@
             const spacing = parseFloat(cs.letterSpacing) || 0;
             const textW = ctx.measureText(text.toUpperCase()).width + spacing * text.length;
             ctx.font = prevFont;
+            const hobbies = document.querySelector('.page-after-falls .hobbies');
+            let hr = null;
+            if (hobbies) {
+                const range = document.createRange();
+                range.selectNodeContents(hobbies);
+                hr = range.getBoundingClientRect(); // the text itself, not the block
+            }
             ledge = {
                 x0: tr.left - cr.left,
                 x1: tr.right - cr.left,
                 y: tr.bottom - cr.top,
-                creekX: tr.left - cr.left + textW + 30
+                creekX: tr.left - cr.left + textW + 30,
+                // keep the rock clear of the text block beside it
+                guardBottom: hr ? hr.bottom - cr.top : 0,
+                guardRight: hr ? hr.right - cr.left + 10 : 0
             };
         }
 
@@ -223,7 +233,9 @@
             const [r, g, b] = ink;
             const surface = rows - poolRows;
             const ledgeRow = Math.floor(ledge.y / CH);
-            const brinkC = Math.floor(ledge.x1 / CW); // where the underline ends
+            // where the underline ends — pulled in when the viewport leaves
+            // no room for the curtain to its right
+            const brinkC = Math.min(Math.floor(ledge.x1 / CW), cols - BAND + 2);
             const creekC0 = Math.ceil(ledge.creekX / CW);
             const fallH = Math.max(1, surface - ledgeRow);
             const plunge = brinkC + 1 + BAND / 2;
@@ -239,6 +251,43 @@
                     if (v < (k === 0 ? 0.3 : 0.5)) continue;
                     const ch = k === 0 ? (v > 0.6 ? '~' : '-') : (v > 0.62 ? "'" : '.');
                     ctx.fillStyle = `rgba(${r},${g},${b},${(0.2 + 0.55 * v).toFixed(3)})`;
+                    ctx.fillText(ch, cx * CW, cy * CH);
+                }
+            }
+
+            // the shale lip under the brink: thin laminated beds — resistant
+            // ('=') and soft (broken '-' and '.') laminae with weathered gaps,
+            // faint vertical joints, a stepped '#' face — undercut near the
+            // top and bulging further down, kept clear of the text beside it
+            const guardRow = Math.floor(ledge.guardBottom / CH);
+            const guardCol = Math.ceil(ledge.guardRight / CW);
+            for (let cy = ledgeRow; cy < surface; cy++) {
+                const depth = cy - ledgeRow;
+                const band = Math.floor(cy / 3);
+                const edge = brinkC + Math.round(1.6 * noise2(3.3, band * 1.31) - 0.8);
+                const grow = depth < 5 ? 0 : (depth - 5) * 0.7;
+                const width = Math.min(13, 3 + grow + 2 * noise2(7.7, band * 0.9));
+                let left = edge - width;
+                if (cy <= guardRow) left = Math.max(left, guardCol);
+                const bed = noise2(0.7, cy * 1.7); // this layer's resistance
+                for (let cx = Math.max(0, Math.floor(left)); cx <= edge; cx++) {
+                    if (cx === edge) {
+                        ctx.fillStyle = `rgba(${r},${g},${b},0.55)`;
+                        ctx.fillText('#', cx * CW, cy * CH);
+                        continue;
+                    }
+                    const fade = Math.min(1, (cx - left) / 2.5);
+                    if (noise2(cx * 1.7, 44.4) > 0.9 && hash(cx, cy) > 0.35) {
+                        ctx.fillStyle = `rgba(${r},${g},${b},${(0.17 * fade).toFixed(3)})`;
+                        ctx.fillText(':', cx * CW, cy * CH);
+                        continue;
+                    }
+                    const seg = noise2(cx * 0.14 + cy * 3.1, cy * 5.7);
+                    const v = seg * (0.55 + 0.45 * bed) * fade;
+                    if (v < 0.3) continue;
+                    const ch = bed > 0.6 ? (v > 0.5 ? '=' : '-') : (v > 0.52 ? '-' : '.');
+                    const a = (0.1 + 0.3 * v + (bed > 0.6 ? 0.08 : 0)) * fade;
+                    ctx.fillStyle = `rgba(${r},${g},${b},${a.toFixed(3)})`;
                     ctx.fillText(ch, cx * CW, cy * CH);
                 }
             }
@@ -381,9 +430,12 @@
             surfaceY() { return (rows - poolRows) * CH; },
             plungeX() {
                 if (!ledge) return canvas.offsetWidth * 0.7;
-                return (Math.floor(ledge.x1 / CW) + 1 + BAND / 2) * CW;
+                return (Math.min(Math.floor(ledge.x1 / CW), cols - BAND + 2) + 1 + BAND / 2) * CW;
             },
-            brinkX() { return ledge ? ledge.x1 : canvas.offsetWidth * 0.7; },
+            brinkX() {
+                if (!ledge) return canvas.offsetWidth * 0.7;
+                return Math.min(ledge.x1, (cols - BAND + 2) * CW);
+            },
             creekY() { return ledge ? ledge.y : 0; },
             lineX0() { return ledge ? ledge.x0 : 0; },
             width() { return canvas.offsetWidth; }

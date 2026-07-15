@@ -6,6 +6,16 @@
 
     const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Ithaca has seasons; so does the page. ?season=winter|autumn previews.
+    const SEASON = (function () {
+        const q = new URLSearchParams(location.search).get('season');
+        if (q) return q;
+        const m = new Date().getMonth();
+        if (m === 11 || m <= 1) return 'winter';
+        if (m >= 8 && m <= 10) return 'autumn';
+        return 'summer';
+    })();
+
     function inkColor() {
         return getComputedStyle(document.documentElement)
             .getPropertyValue('--text').trim() || '#000000';
@@ -152,6 +162,8 @@
         const splashes = [];  // {x, age, power}
         const drops = [];     // ballistic spray particles
         let rider = null;     // set by the easter egg
+        let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let leaf = null, leafTimer = 4; // autumn
 
         function hash(ix, iy) {
             let h = (ix * 374761393 + iy * 668265263) | 0;
@@ -227,7 +239,7 @@
         const BAND = 8; // width of the falling curtain, in cells
 
         function draw(dt) {
-            t += dt;
+            t += dt * (SEASON === 'winter' ? 0.55 : 1); // winter water runs slow
             ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
             if (!ledge) return;
             const [r, g, b] = ink;
@@ -252,6 +264,19 @@
                     const ch = k === 0 ? (v > 0.6 ? '~' : '-') : (v > 0.62 ? "'" : '.');
                     ctx.fillStyle = `rgba(${r},${g},${b},${(0.2 + 0.55 * v).toFixed(3)})`;
                     ctx.fillText(ch, cx * CW, cy * CH);
+                }
+            }
+
+            // winter: icicles fringe the lip
+            if (SEASON === 'winter') {
+                for (let cx = brinkC - 9; cx <= brinkC; cx++) {
+                    const h = hash(cx, 777);
+                    if (h < 0.35) continue;
+                    const len = h > 0.75 ? 2 : 1;
+                    for (let k = 0; k < len; k++) {
+                        ctx.fillStyle = `rgba(${r},${g},${b},${(0.5 - k * 0.18).toFixed(2)})`;
+                        ctx.fillText(k === len - 1 ? "'" : '|', cx * CW, (ledgeRow + k) * CH);
+                    }
                 }
             }
 
@@ -368,6 +393,50 @@
                 }
             }
 
+            // autumn: now and then a leaf rides the creek over the falls
+            if (SEASON === 'autumn') {
+                const surfacePx = surface * CH;
+                leafTimer -= dt;
+                if (!leaf && leafTimer <= 0) {
+                    leaf = { x: (creekC0 + 2) * CW, y: 0, phase: 0, vy: 0 };
+                }
+                if (leaf) {
+                    if (leaf.phase === 0) { // riding the creek
+                        leaf.x += 55 * dt * (1 + Math.max(0, (leaf.x / CW - brinkC + 10) / 8));
+                        leaf.y = (ledgeRow - 1) * CH + 4 + Math.sin(t * 3) * 2;
+                        if (leaf.x > (brinkC + 1) * CW) leaf.phase = 1;
+                    } else if (leaf.phase === 1) { // over the edge
+                        leaf.vy = Math.min(leaf.vy + 300 * dt, 170);
+                        leaf.y += leaf.vy * dt;
+                        leaf.x += 18 * dt + Math.sin(t * 5) * 0.8;
+                        if (leaf.y >= surfacePx - 8) leaf.phase = 2;
+                    } else { // drifting downstream
+                        leaf.x += 34 * dt;
+                        leaf.y = surfacePx - 10 + Math.sin(t * 2 + 1) * 1.5;
+                        if (leaf.x > canvas.offsetWidth + 10) {
+                            leaf = null;
+                            leafTimer = 6 + Math.random() * 6;
+                        }
+                    }
+                    if (leaf) {
+                        ctx.fillStyle = `rgba(${r},${g},${b},0.75)`;
+                        ctx.fillText(',', leaf.x, leaf.y);
+                    }
+                }
+            }
+
+            // fireflies by the reeds, dark mode only
+            if (dark) {
+                for (let i = 0; i < 4; i++) {
+                    const fx = (brinkC - 5 - i * 2 + 3.5 * Math.sin(t * 0.25 + i * 2.1)) * CW;
+                    const fy = (surface - 2.5 - (i % 3) - 1.5 * Math.sin(t * 0.18 + i * 1.3)) * CH;
+                    const pulse = Math.pow(0.5 + 0.5 * Math.sin(t * 1.6 + i * 2.9), 2);
+                    if (pulse < 0.08 || fx < 0) continue;
+                    ctx.fillStyle = `rgba(228,208,122,${(0.15 + 0.45 * pulse).toFixed(3)})`;
+                    ctx.fillText('.', fx, fy);
+                }
+            }
+
             // spray particles
             for (let i = drops.length - 1; i >= 0; i--) {
                 const d = drops[i];
@@ -422,7 +491,7 @@
         window.addEventListener('load', () => { measure(); if (REDUCED) draw(0); });
 
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const onTheme = () => { ink = hexToRgb(inkColor()); if (REDUCED) draw(0); };
+        const onTheme = () => { ink = hexToRgb(inkColor()); dark = mq.matches; if (REDUCED) draw(0); };
         if (mq.addEventListener) mq.addEventListener('change', onTheme);
         else if (mq.addListener) mq.addListener(onTheme);
 
@@ -453,88 +522,62 @@
             },
             creekY() { return ledge ? ledge.y : 0; },
             lineX0() { return ledge ? ledge.x0 : 0; },
+            cell() { return { w: CW, h: CH }; },
             width() { return canvas.offsetWidth; }
         };
     })();
 
     /* ---------- 5. Easter egg: type "merry" ---------- */
-    /* The Going Merry comes over the falls, rights herself in the
-       plunge pool, and sails off downstream. */
+    /* A little ASCII boat sails the underline, goes over the falls,
+       rights herself in the plunge pool, and drifts off downstream. */
     (function () {
         if (!falls || REDUCED) return;
 
-        const ROWS = [
-            '....................X',
-            '....................Xrrrr',
-            '....................Xrr',
-            '....................X',
-            '.......XXXXXXXXXXXXXXXXXXXXXXXXX',
-            '.......XwwwwwwwwwwwwwwwwwwwwwwwX',
-            '.......XwwwwwwwwwwyyyyyywwwwwwwX',
-            '.......XwwwwwwwwwwwyyyywwwwwwwwX',
-            '.......XwwwwwwwwwwwkkkkwwwwwwwwX',
-            '.......XwwwwwwwwwwkkkkkkwwwwwwwX',
-            '.......XwwwwwwwwwwwkkkkwwwwwwwwX',
-            '.......XXwwwwwwwkwwwwwwwwkwwwwXX',
-            '........XXwwwwwwwwwwwwwwwwwwwXX',
-            '....................X',
-            '....................X.........XXXX',
-            '....................X........XwwwwX',
-            '....................X........XwXXwwX',
-            '..XXX...............X.......XwwwwwwX',
-            '..XwdX..............X.......XwwwwwwwX',
-            '..XddX..............X........XwwwwwwX',
-            '..XXdXXXXXXXXXXXXXXXXXXXXXXXXXwwwwwwX',
-            '...XdddddddddddddddddddddddddXwwwwwX',
-            '...XoooooooooooooooooooooooooXXwwXX',
-            '....XoodddddddddddddddddddddooXXX',
-            '....XoooooooooooooooooooooooooX',
-            '.....XOooooooooooooooooooooooX',
-            '......XOOooooooooooooooooooOX',
-            '.......XOOOOOOOOOOOOOOOOOOOX',
-            '........XXXXXXXXXXXXXXXXXXX'
-        ].map(row => row.padEnd(42, '.'));
-        const PAL = {
-            X: [30, 28, 32], w: [228, 214, 180], k: [40, 38, 42],
-            y: [224, 192, 74], r: [166, 52, 46], o: [200, 124, 64],
-            O: [152, 88, 42], d: [222, 174, 110]
-        };
-        const SCALE = 3;
-
-        const merry = (function () {
-            const cv = document.createElement('canvas');
-            cv.width = 42 * SCALE;
-            cv.height = ROWS.length * SCALE;
-            const c = cv.getContext('2d');
-            ROWS.forEach((row, y) => {
-                for (let x = 0; x < row.length; x++) {
-                    const col = PAL[row[x]];
-                    if (!col) continue;
-                    c.fillStyle = `rgb(${col[0]},${col[1]},${col[2]})`;
-                    c.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-                }
-            });
-            return cv;
-        })();
+        const BOAT = [
+            '  |>  ',
+            '  |\\  ',
+            '  |_\\ ',
+            '\\____/'
+        ];
 
         let playing = false;
 
         function voyage() {
             playing = true;
             const ctx = falls.ctx;
-            ctx.imageSmoothingEnabled = false;
+            const cell = falls.cell();
+            const BH = BOAT.length * cell.h;
+            const BW = 6 * cell.w;
+            const ink = getComputedStyle(document.documentElement)
+                .getPropertyValue('--text').trim() || '#000';
+            const flag = getComputedStyle(document.documentElement)
+                .getPropertyValue('--cornell').trim() || '#b31b1b';
+
+            function drawBoat(x, y, rot, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha === undefined ? 1 : alpha;
+                ctx.translate(x, y);
+                ctx.rotate(rot);
+                ctx.fillStyle = ink;
+                for (let i = 0; i < BOAT.length; i++) {
+                    ctx.fillText(BOAT[i], -BW / 2, (i - BOAT.length / 2) * cell.h);
+                }
+                ctx.fillStyle = flag; // a carnelian pennant
+                ctx.fillText('>', -BW / 2 + 3 * cell.w, -BOAT.length / 2 * cell.h);
+                ctx.restore();
+            }
+
             const W = falls.width();
             const surface = falls.surfaceY();
             const plunge = falls.plungeX();
             const brink = falls.brinkX();
-            const H = merry.height;
-            const deckY = falls.creekY() - H + 6; // hull riding the underline
-            const waterline = surface - H + 14;   // hull sitting in the pool
-            const xStart = falls.lineX0() + merry.width / 2;
-            const xEnd = brink - 16;
-            const SAIL_IN = Math.max(1.8, (xEnd - xStart) / 180);
-            const DROP = 1.4, UNDER = 0.55;
-            const outSpeed = Math.max(70, (W + merry.width - plunge - 30) / 7);
+            const deckY = falls.creekY() - BH + 4;  // hull riding the underline
+            const waterline = surface - BH + 8;     // hull sitting in the pool
+            const xStart = falls.lineX0() + BW / 2;
+            const xEnd = brink - 12;
+            const SAIL_IN = Math.max(1.6, (xEnd - xStart) / 200);
+            const DROP = 1.2, UNDER = 0.5;
+            const outSpeed = Math.max(70, (W + BW - plunge - 24) / 6);
             let elapsed = 0, splashed = false;
 
             falls.setRider((dt) => {
@@ -545,38 +588,24 @@
                     const p = elapsed / SAIL_IN;
                     const x = xStart + (xEnd - xStart) * p;
                     const y = deckY + Math.sin(elapsed * 2.2) * 1.5;
-                    ctx.save();
-                    ctx.translate(x, y + H / 2);
-                    ctx.rotate(Math.sin(elapsed * 2.2 + 0.4) * 0.03);
-                    ctx.drawImage(merry, -merry.width / 2, -H / 2);
-                    ctx.restore();
+                    drawBoat(x, y + BH / 2, Math.sin(elapsed * 2.2 + 0.4) * 0.04);
                 } else if (elapsed < SAIL_IN + DROP) {
                     // over the edge of the line and down the falls
                     const p = (elapsed - SAIL_IN) / DROP;
-                    const x = xEnd + 20 * p + (plunge - xEnd - 20) * p * p;
-                    const y = deckY + (surface - H * 0.6 - deckY) * p * p;
-                    const rot = 0.12 + 0.36 * Math.min(1, p * 1.6); // nosing down
-                    ctx.save();
-                    ctx.translate(x, y + H / 2);
-                    ctx.rotate(rot);
-                    ctx.drawImage(merry, -merry.width / 2, -H / 2);
-                    ctx.restore();
+                    const x = xEnd + 16 * p + (plunge - xEnd - 16) * p * p;
+                    const y = deckY + (surface - BH * 0.5 - deckY) * p * p;
+                    const rot = 0.12 + 0.4 * Math.min(1, p * 1.6); // nosing down
+                    drawBoat(x, y + BH / 2, rot);
                 } else if (!splashed) {
                     splashed = true;
-                    falls.splash(plunge, 2.4);
-                    falls.splash(plunge + 24, 1.2);
+                    falls.splash(plunge, 1.6);
                 } else if (elapsed > SAIL_IN + DROP + UNDER) {
                     // she rights herself and sails off the edge of the screen
                     const d = elapsed - SAIL_IN - DROP - UNDER;
-                    const x = plunge + 30 + d * outSpeed;
-                    if (x > W + merry.width) { falls.setRider(null); playing = false; return; }
-                    const y = waterline + Math.sin(d * 1.8) * 2.5;
-                    const rot = Math.sin(d * 1.8 + 0.5) * 0.05;
-                    ctx.save();
-                    ctx.translate(x, y + H / 2);
-                    ctx.rotate(rot);
-                    ctx.drawImage(merry, -merry.width / 2, -H / 2);
-                    ctx.restore();
+                    const x = plunge + 24 + d * outSpeed;
+                    if (x > W + BW) { falls.setRider(null); playing = false; return; }
+                    const y = waterline + Math.sin(d * 1.9) * 2;
+                    drawBoat(x, y + BH / 2, Math.sin(d * 1.9 + 0.5) * 0.05);
                 }
             });
         }
@@ -592,5 +621,54 @@
                 setTimeout(voyage, 600);
             }
         });
+    })();
+
+    /* ---------- 6. Birds, rarely ---------- */
+    /* Every minute or so, a few birds cross the hero sky and are gone. */
+    (function () {
+        if (REDUCED) return;
+        const hero = document.querySelector('.hero-section');
+        if (!hero) return;
+
+        const layer = document.createElement('div');
+        layer.setAttribute('aria-hidden', 'true');
+        layer.style.cssText =
+            'position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:5;';
+        hero.appendChild(layer);
+
+        function flock() {
+            if (document.hidden || window.scrollY > window.innerHeight * 0.6) return;
+            const n = 2 + (Math.random() * 2 | 0);
+            const ltr = Math.random() < 0.5;
+            const baseY = (0.08 + Math.random() * 0.16) * window.innerHeight;
+            const speed = 45 + Math.random() * 25;
+            for (let i = 0; i < n; i++) {
+                const b = document.createElement('span');
+                b.textContent = 'v';
+                b.style.cssText =
+                    'position:absolute;left:0;top:0;font-family:inherit;font-size:0.7rem;' +
+                    'color:var(--text);opacity:0.6;will-change:transform;';
+                layer.appendChild(b);
+                const y0 = baseY + (i - n / 2) * 18;
+                const x0 = ltr ? -30 - i * 26 : hero.offsetWidth + 30 + i * 26;
+                let t0 = null;
+                function glide(ts) {
+                    if (t0 === null) t0 = ts;
+                    const s = (ts - t0) / 1000;
+                    const x = x0 + (ltr ? 1 : -1) * speed * s;
+                    const y = y0 + Math.sin(s * 1.3 + i) * 6;
+                    b.textContent = (Math.floor(ts / 260) + i) % 2 ? 'v' : '-';
+                    b.style.transform = `translate(${x}px,${y}px)`;
+                    if (ltr ? x > hero.offsetWidth + 40 : x < -40) { b.remove(); return; }
+                    requestAnimationFrame(glide);
+                }
+                requestAnimationFrame(glide);
+            }
+        }
+
+        setTimeout(flock, 9000 + Math.random() * 9000); // one early flyover
+        (function schedule() {
+            setTimeout(() => { flock(); schedule(); }, 50000 + Math.random() * 40000);
+        })();
     })();
 })();

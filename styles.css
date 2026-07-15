@@ -69,9 +69,6 @@ body {
 
 .bio span.accent {
     font-weight: bold;
-}
-
-.bio span.cornell {
     color: var(--cornell);
 }
 
@@ -364,8 +361,15 @@ summary:focus-visible {
 .mobile-name { display: none; }
 
 @media (prefers-color-scheme: dark) {
-    .list-logo {
+    .list-logo,
+    details.expandable-list summary:hover .list-logo {
         filter: grayscale(100%) brightness(0) invert(1);
+    }
+    details.expandable-list summary:hover .list-logo {
+        opacity: 0.8;
+    }
+    details.expandable-list summary:hover .logo-fallback {
+        background: #a89f88;
     }
     .research-image {
         background: #f5eedc;

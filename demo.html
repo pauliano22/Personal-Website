@@ -7,6 +7,15 @@
     <title>Mini-TensorRT in your browser</title>
     <link rel="icon" href="icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        /* Apply the saved theme before first paint to avoid a flash. */
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+            } catch (e) { }
+        })();
+    </script>
     <style>
         .demo-wrap {
             display: flex;
@@ -106,6 +115,7 @@
         &copy; 2026 Paul Iacobucci
     </div>
 
+    <script src="theme.js" defer></script>
     <script src="engine.js"></script>
     <script>
         const canvas = document.getElementById('draw-canvas');

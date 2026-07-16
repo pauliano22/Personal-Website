@@ -13,12 +13,24 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --bg: #16130d;
         --text: #eae2cc;
         --border: #eae2cc;
         --cornell: #e05a5a;
     }
+}
+
+:root[data-theme="dark"] {
+    --bg: #16130d;
+    --text: #eae2cc;
+    --border: #eae2cc;
+    --cornell: #e05a5a;
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
 }
 
 body {
@@ -358,22 +370,62 @@ summary:focus-visible {
     outline-offset: 3px;
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    color: var(--cornell);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+.theme-toggle.floating {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    z-index: 100;
+}
+
 .mobile-name { display: none; }
 
 @media (prefers-color-scheme: dark) {
-    .list-logo,
-    details.expandable-list summary:hover .list-logo {
+    :root:not([data-theme="light"]) .list-logo,
+    :root:not([data-theme="light"]) details.expandable-list summary:hover .list-logo {
         filter: grayscale(100%) brightness(0) invert(1);
     }
-    details.expandable-list summary:hover .list-logo {
+    :root:not([data-theme="light"]) details.expandable-list summary:hover .list-logo {
         opacity: 0.8;
     }
-    details.expandable-list summary:hover .logo-fallback {
+    :root:not([data-theme="light"]) details.expandable-list summary:hover .logo-fallback {
         background: #a89f88;
     }
-    .research-image {
+    :root:not([data-theme="light"]) .research-image {
         background: #f5eedc;
     }
+}
+
+:root[data-theme="dark"] .list-logo,
+:root[data-theme="dark"] details.expandable-list summary:hover .list-logo {
+    filter: grayscale(100%) brightness(0) invert(1);
+}
+:root[data-theme="dark"] details.expandable-list summary:hover .list-logo {
+    opacity: 0.8;
+}
+:root[data-theme="dark"] details.expandable-list summary:hover .logo-fallback {
+    background: #a89f88;
+}
+:root[data-theme="dark"] .research-image {
+    background: #f5eedc;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -16,6 +16,11 @@
         return 'summer';
     })();
 
+    function isDark() {
+        const t = document.documentElement.dataset.theme;
+        if (t === 'dark' || t === 'light') return t === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
     function inkColor() {
         return getComputedStyle(document.documentElement)
             .getPropertyValue('--text').trim() || '#000000';
@@ -162,7 +167,7 @@
         const splashes = [];  // {x, age, power}
         const drops = [];     // ballistic spray particles
         let rider = null;     // set by the easter egg
-        let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let dark = isDark();
         let leaf = null, leafTimer = 4; // autumn
 
         function hash(ix, iy) {
@@ -491,9 +496,10 @@
         window.addEventListener('load', () => { measure(); if (REDUCED) draw(0); });
 
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const onTheme = () => { ink = hexToRgb(inkColor()); dark = mq.matches; if (REDUCED) draw(0); };
+        const onTheme = () => { ink = hexToRgb(inkColor()); dark = isDark(); if (REDUCED) draw(0); };
         if (mq.addEventListener) mq.addEventListener('change', onTheme);
         else if (mq.addListener) mq.addListener(onTheme);
+        window.addEventListener('themechange', onTheme);
 
         return {
             canvas, ctx,

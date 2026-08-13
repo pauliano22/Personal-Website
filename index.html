@@ -80,7 +80,7 @@
                     </div>
                 </summary>
                 <div class="expandable-content">
-                    <strong>Software / ML Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Most recently (summer '26), built a real-time, on-device neural text-to-speech system for tactical radios &mdash; integrating Piper via Sherpa-ONNX and ONNX Runtime into the radio's embedded Linux audio stack, INT8-quantized for the target hardware. Extended it with an MQTT-based relay so a radio out of range could still have a message delivered as speech once connectivity returned. Also built a repeatable teacher-student training and ASR quality-gate pipeline for evaluating candidate voice models &mdash; and rejected a faster candidate model when it failed the intelligibility bar rather than shipping an unsupported speed claim.
+                    <strong>Software / ML Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Most recently, built a real-time on-device neural TTS system for tactical radios (Piper + Sherpa-ONNX + ONNX Runtime, INT8-quantized) with an MQTT/LTE relay for out-of-range delivery &mdash; plus a training/eval pipeline that rejected a faster candidate model for failing an intelligibility check.
 
                     <div class="diagram-scroll">
                     <svg viewBox="0 0 640 210" class="l3harris-diagram" role="img" aria-label="Diagram: radio text or voice command goes to an on-device TTS engine (Piper, Sherpa-ONNX, ONNX Runtime) which drives the local speaker, and can optionally relay over MQTT/LTE to a peer radio's speaker.">
@@ -140,7 +140,7 @@
                     <span><span class="accent-gold">Haven</span>: Wearable Hearing-Protection Device</span>
                 </summary>
                 <div class="expandable-content">
-                    A wearable hearing-protection app + firmware stack (nRF5340 + ADAU1860 DSP), evolved from a validated Teensy tinnitus-notch-filter prototype and built on the open-source OpenEarable platform. BLE app with a live frequency-response tuner and a safety-capped Loudness Discomfort Level hearing test; firmware and hardware bring-up in progress.
+                    A wearable hearing-protection app + firmware stack (nRF5340 + ADAU1860 DSP), evolved from a validated Teensy prototype. BLE app with live frequency tuning and a safety-capped hearing test; hardware bring-up in progress.
 
                     <div class="shot-row">
                         <img src="images/haven/haven-home.png" alt="Haven app home screen" loading="lazy">
@@ -179,7 +179,7 @@
                     <span>Lion AI Detection Suite</span>
                 </summary>
                 <div class="expandable-content">
-                    Trained a CNN on librosa features and ElevenLabs deepfakes; deployed via ONNX to mobile, Chrome extension, and desktop. Real-time audio capture + sliding-window inference + user alerts, shipped to 20+ users. Built with PyTorch and React Native.<br><br>
+                    Trained a CNN (PyTorch) on librosa features and ElevenLabs deepfakes, deployed via ONNX to mobile, Chrome extension, and desktop. Real-time inference with user alerts, shipped to 20+ users.<br><br>
                     <a href="https://lion-project.vercel.app/" target="_blank">View Site</a>
                 </div>
             </details>

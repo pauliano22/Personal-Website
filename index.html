@@ -39,8 +39,7 @@
         <div class="content-below">
             <h1 class="mobile-name">PAUL IACOBUCCI</h1>
             <p class="bio">
-                CS student at <span class="accent cornell">Cornell</span>.<br>
-                SWE intern at <span class="accent">L3Harris</span>.
+                CS student at <span class="accent cornell">Cornell</span>. SWE intern at <span class="accent">L3Harris</span>.
             </p>
 
             <div class="links">
@@ -51,13 +50,14 @@
                 <a href="demo.html">demo</a>
             </div>
         </div>
-
-        <div class="scroll-cue">scroll for more &#8595;</div>
     </div>
 
-    <main class="page">
+    <div class="outlet-section">
+        <canvas id="falls-canvas" aria-hidden="true"></canvas>
+        <main class="page page-after-falls">
 
-        <p class="section-title">Experience</p>
+        <details class="section-fold">
+        <summary class="section-title">Experience</summary>
         <div class="list-container">
             <details class="expandable-list">
                 <summary>
@@ -80,7 +80,41 @@
                     </div>
                 </summary>
                 <div class="expandable-content">
-                    <strong>Software / ML Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Currently (summer '26) an ML Engineer Intern building real-time, on-device text-to-speech: an INT8-quantized model running through ONNX Runtime on embedded radio hardware.
+                    <strong>Software / ML Engineering Intern:</strong> Three internships across software, embedded, and FPGA. Most recently (summer '26), built a real-time, on-device neural text-to-speech system for tactical radios &mdash; integrating Piper via Sherpa-ONNX and ONNX Runtime into the radio's embedded Linux audio stack, INT8-quantized for the target hardware. Extended it with an MQTT-based relay so a radio out of range could still have a message delivered as speech once connectivity returned. Also built a repeatable teacher-student training and ASR quality-gate pipeline for evaluating candidate voice models &mdash; and rejected a faster candidate model when it failed the intelligibility bar rather than shipping an unsupported speed claim.
+
+                    <div class="diagram-scroll">
+                    <svg viewBox="0 0 640 210" class="l3harris-diagram" role="img" aria-label="Diagram: radio text or voice command goes to an on-device TTS engine (Piper, Sherpa-ONNX, ONNX Runtime) which drives the local speaker, and can optionally relay over MQTT/LTE to a peer radio's speaker.">
+                        <defs>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+                            </marker>
+                        </defs>
+                        <g fill="none" stroke="currentColor" stroke-width="1.3">
+                            <rect x="8" y="18" width="150" height="46" rx="4"></rect>
+                            <rect x="238" y="8" width="180" height="66" rx="4"></rect>
+                            <rect x="482" y="18" width="150" height="46" rx="4"></rect>
+                            <rect x="238" y="128" width="180" height="46" rx="4"></rect>
+                            <rect x="482" y="128" width="150" height="46" rx="4"></rect>
+                            <line x1="158" y1="41" x2="234" y2="41" marker-end="url(#arrow)"></line>
+                            <line x1="418" y1="41" x2="478" y2="41" marker-end="url(#arrow)"></line>
+                            <line x1="328" y1="74" x2="328" y2="124" marker-end="url(#arrow)"></line>
+                            <line x1="418" y1="151" x2="478" y2="151" marker-end="url(#arrow)"></line>
+                        </g>
+                        <g fill="currentColor" font-family="'Courier New', Courier, monospace" font-size="10.5" text-anchor="middle">
+                            <text x="83" y="38">Radio: text /</text>
+                            <text x="83" y="50">voice command</text>
+                            <text x="328" y="30">On-device TTS</text>
+                            <text x="328" y="42">Piper via Sherpa-ONNX</text>
+                            <text x="328" y="54">+ ONNX Runtime (INT8)</text>
+                            <text x="557" y="38">Local radio</text>
+                            <text x="557" y="50">speaker</text>
+                            <text x="328" y="148">MQTT / LTE relay</text>
+                            <text x="328" y="160">(optional, out of range)</text>
+                            <text x="557" y="148">Peer radio</text>
+                            <text x="557" y="160">speaks message</text>
+                        </g>
+                    </svg>
+                    </div>
                 </div>
             </details>
 
@@ -96,9 +130,30 @@
                 </div>
             </details>
         </div>
+        </details>
 
-        <p class="section-title">Projects</p>
+        <details class="section-fold">
+        <summary class="section-title">Projects</summary>
         <div class="list-container">
+            <details class="expandable-list">
+                <summary>
+                    <span><span class="accent-gold">Haven</span>: Wearable Hearing-Protection Device</span>
+                </summary>
+                <div class="expandable-content">
+                    A wearable hearing-protection app + firmware stack (nRF5340 + ADAU1860 DSP), evolved from a validated Teensy tinnitus-notch-filter prototype and built on the open-source OpenEarable platform. BLE app with a live frequency-response tuner and a safety-capped Loudness Discomfort Level hearing test; firmware and hardware bring-up in progress.
+
+                    <div class="shot-row">
+                        <img src="images/haven/haven-home.png" alt="Haven app home screen" loading="lazy">
+                        <img src="images/haven/haven-tune.png" alt="Haven app tune screen with live frequency response" loading="lazy">
+                        <img src="images/haven/haven-hearing.png" alt="Haven app loudness discomfort hearing test" loading="lazy">
+                        <img src="images/haven/haven-schematic-wip.png" alt="Haven hardware schematic review in EasyEDA" loading="lazy">
+                        <img src="images/haven/haven-pcb-layout-wip.png" alt="Haven PCB layout, components placed, pre-routing" loading="lazy">
+                    </div>
+
+                    <a href="https://pauliano22.github.io/haven-website/" target="_blank">View Site</a> &nbsp;&middot;&nbsp; <a href="https://github.com/pauliano22/haven-workspace" target="_blank">View GitHub</a>
+                </div>
+            </details>
+
             <details class="expandable-list">
                 <summary>
                     <span>Mini-TensorRT: DL Graph Compiler</span>
@@ -106,15 +161,6 @@
                 <div class="expandable-content">
                     A from-scratch C++ inference compiler: parses ONNX protobufs into a custom IR, fuses Conv-ReLU to cut DRAM round-trips (11.2% on cache-exceeding inputs), and runs a trained MNIST CNN through handwritten NCHW kernels that match ONNX Runtime's logits exactly.<br><br>
                     <a href="demo.html">Try it live (WASM)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/pauliano22/mini-tensorrt" target="_blank">View GitHub</a>
-                </div>
-            </details>
-
-            <details class="expandable-list">
-                <summary>
-                    <span>Acoustic Shield: Tinnitus Hearing Device</span>
-                </summary>
-                <div class="expandable-content">
-                    A wearable hearing device for tinnitus relief, built across the full stack: live audio streams through a Teensy + SGTL5000 codec into a custom AudioStream class running up to five biquad notch filters at 44.1kHz, with coefficients computed on-device. A React Native app retunes the bands in real time over BLE. Filter math prototyped on desktop in C++ with RtAudio and verified against a Python reference implementation.
                 </div>
             </details>
 
@@ -179,8 +225,10 @@
                 </div>
             </details>
         </div>
+        </details>
 
-        <p class="section-title">Hackathons</p>
+        <details class="section-fold">
+        <summary class="section-title">Hackathons</summary>
         <div class="list-container">
             <details class="expandable-list">
                 <summary>
@@ -212,18 +260,60 @@
                 </div>
             </details>
         </div>
+        </details>
 
-    </main>
+        <details class="section-fold">
+        <summary class="section-title">Some other things about me</summary>
+        <div class="section-fold-content">
+            <ul class="hobbies">
+                <li>315 lb bench press</li>
+                <li>~10 handicap golf</li>
+                <li>1700 elo chess</li>
+                <li>One Piece fan</li>
+                <li>3-sport athlete in high school: football, basketball, baseball</li>
+                <li>Worked at Wegmans for 5 years</li>
+            </ul>
 
-    <div class="outlet-section">
-        <canvas id="falls-canvas" aria-hidden="true"></canvas>
-        <main class="page page-after-falls">
-            <p class="section-title">Some other things about me</p>
-            <p class="hobbies">
-                I hit my goal of a 315 lb (3 plate) bench press this year<br>
-                I love golf, someday I hope to be scratch, but I'm usually ~10-12 handicap<br>
-                I help my cousin run a real estate business on the side.
-            </p>
+            <div class="list-container video-list">
+                <details class="expandable-list">
+                    <summary>
+                        <span>First frontflip on skis, 2024</span>
+                    </summary>
+                    <div class="expandable-content">
+                        <div class="video-embed">
+                            <video controls preload="metadata">
+                                <source src="videos/first_frontflip_skiing_2024.mp4" type="video/mp4"
+                                    onerror="this.closest('.video-embed').classList.add('video-missing')">
+                            </video>
+                            <div class="video-placeholder">
+                                <span class="ph-label">video coming soon</span>
+                                <span class="ph-file">videos/first_frontflip_skiing_2024.mp4</span>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="expandable-list">
+                    <summary>
+                        <span>First dunk, 2021</span>
+                    </summary>
+                    <div class="expandable-content">
+                        <div class="video-embed">
+                            <video controls preload="metadata">
+                                <source src="videos/first_dunk_2021.mp4" type="video/mp4"
+                                    onerror="this.closest('.video-embed').classList.add('video-missing')">
+                            </video>
+                            <div class="video-placeholder">
+                                <span class="ph-label">video coming soon</span>
+                                <span class="ph-file">videos/first_dunk_2021.mp4</span>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+        </details>
+
         </main>
     </div>
 
@@ -269,9 +359,9 @@
             const targetSize = (availableWidth / baseWidth) * 100;
 
             if (isMobile) {
-                heroText[0].size = Math.min(window.innerWidth / 6, 60);
+                heroText[0].size = Math.min(window.innerWidth / 6, 52);
             } else {
-                heroText[0].size = targetSize;
+                heroText[0].size = targetSize * 0.85;
             }
 
             heroText.forEach((line) => {
@@ -380,6 +470,20 @@
 
     <script src="theme.js" defer></script>
     <script src="effects.js" defer></script>
+
+    <script>
+        /* Re-run the falls layout after any accordion over it opens/closes --
+           its geometry is computed from element positions at load/resize
+           time, so a details toggle that changes page height needs to
+           trigger the same recompute or the falls drifts out of sync with
+           the content beneath it. Covers the section-level folds (Experience
+           / Projects / Hackathons / hobbies) and every nested item fold. */
+        document.querySelectorAll('.page-after-falls details').forEach((d) => {
+            d.addEventListener('toggle', () => {
+                requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+            });
+        });
+    </script>
 
 </body>
 

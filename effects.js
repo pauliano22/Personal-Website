@@ -25,6 +25,10 @@
         return getComputedStyle(document.documentElement)
             .getPropertyValue('--text').trim() || '#000000';
     }
+    function waterColor() {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue('--water').trim() || '#2B6CB0';
+    }
     function hexToRgb(hex) {
         const h = hex.replace('#', '');
         const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16);
@@ -161,7 +165,7 @@
 
         const FONT = 12, CH = 12;
         let CW = 7.2, cols = 0, rows = 0, poolRows = 3;
-        let ink = hexToRgb(inkColor());
+        let ink = hexToRgb(waterColor());
         let visible = false, running = false, t = 0, lastT = null;
 
         const splashes = [];  // {x, age, power}
@@ -205,14 +209,20 @@
                 range.selectNodeContents(hobbies);
                 hr = range.getBoundingClientRect(); // the text itself, not the block
             }
+            // also keep clear of any card content below the hobbies list
+            // (e.g. the videos panel) so the rock face doesn't draw behind it
+            const guardCard = document.querySelector('.page-after-falls .video-list');
+            const gr = guardCard ? guardCard.getBoundingClientRect() : null;
+            const bottoms = [hr, gr].filter(Boolean).map(r => r.bottom - cr.top);
+            const rights = [hr, gr].filter(Boolean).map(r => r.right - cr.left + 10);
             ledge = {
                 x0: tr.left - cr.left,
                 x1: tr.right - cr.left,
                 y: tr.bottom - cr.top,
                 creekX: tr.left - cr.left + textW + 30,
-                // keep the rock clear of the text block beside it
-                guardBottom: hr ? hr.bottom - cr.top : 0,
-                guardRight: hr ? hr.right - cr.left + 10 : 0
+                // keep the rock clear of the text/card content beside it
+                guardBottom: bottoms.length ? Math.max(...bottoms) : 0,
+                guardRight: rights.length ? Math.max(...rights) : 0
             };
         }
 
@@ -251,8 +261,10 @@
             const surface = rows - poolRows;
             const ledgeRow = Math.floor(ledge.y / CH);
             // where the underline ends — pulled in when the viewport leaves
-            // no room for the curtain to its right
-            const brinkC = Math.min(Math.floor(ledge.x1 / CW), cols - BAND + 2);
+            // no room for the curtain to its right. Section titles are now
+            // full-width flex rows (fold arrow docked at the right edge), so
+            // nudge a few cells further right to clear the arrow glyph.
+            const brinkC = Math.min(Math.floor(ledge.x1 / CW) + 14, cols - BAND + 2);
             const creekC0 = Math.ceil(ledge.creekX / CW);
             const fallH = Math.max(1, surface - ledgeRow);
             const plunge = brinkC + 1 + BAND / 2;
@@ -496,7 +508,7 @@
         window.addEventListener('load', () => { measure(); if (REDUCED) draw(0); });
 
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const onTheme = () => { ink = hexToRgb(inkColor()); dark = isDark(); if (REDUCED) draw(0); };
+        const onTheme = () => { ink = hexToRgb(waterColor()); dark = isDark(); if (REDUCED) draw(0); };
         if (mq.addEventListener) mq.addEventListener('change', onTheme);
         else if (mq.addListener) mq.addListener(onTheme);
         window.addEventListener('themechange', onTheme);

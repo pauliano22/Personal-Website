@@ -9,7 +9,7 @@
     --text: #2b2118;
     --border: #3a2f22;
     --cornell: #b31b1b;
-    --water: #2e7db8;
+    --water: #0f3a5c;
     --gold: #a97a1f;
     --green: #2f4a3d;
     color-scheme: light dark;
@@ -21,6 +21,7 @@
         --text: #eae2cc;
         --border: #eae2cc;
         --cornell: #e05a5a;
+        --water: #2e7db8;
         --gold: #eae2cc;
         --green: #eae2cc;
     }
@@ -31,6 +32,7 @@
     --text: #eae2cc;
     --border: #eae2cc;
     --cornell: #e05a5a;
+    --water: #2e7db8;
     --gold: #eae2cc;
     --green: #eae2cc;
     color-scheme: dark;
@@ -135,7 +137,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     margin: 0 0 1rem;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--border);
     padding-bottom: 0.3rem;
 }
 
@@ -166,7 +168,6 @@ body {
     font-size: 0.7em;
     text-transform: none;
     letter-spacing: normal;
-    color: var(--gold);
     transition: transform 0.2s ease;
 }
 
@@ -202,7 +203,6 @@ details.expandable-list summary {
 details.expandable-list summary::after {
     content: '▼';
     font-size: 0.7em;
-    color: var(--gold);
     transition: transform 0.2s ease;
 }
 
